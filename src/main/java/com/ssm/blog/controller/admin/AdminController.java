@@ -1,4 +1,4 @@
-package com.ssm.blog.controller;
+package com.ssm.blog.controller.admin;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
