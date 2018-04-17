@@ -5,21 +5,76 @@
     <!--目的:为dao接口方法提供sql语句配置
     即针对dao接口中的方法编写我们的sql语句-->
 
-<insert id="save" parameterType="Article">
-	INSERT INTO 
-		article(articleId,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
-	VALUES
-		(#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent});
-		
-	INSERT INTO
-		article_tag(article_id,tag_id)
-	VALUES
-		<foreach collection="article.tags" item="tag" separator=",">
-			(#{article.articleId},#{tag.tagId})
-		</foreach>	
-</insert> 
+    <insert id="add" parameterType="Article">
+        INSERT INTO
+        article(articleId,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
+        VALUES
+        (#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent});
 
-  
+        INSERT INTO
+        article_tag(article_id,tag_id)
+        VALUES
+        <foreach collection="article.tags" item="tag" separator=",">
+            (#{article.articleId},#{tag.tagId})
+        </foreach>
+    </insert>
 
+    <select id="getTotalCount"  resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT
+            count(*)
+        FROM
+            article
+        <where>
+            <if test="searchParam != null and searchParam !=''">
+                and title like '%' #{searchParam} '%'
+                or markdownContent like '%' #{searchParam} '%'
+            </if>
+        </where>
+    </select>
+    
+    <resultMap id="articleMap" type="com.ssm.blog.entity.Article">
+        <id column="articleId" property="articleId" />
+        <result column="title" property="title"/>
+        <result column="saveTime" property="saveTime"/>
+        <result column="publishTime" property="publishTime"/>
+       <!-- <result column="summaryContent" property="summaryContent"/>
+        <result column="markdownContent" property="markdownContent"/>
+        <result column="htmlContent" property="htmlContent"/>-->
+        <collection property="tags" ofType="com.ssm.blog.entity.Tag">
+            <id column="tagId" property="tagId"/>
+            <result column="tagName" property="tagName"/>
+        </collection>
+    </resultMap>
+
+    <select id="list" parameterType="java.util.Map" resultMap="articleMap">
+        SELECT
+            *
+        FROM
+            article a
+        LEFT JOIN
+            article_tag a_t
+        ON
+            a.articleId = a_t.article_id
+        LEFT JOIN
+            tag t
+        ON
+            a_t.tag_id = t.tagId
+        <where>
+            <if test="pageMap.searchParam != null and pageMap.searchParam != ''">
+                and title like '%' #{pageMap.searchParam} '%'
+                or markdownContent like '%' #{pageMap.searchParam} '%'
+            </if>
+            <!--<choose>
+                <when test="pageMap.searchParam != null and pageMap.searchParam != ''">
+                    and title like '%' #{pageMap.searchParam} '%'
+                    or markdownContent like '%' #{pageMap.searchParam} '%'
+                </when>
+            </choose>-->
+        </where>
+        ORDER BY
+            title
+        LIMIT
+            #{pageMap.offsetCount}, #{pageMap.pageSize}
+    </select>
 
 </mapper>
