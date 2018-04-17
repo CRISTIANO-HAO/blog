@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        		};
         		$.ajax({
         			type: "POST",
-	        		url: "article/add",
+	        		url: "admin/article/add",
 	        		contentType: "application/json",
 	        		data:JSON.stringify(data),
 	        		success: function(result){

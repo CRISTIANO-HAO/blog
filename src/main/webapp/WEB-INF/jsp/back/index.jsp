@@ -104,7 +104,7 @@
                     </table>
                 </div>
                 <div class="box-footer clear">
-                    <ul class="pagination clear right">
+                    <ul id="pagination" class="pagination clear right">
                         <li><a href="#">«</a></li>
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -117,5 +117,28 @@
     </div>
     <footer></footer>
 </div>
+<script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="<%=basePath %>resource/back/js/page.js"></script>
+<script type="text/javascript">
+    pagePagination({
+        pageIndex:2,
+        pageNum: 8,
+        target:"#pagination"
+    });
+
+    $.ajax({
+        url: "admin/article/list/page/1",
+        type:"POST",
+        //contentType: "application/json",
+        contentType: "application/x-www-form-urlencoded",
+        data : {
+            pageSize: 10,
+            searchParam: "00",
+        },
+        success: function (result) {
+            console.log(result)
+        }
+    })
+</script>
 </body>
 </html>

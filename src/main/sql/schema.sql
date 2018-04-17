@@ -1,14 +1,15 @@
 //文章表
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE article (
-	articleId bigint NOT NULL PRIMARY KEY,
+	id int NOT NULL PRIMARY KEY ,
+	articleId bigint NOT NULL UNIQUE KEY ,
 	saveTime date NOT NULL,
 	publishTime date NOT NULL,
 	title VARCHAR(100) NOT NULL UNIQUE KEY,
 	summaryContent VARCHAR(200),
 	markdownContent TEXT,
 	htmlContent TEXT
-)ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT = '文章表';
+)ENGINE=InnoDB AUTO_INCREMENT = 100 DEFAULT CHARSET = utf8 COMMENT = '文章表';
 
 
 //标签表
