@@ -1,0 +1,2 @@
+# blog
+THIS A BLOG OF SSM
