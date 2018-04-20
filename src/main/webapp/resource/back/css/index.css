@@ -56,6 +56,12 @@ a{
     float: right;
 }
 
+.noContent{
+    margin: 20px 0 5px;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
 body {
     font-size: 14px;
     color: #666;
@@ -163,6 +169,10 @@ header {
     background-color: #fff;
 }
 
+.main-left .search-bar form{
+    display: table;
+}
+
 .main-left .search-bar button{
     color: #999;
     border-top-left-radius: 0;
@@ -263,6 +273,10 @@ header {
 .pagination>li:last-child>a{
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+}
+
+.pagination>li.pageActive>a{
+    background: #dddde4 !important;
 }
 
 .pagination>li>a {

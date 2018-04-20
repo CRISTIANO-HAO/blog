@@ -21,8 +21,7 @@ public interface ArticleDao {
 	* 获取文章列表
 	*
 	* */
-	List<Article> list(@Param("pageMap") Map<String,Object> pageMap);
-	List<Article> list(@Param("page") Page page,@Param("searchParam") String searchParam);
+	List<Article> list(@Param("offsetCount") int offsetCount,@Param("pageSize") int pageSize,@Param("searchParam") String searchParam);
 
 	/*
 	* 获取文章

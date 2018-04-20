@@ -10,8 +10,7 @@ public interface ArticleService {
 
 	void save(Article article);
 
-	List<Article> list(Page page,String searchParam);
-	List<Article> list(Map<String,Object> pageMap);
+	List<Article> list(int offsetCount,int pageSize,String searchParam);
 
 	int getTotalCount(String searchParam);
 }

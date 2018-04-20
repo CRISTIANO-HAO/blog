@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -17,15 +19,9 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 @RequestMapping(value="/admin")
 public class AdminController {
 	
-	@RequestMapping(value="")
+	@RequestMapping(value="",method = RequestMethod.GET)
 	public String index(){
-		return "back/index";
+		return "forward:/admin/article/list/page/1";
 	}
 
-	@SuppressWarnings("deprecation")
-	public static void main(String[] args) {
-		System.out.println(new Date().getTime());
-		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(sFormat.format(new Date()));
-	}
 }

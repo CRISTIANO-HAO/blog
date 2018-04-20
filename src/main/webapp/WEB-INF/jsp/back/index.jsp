@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -26,7 +27,7 @@
 <div class="wrapper">
     <header class="clear">
         <div class="head-left left">
-            <span>HELLO Mr.HAO</span>
+            <span>Hello Mr.HAO</span>
         </div>
         <div class="head-right">
             <div class="left">
@@ -48,8 +49,10 @@
             </div>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button><i class="fa fa-search"></i></button>
+            <form action="admin/article/list/page/1" method="post">
+                <input type="text" placeholder="Search..." value="${searchParam}" name="searchParam">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
         </div>
     </aside>
     <div class="main-right">
@@ -63,45 +66,30 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Task</th>
-                            <th>Progress</th>
-                            <th style="width: 40px">Label</th>
+                            <th>序号</th>
+                            <th>文章标题</th>
+                            <th>文章标签</th>
+                            <th>文章编辑</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-red">55%</span></td>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-red">55%</span></td>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                </div>
-                            </td>
-                            <td><span class="badge bg-red">55%</span></td>
-                        </tr>
+                        <c:forEach items="${articleList}" var="article" varStatus="status">
+                            <tr>
+                                <td>${(page.pageIndex - 1) * page.pageSize + status.index + 1}</td>
+                                <td>${article.title}</td>
+                                <td>
+                                    <c:forEach items="${article.tags}" var="tag">
+                                        <span>${tag.tagName}</span>
+                                    </c:forEach>
+                                </td>
+                                <td><span class="badge bg-red">55%</span></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
+                    <c:if test="${articleList.size() == 0}">
+                        <div class="noContent">It is over  !!</div>
+                    </c:if>
                 </div>
                 <div class="box-footer clear">
                     <ul id="pagination" class="pagination clear right">
@@ -121,22 +109,23 @@
 <script type="text/javascript" src="<%=basePath %>resource/back/js/page.js"></script>
 <script type="text/javascript">
     pagePagination({
-        pageIndex:2,
-        pageNum: 8,
-        target:"#pagination"
+        pageIndex:"${page.pageIndex}",
+        pageNum: "${page.totalPages}",
+        target:"#pagination",
+        url:"<%=basePath %>admin/article/list/page/",
+        searchParam : "${searchParam}",
     });
 
     $.ajax({
         url: "admin/article/list/page/1",
         type:"POST",
-        //contentType: "application/json",
         contentType: "application/x-www-form-urlencoded",
         data : {
-            pageSize: 10,
-            searchParam: "00",
+            // pageSize: 10,
+            // searchParam: "00",
         },
         success: function (result) {
-            console.log(result)
+            console.log(result);
         }
     })
 </script>

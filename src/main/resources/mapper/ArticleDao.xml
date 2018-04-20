@@ -19,38 +19,41 @@
         </foreach>
     </insert>
 
-    <select id="getTotalCount"  resultType="java.lang.Integer" parameterType="java.lang.String">
+    <select id="getTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT
             count(*)
         FROM
-            article
+            article a
         <where>
-            <if test="searchParam != null and searchParam !=''">
-                and title like '%' #{searchParam} '%'
-                or markdownContent like '%' #{searchParam} '%'
-            </if>
+            <if test="searchParam != null and searchParam != ''"> a.title like '%' #{searchParam} '%'</if>
         </where>
+
     </select>
-    
+
     <resultMap id="articleMap" type="com.ssm.blog.entity.Article">
-        <id column="articleId" property="articleId" />
+        <id column="articleId" property="articleId"/>
         <result column="title" property="title"/>
         <result column="saveTime" property="saveTime"/>
         <result column="publishTime" property="publishTime"/>
-       <!-- <result column="summaryContent" property="summaryContent"/>
-        <result column="markdownContent" property="markdownContent"/>
-        <result column="htmlContent" property="htmlContent"/>-->
+        <!-- <result column="summaryContent" property="summaryContent"/>
+         <result column="markdownContent" property="markdownContent"/>
+         <result column="htmlContent" property="htmlContent"/>-->
         <collection property="tags" ofType="com.ssm.blog.entity.Tag">
             <id column="tagId" property="tagId"/>
             <result column="tagName" property="tagName"/>
         </collection>
     </resultMap>
 
-    <select id="list" parameterType="java.util.Map" resultMap="articleMap">
+    <select id="list" resultMap="articleMap">
         SELECT
             *
         FROM
-            article a
+            (
+                SELECT * FROM
+                    article
+                <where><if test="searchParam != null and searchParam != ''"> article.title like '%' #{searchParam} '%'</if></where> ORDER BY article.title
+                LIMIT #{offsetCount}, #{pageSize}
+            ) a
         LEFT JOIN
             article_tag a_t
         ON
@@ -58,23 +61,7 @@
         LEFT JOIN
             tag t
         ON
-            a_t.tag_id = t.tagId
-        <where>
-            <if test="pageMap.searchParam != null and pageMap.searchParam != ''">
-                and title like '%' #{pageMap.searchParam} '%'
-                or markdownContent like '%' #{pageMap.searchParam} '%'
-            </if>
-            <!--<choose>
-                <when test="pageMap.searchParam != null and pageMap.searchParam != ''">
-                    and title like '%' #{pageMap.searchParam} '%'
-                    or markdownContent like '%' #{pageMap.searchParam} '%'
-                </when>
-            </choose>-->
-        </where>
-        ORDER BY
-            title
-        LIMIT
-            #{pageMap.offsetCount}, #{pageMap.pageSize}
+            t.tagId = a_t.tag_id
     </select>
 
 </mapper>

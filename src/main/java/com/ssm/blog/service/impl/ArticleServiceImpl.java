@@ -24,15 +24,9 @@ public class ArticleServiceImpl implements ArticleService{
 		articleDao.add(article);
 	}
 
-    @Override
-    public List<Article> list(Page page, String searchParam) {
-	    List<Article> articleList = articleDao.list(page,searchParam);
-        return articleList;
-    }
-
 	@Override
-	public List<Article> list(Map<String, Object> pageMap) {
-		List<Article> articleList = articleDao.list(pageMap);
+	public List<Article> list(int offsetCount,int pageSize, String searchParam) {
+		List<Article> articleList = articleDao.list(offsetCount,pageSize,searchParam);
 		return articleList;
 	}
 
