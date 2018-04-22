@@ -1,0 +1,59 @@
+
+.article-title{
+    margin: 1% 5%;
+}
+
+.article-title .left>div{
+    margin: 10px 5px 10px 0px;
+}
+
+.article-title .left h3{
+    white-space: nowrap;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.article-title .left input{
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 0.5rem;
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    background-color: #eee;
+    outline: none;
+}
+
+.article-title .left input:focus{
+    background-color: #fff;
+}
+
+.article-title .right .btnDiv{
+    margin: 10px 0px 5px;
+    text-align: right;
+}
+
+.article-title .right .tagDiv input{
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 0.5rem;
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    background-color: #eee;
+    outline: none;
+}
+
+.article-title button{
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #3c8dbc;
+    color: #ffffff;
+    border:1px solid #d7d4f0;
+    font-size: 12px;
+}
+
+.article-title button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}

@@ -13,6 +13,11 @@ import java.util.Map;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
+	@Override
+	public Article getById(Long articleId) {
+		Article article = articleDao.get(articleId);
+		return article;
+	}
 
 	@Autowired
 	private ArticleDao articleDao;

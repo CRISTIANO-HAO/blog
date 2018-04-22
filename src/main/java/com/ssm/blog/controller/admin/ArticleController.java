@@ -8,6 +8,7 @@ import java.util.Map;
 import com.ssm.blog.dto.ResultEnum;
 import com.ssm.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,20 +64,14 @@ public class ArticleController {
 	        pageIndex = 1;
         }
 
-        System.out.println("pageIndex: "+pageIndex);
-        System.out.println("pageSize: "+pageSize);
-        System.out.println("searchParam: "+searchParam);
-
         //获取查询的总数目
         int totalCount = articleService.getTotalCount(searchParam);
-        System.out.println("totalCount: " + totalCount);
         //添加分页查询的信息
         Page page = new Page(pageIndex,pageSize,totalCount);
         //结果集对象
         ResultSet resultSet;
         try {
             List<Article> articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
-            System.out.println("articleList: "+ articleList.size());
             resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), articleList);
         } catch (Exception e) {
             resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
@@ -87,23 +82,10 @@ public class ArticleController {
         return "back/index";
     }
 
-    /*@RequestMapping(value = "/list/page/{pageIndex}/search/{searchParam}", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultSet list(@PathVariable String pageIndex, @PathVariable String searchParam, @RequestBody HashMap<String, String> map) {
-        if (pageIndex == null || "".equals(pageIndex)) {
-            pageIndex = "1";
-        }
-        Page page = new Page(Integer.valueOf(pageIndex));
-
-        ResultSet resultSet;
-
-        try {
-            List<Article> articleList = articleService.list(page, searchParam);
-            resultSet = new ResultSet(true, 200, articleList);
-        } catch (Exception e) {
-            resultSet = new ResultSet(false, 500, "获取文章列表报错！！");
-        }
-
-        return resultSet;
-    }*/
+    @RequestMapping(value = "/get/{articleId}",method = {RequestMethod.GET})
+    public String getArticleById(Model model,@PathVariable(value = "articleId") Long articleId){
+        Article article = articleService.getById(articleId);
+        model.addAttribute("article",article);
+        return "back/articleEdit";
+    }
 }

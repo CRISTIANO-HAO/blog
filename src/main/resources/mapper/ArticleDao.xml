@@ -4,6 +4,19 @@
 <mapper namespace="com.ssm.blog.dao.ArticleDao">
     <!--目的:为dao接口方法提供sql语句配置
     即针对dao接口中的方法编写我们的sql语句-->
+    <resultMap id="articleMap" type="com.ssm.blog.entity.Article">
+        <id column="articleId" property="articleId"/>
+        <result column="title" property="title"/>
+        <result column="saveTime" property="saveTime"/>
+        <result column="publishTime" property="publishTime"/>
+        <result column="summaryContent" property="summaryContent"/>
+        <result column="markdownContent" property="markdownContent"/>
+        <result column="htmlContent" property="htmlContent"/>
+        <collection property="tags" ofType="com.ssm.blog.entity.Tag">
+            <id column="tagId" property="tagId"/>
+            <result column="tagName" property="tagName"/>
+        </collection>
+    </resultMap>
 
     <insert id="add" parameterType="Article">
         INSERT INTO
@@ -19,6 +32,23 @@
         </foreach>
     </insert>
 
+    <select id="get" resultMap="articleMap" parameterType="java.lang.Long">
+        SELECT
+            *
+        FROM
+            article a
+        LEFT JOIN
+            article_tag a_t
+        ON
+            a.articleId = a_t.article_id
+        LEFT JOIN
+            tag t
+        ON
+            a_t.tag_id = tagId
+        WHERE
+            a.articleId = #{articleId}
+    </select>
+
     <select id="getTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT
             count(*)
@@ -29,20 +59,6 @@
         </where>
 
     </select>
-
-    <resultMap id="articleMap" type="com.ssm.blog.entity.Article">
-        <id column="articleId" property="articleId"/>
-        <result column="title" property="title"/>
-        <result column="saveTime" property="saveTime"/>
-        <result column="publishTime" property="publishTime"/>
-        <!-- <result column="summaryContent" property="summaryContent"/>
-         <result column="markdownContent" property="markdownContent"/>
-         <result column="htmlContent" property="htmlContent"/>-->
-        <collection property="tags" ofType="com.ssm.blog.entity.Tag">
-            <id column="tagId" property="tagId"/>
-            <result column="tagName" property="tagName"/>
-        </collection>
-    </resultMap>
 
     <select id="list" resultMap="articleMap">
         SELECT

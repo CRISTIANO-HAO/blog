@@ -19,6 +19,7 @@
     <meta http-equiv="description" content="This is my page">
     <!-- font-Awesome -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=basePath %>resource/common/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/back/css/index.css"/>
 
 </head>
@@ -78,11 +79,23 @@
                                 <td>${(page.pageIndex - 1) * page.pageSize + status.index + 1}</td>
                                 <td>${article.title}</td>
                                 <td>
-                                    <c:forEach items="${article.tags}" var="tag">
-                                        <span>${tag.tagName}</span>
+                                    <c:forEach items="${article.tags}" var="tag" varStatus="tagIndex" >
+                                        <c:if test="${tagIndex.index < (article.tags.size() - 1)}">
+                                            <span>${tag.tagName} ;</span>
+                                        </c:if>
+                                        <c:if test="${tagIndex.index == (article.tags.size() - 1)}">
+                                            <span>${tag.tagName}</span>
+                                        </c:if>
                                     </c:forEach>
                                 </td>
-                                <td><span class="badge bg-red">55%</span></td>
+                                <td>
+                                    <div>
+                                        <a href="<%=basePath %>admin/article/get/${article.articleId}">
+                                            <span>编辑</span>
+                                            <i class="fa fa-eraser"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

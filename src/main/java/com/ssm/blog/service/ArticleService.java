@@ -10,6 +10,8 @@ public interface ArticleService {
 
 	void save(Article article);
 
+	Article getById(Long articleId);
+
 	List<Article> list(int offsetCount,int pageSize,String searchParam);
 
 	int getTotalCount(String searchParam);
