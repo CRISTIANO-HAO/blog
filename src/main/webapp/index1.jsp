@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h1>验证MVC参数传递</h1>
  
     	<input type="text" name="title" placeholder="请输入标题"><br>
-    	<input type="text" name="tagName" placeholder="请输入标签名"><br>
-    	<input type="text" name="tagName" placeholder="请输入标签名"><br>
-    	<input type="text" name="tagName" placeholder="请输入标签名"><br>
+    	<input type="text" name="categoryName" placeholder="请输入标签名"><br>
+    	<input type="text" name="categoryName" placeholder="请输入标签名"><br>
+    	<input type="text" name="categoryName" placeholder="请输入标签名"><br>
     	<button id="button">提交</button>
 
     <script type="text/javascript">

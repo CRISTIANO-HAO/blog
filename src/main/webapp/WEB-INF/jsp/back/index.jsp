@@ -79,12 +79,12 @@
                                 <td>${(page.pageIndex - 1) * page.pageSize + status.index + 1}</td>
                                 <td>${article.title}</td>
                                 <td>
-                                    <c:forEach items="${article.tags}" var="tag" varStatus="tagIndex" >
-                                        <c:if test="${tagIndex.index < (article.tags.size() - 1)}">
-                                            <span>${tag.tagName} ;</span>
+                                    <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex" >
+                                        <c:if test="${categoryIndex.index < (article.categories.size() - 1)}">
+                                            <span>${category.categoryName} ;</span>
                                         </c:if>
-                                        <c:if test="${tagIndex.index == (article.tags.size() - 1)}">
-                                            <span>${tag.tagName}</span>
+                                        <c:if test="${categoryIndex.index == (article.categories.size() - 1)}">
+                                            <span>${category.categoryName}</span>
                                         </c:if>
                                     </c:forEach>
                                 </td>

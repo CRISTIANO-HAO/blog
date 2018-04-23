@@ -12,9 +12,9 @@
         <result column="summaryContent" property="summaryContent"/>
         <result column="markdownContent" property="markdownContent"/>
         <result column="htmlContent" property="htmlContent"/>
-        <collection property="tags" ofType="com.ssm.blog.entity.Tag">
-            <id column="tagId" property="tagId"/>
-            <result column="tagName" property="tagName"/>
+        <collection property="categories" ofType="com.ssm.blog.entity.Category">
+            <id column="categoryId" property="categoryId"/>
+            <result column="categoryName" property="categoryName"/>
         </collection>
     </resultMap>
 
@@ -25,10 +25,10 @@
         (#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent});
 
         INSERT INTO
-        article_tag(article_id,tag_id)
+        article_category(article_id,category_id)
         VALUES
-        <foreach collection="article.tags" item="tag" separator=",">
-            (#{article.articleId},#{tag.tagId})
+        <foreach collection="article.categories" item="category" separator=",">
+            (#{article.articleId},#{category.categoryId})
         </foreach>
     </insert>
 
@@ -38,13 +38,13 @@
         FROM
             article a
         LEFT JOIN
-            article_tag a_t
+            article_category a_t
         ON
             a.articleId = a_t.article_id
         LEFT JOIN
-            tag t
+            category t
         ON
-            a_t.tag_id = tagId
+            a_t.category_id = categoryId
         WHERE
             a.articleId = #{articleId}
     </select>
@@ -71,13 +71,13 @@
                 LIMIT #{offsetCount}, #{pageSize}
             ) a
         LEFT JOIN
-            article_tag a_t
+            article_category a_t
         ON
             a.articleId = a_t.article_id
         LEFT JOIN
-            tag t
+            category t
         ON
-            t.tagId = a_t.tag_id
+            t.categoryId = a_t.category_id
     </select>
 
 </mapper>

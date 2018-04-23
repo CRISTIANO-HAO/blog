@@ -25,7 +25,7 @@
                 <p>1、由于Editor.md是依赖jQuery的，所以在使用Sea.js加载Editor.md时，要在jQuery.js文件尾部加上 <code>if(typeof define === "function") { define(function () { return $.noConflict(); }); }</code>，使jQuery支持Sea.js；</p>  
                 <p>2、flowChart（流程图）和sequenceDiagram（时序图）基于Raphael.js，由于疑似Sea.js与Raphael.js有冲突，所以必须先加载Raphael.js再加载Sea.js，Editor.md才能在Sea.js下正常进行；</p>      
                 <ul style="margin: 10px 0 0 18px;">
-                    <li>Enable HTML tags decode</li>
+                    <li>Enable HTML categories decode</li>
                     <li>Enable TeX, Flowchart, Sequence Diagram, Emoji, FontAwesome, Task lists</li>
                     <li>Enable Image upload</li>
                     <li>Enable [TOCM], Search Replace, Code fold</li>

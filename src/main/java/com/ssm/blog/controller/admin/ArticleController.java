@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssm.blog.dto.ResultEnum;
+import com.ssm.blog.entity.Category;
+import com.ssm.blog.service.CategoryService;
 import com.ssm.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,8 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
@@ -35,11 +38,11 @@ public class ArticleController {
         article.setSaveTime(new Date());
         article.setPublishTime(new Date());
         article.setTitle("Java的深入浅出" + Math.random());
-        System.out.println(article.getTags().size());
+        System.out.println(article.getCategories().size());
 
         Map<String, Object> articleMap = new HashMap<String, Object>();
         articleMap.put("article", article);
-        articleMap.put("tags", article.getTags());
+        articleMap.put("categorys", article.getCategories());
 
         ResultSet resultSet;
         try {
@@ -85,7 +88,9 @@ public class ArticleController {
     @RequestMapping(value = "/get/{articleId}",method = {RequestMethod.GET})
     public String getArticleById(Model model,@PathVariable(value = "articleId") Long articleId){
         Article article = articleService.getById(articleId);
+        List<Category> categories = categoryService.list();
         model.addAttribute("article",article);
+        model.addAttribute("categories",categories);
         return "back/articleEdit";
     }
 }

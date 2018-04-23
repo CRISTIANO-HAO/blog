@@ -11,7 +11,7 @@
         <div id="layout">
             <header>
                 <h1>识别和解析HTML标签</h1>
-                <p>HTML tags (filter) decode, You can increase safety by filtering the danger label.</p>
+                <p>HTML categories (filter) decode, You can increase safety by filtering the danger label.</p>
                 <p>注：虽然此功能能极大地扩展 Markdown 语法，但也面临着安全上的风险，所以默认是不开启的。</p>
                 <p>Update: 可以通过设置 `settings.htmlDecode = "style,script,iframe|on*"`来实现过滤指定标签及属性的解析，提高安全性；</p>
             </header>
@@ -27,11 +27,11 @@
 配置项：
 
     {
-        htmlDecode : true // Decode all html tags & attributes
-        // Filter tags/attributes expression : tagName,tagName,...|attrName,attrName,...
-        htmlDecode : "style,script,iframe,sub,sup|on*"  // Filter tags, and all on* attributes
-        //htmlDecode : "style,script,iframe,sub,sup|*"    // Filter tags, and all attributes
-        //htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style" // Filter tags, and your custom attributes
+        htmlDecode : true // Decode all html categories & attributes
+        // Filter categories/attributes expression : categoryName,categoryName,...|attrName,attrName,...
+        htmlDecode : "style,script,iframe,sub,sup|on*"  // Filter categories, and all on* attributes
+        //htmlDecode : "style,script,iframe,sub,sup|*"    // Filter categories, and all attributes
+        //htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style" // Filter categories, and your custom attributes
     }
 
 #### 示例
@@ -103,11 +103,11 @@ alert("script");
                     width: "90%",
                     height: 720,
                     path : '../lib/',
-                    htmlDecode : true,   // Decode all html tags & attributes
-                    // Expression : tagName,tagName,...|attrName,attrName,...
-                    //htmlDecode : "style,script,iframe,sub,sup|on*"  // Filter tags, and all on* attributes
-                    //htmlDecode : "style,script,iframe,sub,sup|*"    // Filter tags, and all attributes
-                    //htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style" // Filter tags, and your custom attributes
+                    htmlDecode : true,   // Decode all html categories & attributes
+                    // Expression : categoryName,categoryName,...|attrName,attrName,...
+                    //htmlDecode : "style,script,iframe,sub,sup|on*"  // Filter categories, and all on* attributes
+                    //htmlDecode : "style,script,iframe,sub,sup|*"    // Filter categories, and all attributes
+                    //htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style" // Filter categories, and your custom attributes
                 });
                 
                 $(".filter-btn").click(function(){

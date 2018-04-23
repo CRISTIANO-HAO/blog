@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -35,6 +36,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h3>文章标题</h3>
                         <input type="text" name="title" value="${article.title}">
                     </div>
+                    <div class="categoryDiv">
+                        <h3>文章分类</h3>
+                        <div>
+                            <div class="categoryList">
+                                <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex" >
+                                    <c:if test="${categoryIndex.index < (article.categories.size() - 1)}">
+                                        <span>${category.categoryName} ;</span>
+                                    </c:if>
+                                    <c:if test="${categoryIndex.index == (article.categories.size() - 1)}">
+                                        <span>${category.categoryName}</span>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="categoryUl">
+                            <ul class="hide">
+                                <c:forEach items="${categories}" var="category">
+                                    <c:set var="flag" value="false"></c:set>
+                                    <c:forEach items="${article.categories}" var="articleCatecory">
+                                        <c:if test="${category.categoryName == articleCatecory.categoryName}">
+                                            <c:set var="flag" value="true"></c:set>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${flag == true}">
+                                            <li class="choseCategory">${category.categoryName}</li>
+                                            <c:set var="flag" value="false"></c:set>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li>${category.categoryName}</li>
+                                            <c:set var="flag" value="false"></c:set>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="right">
                     <div class="btnDiv">
@@ -42,9 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <button id="publishBtn">发布</button>
                         <button id="deleteBtn">删除</button>
                     </div>
-                    <div class="tagDiv">
-                        <input type="text" readonly>
-                    </div>
+
                 </div>
             </div>
             <div id="layout">
@@ -70,11 +106,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
             
             $('#saveBtn').click(function(){
-            	var tags = [{tagName:"CSS",tagId:3},{tagName:"前端",tagId:1},{tagName:"后端",tagId:2}];
+            	var categories = [{categoryName:"CSS",categoryId:3},{categoryName:"前端",categoryId:1},{categoryName:"后端",categoryId:2}];
             	var data = {
 	        			markdownContent: testEditor.getMarkdown(),
 	        			htmlContent:testEditor.getHTML(),
-	        			tags:tags
+	        			categories:categories
 	        		};
         		$.ajax({
         			type: "POST",
@@ -86,6 +122,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        		},
 	        	});
         	});
+
+            $('.categoryList').click(function () {
+                $('.categoryUl ul').toggleClass("hide");
+            })
         </script>
     </body>
 </html>

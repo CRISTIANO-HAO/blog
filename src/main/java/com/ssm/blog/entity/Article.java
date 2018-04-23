@@ -19,7 +19,7 @@ public class Article {
 	// 文章html内容
 	private String htmlContent;
 	//文章标签
-	private List<Tag> tags;
+	private List<Category> categories;
 
 	public long getArticleId() {
 		return articleId;
@@ -77,12 +77,12 @@ public class Article {
 		this.htmlContent = htmlContent;
 	}
 
-	public List<Tag> getTags() {
-		return tags;
+	public List<Category> getCategories() {
+		return categories;
 	}
 
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 }

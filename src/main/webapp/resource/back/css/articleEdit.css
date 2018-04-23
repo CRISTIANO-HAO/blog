@@ -1,4 +1,5 @@
 
+
 .article-title{
     margin: 1% 5%;
 }
@@ -33,7 +34,7 @@
     text-align: right;
 }
 
-.article-title .right .tagDiv input{
+.article-title .left .categoryDiv .categoryList{
     width: 300px;
     height: 35px;
     line-height: 35px;
@@ -41,7 +42,35 @@
     border: 1px solid #3c8dbc;
     border-radius: 5px;
     background-color: #eee;
-    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.article-title .left .categoryUl {
+    position: relative;
+}
+
+.article-title .left .categoryUl ul{
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.article-title .left .categoryUl li{
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    text-indent: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.article-title .left .categoryUl li.choseCategory{
+    background-color: #eee;
 }
 
 .article-title button{

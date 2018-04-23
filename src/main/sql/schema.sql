@@ -15,8 +15,8 @@ CREATE TABLE article (
 //标签表
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE tag (
-	tagId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	tagName VARCHAR(20) NOT NULL UNIQUE KEY COMMENT '标签名'
+	categoryId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	categoryName VARCHAR(20) NOT NULL UNIQUE KEY COMMENT '标签名'
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT = '标签表';
 
 
@@ -31,7 +31,7 @@ ALTER TABLE article_tag ADD CONSTRAINT article_tag_pk PRIMARY KEY(tag_id,article
 //创建外键
 ALTER TABLE `article_tag` ADD CONSTRAINT `fk_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`articleId`);
 //创建外键
-ALTER TABLE `article_tag` ADD CONSTRAINT `fk_tag` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tagId`);
+ALTER TABLE `article_tag` ADD CONSTRAINT `fk_tag` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`categoryId`);
 
 
 
