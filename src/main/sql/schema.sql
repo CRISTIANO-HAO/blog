@@ -13,25 +13,25 @@ CREATE TABLE article (
 
 
 //标签表
-DROP TABLE IF EXISTS `tag`;
-CREATE TABLE tag (
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE category (
 	categoryId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	categoryName VARCHAR(20) NOT NULL UNIQUE KEY COMMENT '标签名'
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT = '标签表';
 
 
 //文章标签中间表
-DROP TABLE IF EXISTS `article_tag`;
-CREATE TABLE article_tag(
-	tag_id int NOT NULL,
+DROP TABLE IF EXISTS `article_category`;
+CREATE TABLE article_category(
+	category_id int NOT NULL,
 	article_id bigint NOT NULL 
 )ENGINE=InnoDB DEFAULT CHARSET = utf8 COMMENT = '文章标签中间表';
 //创建联合主键
-ALTER TABLE article_tag ADD CONSTRAINT article_tag_pk PRIMARY KEY(tag_id,article_id);
+ALTER TABLE article_category ADD CONSTRAINT article_category_pk PRIMARY KEY(category_id,article_id);
 //创建外键
-ALTER TABLE `article_tag` ADD CONSTRAINT `fk_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`articleId`);
+ALTER TABLE `article_category` ADD CONSTRAINT `fk_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`articleId`);
 //创建外键
-ALTER TABLE `article_tag` ADD CONSTRAINT `fk_tag` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`categoryId`);
+ALTER TABLE `article_category` ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`categoryId`);
 
 
 
