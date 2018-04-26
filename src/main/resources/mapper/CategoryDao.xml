@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.blog.dao.CategoryDao">
+
+    <resultMap id="categoryMap" type="com.ssm.blog.entity.Category">
+        <id column="categoryId" property="categoryId"></id>
+        <result column="categoryNae" property="categoryName"/>
+    </resultMap>
+
+    <select id="list" resultMap="categoryMap">
+        SELECT
+            *
+        FROM
+            category c
+    </select>
+</mapper>

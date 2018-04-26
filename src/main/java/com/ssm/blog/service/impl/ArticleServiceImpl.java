@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.ssm.blog.dao.ArticleDao;
 import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,8 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public void save(Article article) {
+	@Transactional
+	public void add(Article article) {
 		
 		articleDao.add(article);
 	}
@@ -39,4 +41,11 @@ public class ArticleServiceImpl implements ArticleService{
 		int totalCount = articleDao.getTotalCount(searchParam);
 		return totalCount;
 	}
+
+    @Override
+    public boolean ifExistTitle(String title) {
+    	//没有找到相同标题的文章，返回false
+	    boolean ifExistTitle = articleDao.ifExistTitle(title) > 0 ? true : false;
+        return ifExistTitle;
+    }
 }

@@ -39,42 +39,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="categoryDiv">
                         <h3>文章分类</h3>
                         <div>
-                            <div class="categoryList">
-                                <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex" >
-                                    <c:if test="${categoryIndex.index < (article.categories.size() - 1)}">
-                                        <span>${category.categoryName}；</span>
-                                    </c:if>
-                                    <c:if test="${categoryIndex.index == (article.categories.size() - 1)}">
-                                        <span>${category.categoryName}</span>
-                                    </c:if>
-                                </c:forEach>
-                            </div>
+                            <div class="categoryList"> </div>
                         </div>
                         <div class="categoryUl">
                             <ul class="hide">
                                 <c:forEach items="${categories}" var="category">
-                                    <c:set var="flag" value="false"></c:set>
-                                    <c:forEach items="${article.categories}" var="articleCatecory">
-                                        <c:if test="${category.categoryName == articleCatecory.categoryName}">
-                                            <c:set var="flag" value="true"></c:set>
-                                        </c:if>
-                                    </c:forEach>
-                                    <c:choose>
-                                        <c:when test="${flag == true}">
-                                            <li class="choseCategory">
-                                                <span> ${category.categoryName}</span>
-                                                <input type="hidden" name="categoryId" value="${category.categoryId}">
-                                            </li>
-                                            <c:set var="flag" value="false"></c:set>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li>
-                                                <span> ${category.categoryName}</span>
-                                                <input type="hidden" name="categoryId" value="${category.categoryId}" disabled>
-                                            </li>
-                                            <c:set var="flag" value="false"></c:set>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <li>
+                                        <span> ${category.categoryName}</span>
+                                        <input type="hidden" name="categoryId" value="${category.categoryId}" disabled>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -82,24 +55,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="right">
                     <div class="btnDiv">
-                        <button id="saveBtn" type="button">保存</button>
+                        <button id="addBtn" type="button">新建</button>
                         <button id="publishBtn" type="button">发布</button>
-                        <button id="deleteBtn" type="button">删除</button>
                     </div>
                     <div class="tagDiv">
                         <h3>文章标签</h3>
-                        <input type="text" name="tag" value="<c:forEach items="${article.tags}" var="tag">${tag.tagName}；</c:forEach>">
+                        <input type="text" name="tags" placeholder="不同标签请用符号分隔">
                     </div>
                 </div>
             </div>
             <div id="layout">
                 <div id="test-editormd">
-                    <textarea style="display:none;" name="markdownContent">${article.markdownContent}</textarea>
+                    <textarea style="display:none;" name="markdownContent"></textarea>
                 </div>
             </div>
             <div class="article-summary">
                 <h3>文章摘要</h3>
-                <textarea rows="5" name="summaryContent">${article.summaryContent}</textarea>
+                <textarea rows="5" name="summaryContent"></textarea>
             </div>
         </main>
 
@@ -107,32 +79,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="<%=basePath %>resource/markdown/editormd.min.js"></script>
         <script type="text/javascript">
 			var testEditor;
-
+            //markdown插件的初始化
             $(function() {
                 testEditor = editormd("test-editormd", {
                     width   : "90%",
                     height  : 640,
                     syncScrolling : "single",
                     saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
-                    path    : "<%=basePath %>" + "resource/markdown/lib/"
+                    path    : "<%=basePath %>resource/markdown/lib/"
                 });
             });
-            
-            $('#saveBtn').click(function(){
+
+            //监听标签框的失焦点事件
+            $('input[name = tags]').on("blur",function () {
+                var val = $(this).val().trim();
+                //匹配不是中文，字母，数字跟空格的字符，也就是匹配标点符号
+                var reg = /[^\u4E00-\u9FA5\w\s]/g;
+                if(val){
+                    //用中文的分号分隔
+                    val = val.replace(reg,"；");
+                    $(this).val(val);
+                }
+            });
+
+            //监听标题输入框的失焦事件
+            $('input[name = title]').on("blur",function () {
+                var val = $(this).val().trim();
+                if(val){
+                    $.ajax({
+                        url: "<%=basePath %>" + "admin/article/title/ifexist",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            title: val
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result.result.ifExist){
+                                alert("文章标题已经存在！！")
+                            }
+                        }
+                    })
+                }
+            })
+
+            //点击新增文章
+            $('#addBtn').click(function(){
+                //拼凑分类字段
                 var categories = [];
                 var categoriesInput = $('input[name = categoryId][disabled != disabled]');
                 categoriesInput.each(function () {
                     var id = $(this).val();
                     categories.push({categoryId:id});
-                })
+                });
 
+                //拼凑标签字段
+                var tags  = [];
+                var tagsInputArr = $('input[name = tags]').val().split("；");
+                tagsInputArr.forEach(function (value) {
+                    var tagName = value;
+                    tags.push({tagName:tagName})
+                });
+
+                //封装文章的所有数据
                 var data = {
                     articleId : "${article.articleId}",
+                    title: $('input[name = title]').val(),
                     markdownContent: testEditor.getMarkdown(),
                     htmlContent:testEditor.getHTML(),
                     summaryContent: $('textarea[name = summaryContent]').val(),
                     categories:categories,
+                    tags: tags,
                 };
+
+                console.log(data)
+
+                //新增文章的请求
                 $.ajax({
                     type: "POST",
                     url: "admin/article/add",
@@ -144,6 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });
         	});
 
+            //文章分类的显示隐藏
             $('.categoryList').click(function () {
                 $('.categoryUl ul').toggleClass("hide");
             })

@@ -60,8 +60,13 @@
         <h3>文章列表</h3>
         <section class="content">
             <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Bordered Table</h3>
+                <div class="box-header with-border clear">
+                    <h3 class="box-title">全部文章</h3>
+                    <div class="addArticle" >
+                        <a href="<%=basePath %>admin/article/articleAdd">
+                            <i class="fa fa-plus-square" title="添加新博客"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="box-body">
                     <table class="table">
@@ -90,7 +95,7 @@
                                 </td>
                                 <td>
                                     <div>
-                                        <a href="<%=basePath %>admin/article/get/${article.articleId}">
+                                        <a href="<%=basePath %>admin/article/${article.articleId}">
                                             <span>编辑</span>
                                             <i class="fa fa-eraser"></i>
                                         </a>

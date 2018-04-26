@@ -16,20 +16,32 @@
             <id column="categoryId" property="categoryId"/>
             <result column="categoryName" property="categoryName"/>
         </collection>
+        <collection property="tags" ofType="com.ssm.blog.entity.Tag">
+            <id column="id" property="id" />
+            <result column="tagName" property="tagName" />
+            <result column="articleId" property="articleId" />
+        </collection>
     </resultMap>
 
     <insert id="add" parameterType="Article">
         INSERT INTO
-        article(articleId,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
+            article(articleId,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
         VALUES
-        (#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent});
+            (#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent})
 
-        INSERT INTO
-        article_category(article_id,category_id)
+        ;INSERT INTO
+            article_category(article_id,category_id)
         VALUES
-        <foreach collection="article.categories" item="category" separator=",">
-            (#{article.articleId},#{category.categoryId})
-        </foreach>
+            <foreach collection="article.categories" item="category" separator=",">
+                (#{article.articleId},#{category.categoryId})
+            </foreach>
+
+        ;INSERT INTO
+            tag(tagName,articleId)
+        VALUES
+            <foreach collection="article.tags" item="tag" separator=",">
+                (#{tag.tagName},#{article.articleId})
+            </foreach>
     </insert>
 
     <select id="get" resultMap="articleMap" parameterType="java.lang.Long">
@@ -38,13 +50,17 @@
         FROM
             article a
         LEFT JOIN
+            tag t
+        ON
+           a.articleId = t.articleId
+        LEFT JOIN
             article_category a_t
         ON
             a.articleId = a_t.article_id
         LEFT JOIN
-            category t
+            category c
         ON
-            a_t.category_id = categoryId
+            a_t.category_id = c.categoryId
         WHERE
             a.articleId = #{articleId}
     </select>
@@ -67,7 +83,7 @@
             (
                 SELECT * FROM
                     article
-                <where><if test="searchParam != null and searchParam != ''"> article.title like '%' #{searchParam} '%'</if></where> ORDER BY article.title
+                <where><if test="searchParam != null and searchParam != ''"> article.title like '%' #{searchParam} '%'</if></where> ORDER BY article.publishTime Desc
                 LIMIT #{offsetCount}, #{pageSize}
             ) a
         LEFT JOIN
@@ -80,4 +96,12 @@
             t.categoryId = a_t.category_id
     </select>
 
+    <select id="ifExistTitle" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+            count(*)
+        FROM
+            article a
+        WHERE
+            a.title = #{title}
+    </select>
 </mapper>

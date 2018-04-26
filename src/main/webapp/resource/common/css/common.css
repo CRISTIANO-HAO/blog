@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:link{
+    color: #71666f;
+}
+
+a:hover{
+    color: #000;
+}
+
+.clear:before {
+    content: '';
+    display: table;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    line-height: 0;
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.hide{
+    display: none;
+}
+
+.noContent{
+    margin: 20px 0 5px;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+body {
+    font-size: 14px;
+    color: #666;
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+    background: #fff;
+    text-align: center;
+}
+
+.wrapper {
+    min-height: 100%;
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    height: 50px;
+    line-height: 50px;
+    color: #FFFFFF;
+}
+
+.head-left {
+    width: 230px;
+    background-color: #367fa9;
+}
+
+.head-right {
+    /*margin-left: 230px;*/
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding: 0 2%;
+    background-color: #3c8dbc;
+}
+
+.main-left {
+    position: absolute;
+    top: 0;
+    width: 230px;
+    padding-top: 50px;
+    height: 100%;
+    background-color: #222d32;
+}
+
+.main-right {
+    margin-left: 230px;
+}

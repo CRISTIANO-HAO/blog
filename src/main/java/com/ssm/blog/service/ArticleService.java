@@ -8,11 +8,13 @@ import com.ssm.blog.utils.Page;
 
 public interface ArticleService {
 
-	void save(Article article);
+	void add(Article article);
 
 	Article getById(Long articleId);
 
 	List<Article> list(int offsetCount,int pageSize,String searchParam);
 
 	int getTotalCount(String searchParam);
+
+	boolean ifExistTitle(String title);
 }

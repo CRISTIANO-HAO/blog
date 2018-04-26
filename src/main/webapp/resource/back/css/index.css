@@ -80,6 +80,11 @@
     cursor: pointer;
 }
 
+.main-right>h3{
+    text-align: left;
+    padding: 20px 15px 10px;
+}
+
 .main-right section.content{
     min-height: 250px;
     padding: 15px;
@@ -105,6 +110,18 @@
     padding: 10px;
     position: relative;
     border-bottom: 1px solid #f4f4f4;
+}
+
+.main-right .box .box-header .addArticle{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.main-right .box .box-header .addArticle:hover{
+    color: #bbb;
 }
 
 .main-right .box .box-body{

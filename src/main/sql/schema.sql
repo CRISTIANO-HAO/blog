@@ -12,7 +12,7 @@ CREATE TABLE article (
 )ENGINE=InnoDB AUTO_INCREMENT = 100 DEFAULT CHARSET = utf8 COMMENT = '文章表';
 
 
-//标签表
+//分类表
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE category (
 	categoryId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -32,6 +32,15 @@ ALTER TABLE article_category ADD CONSTRAINT article_category_pk PRIMARY KEY(cate
 ALTER TABLE `article_category` ADD CONSTRAINT `fk_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`articleId`);
 //创建外键
 ALTER TABLE `article_category` ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`categoryId`);
+
+
+//标签表
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE tag(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  tagName VARCHAR(25) NOT NULL ,
+  article_id BIGINT NOT NULL
+)ENGINE=InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8 COMMENT = '标签表';
 
 
 

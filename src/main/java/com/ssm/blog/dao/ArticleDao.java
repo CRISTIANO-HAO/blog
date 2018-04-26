@@ -34,4 +34,10 @@ public interface ArticleDao {
 	*
 	* */
 	int getTotalCount(@Param("searchParam") String searchParam);
+
+	/*
+	* 判断是否已经存在相同的文章title
+	*
+	* */
+	int ifExistTitle(@Param("title") String title);
 }
