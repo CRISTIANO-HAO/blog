@@ -1,7 +1,7 @@
 package com.ssm.blog.service.impl;
 
+import com.ssm.blog.dao.ArticleCategoryDao;
 import com.ssm.blog.dao.TagDao;
-import com.ssm.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,6 @@ import com.ssm.blog.service.ArticleService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
@@ -19,6 +18,8 @@ public class ArticleServiceImpl implements ArticleService{
 	private ArticleDao articleDao;
 	@Autowired
     private TagDao tagDao;
+	@Autowired
+    private ArticleCategoryDao articleCategoryDao;
 
 	@Override
 	public Article getById(Long articleId) {
@@ -55,8 +56,12 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
     @Transactional
 	public void update(Article article) {
-		tagDao.delete(article.getArticleId());
-		tagDao.add(article.getTags(),article.getArticleId());
+		tagDao.deleteByArticleId(article.getArticleId());
+		tagDao.addArticleAndTag(article.getTags(),article.getArticleId());
+
+        articleCategoryDao.deleteByArticleId(article.getArticleId());
+		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+
 		articleDao.update(article);
 	}
 }

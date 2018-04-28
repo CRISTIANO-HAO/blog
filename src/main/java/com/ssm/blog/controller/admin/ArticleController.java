@@ -147,6 +147,7 @@ public class ArticleController {
         Long timeStamp = new Date().getTime();
         article.setSaveTime(new Timestamp(timeStamp));
         ResultSet resultSet;
+
         try {
             articleService.update(article);
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());

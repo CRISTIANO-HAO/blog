@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	$('#button').click(function(){
     		
     		$.ajax({
-	    		url: '<%=basePath %>article/add',
+	    		url: '<%=basePath %>article/addArticleAndTag',
 	    		type: 'POST',
 	    		contentType:'application/json',
 	    		data:JSON.stringify({title: "你好啊"}),

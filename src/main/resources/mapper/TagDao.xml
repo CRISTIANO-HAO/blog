@@ -10,7 +10,7 @@
         <result column="articleId" property="articleId"/>
     </resultMap>
 
-    <delete id="delete" parameterType="java.lang.Long">
+    <delete id="deleteByArticleId" parameterType="java.lang.Long">
         DELETE FROM
             tag
         WHERE
@@ -18,7 +18,7 @@
     </delete>
 
 
-    <insert id="add">
+    <insert id="addArticleAndTag">
         INSERT INTO
             tag(tagName,articleId)
         VALUES
