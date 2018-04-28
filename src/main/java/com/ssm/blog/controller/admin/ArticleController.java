@@ -45,24 +45,32 @@ public class ArticleController {
     public ResultSet add(@RequestBody Article article) {
 
         long timeAsId = new Date().getTime();
+        //以时间戳为文章唯一Id
         article.setArticleId(timeAsId);
         article.setSaveTime(new Timestamp(timeAsId));
-        article.setPublishTime(new Date());
-
-        Map<String, Object> articleMap = new HashMap<String, Object>();
-        articleMap.put("article", article);
-        articleMap.put("categorys", article.getCategories());
-        articleMap.put("tags", article.getTags());
+        //默认为草稿状态；
+        article.setStatus(0);
 
         ResultSet resultSet;
         try {
             articleService.add(article);
-            resultSet = new ResultSet(true, 200, article);
+            resultSet = new ResultSet(true, 200, "新增成功！");
         } catch (Exception e) {
             resultSet = new ResultSet(false, 500, "新增报错！！");
         }
         return resultSet;
     }
+
+    /*
+    * 发布文章
+    *
+    * */
+    @RequestMapping(value = "/publish/articleId",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet publish(@PathVariable(value = "articleId") Long articleId){
+        return null;
+    }
+
 
     /*
     * contentType = "application/x-www-form-urlencoded"时，@RequestParam / @RequestBody 跟 request.getParameter 可以接收参数，此时data为JSON对象；
@@ -129,6 +137,21 @@ public class ArticleController {
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),result) ;
         }catch (Exception e){
             resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment()) ;
+        }
+        return resultSet;
+    }
+
+    @RequestMapping(value = "/update/{articleId}",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultSet update(@RequestBody Article article,@PathVariable Long articleId){
+        Long timeStamp = new Date().getTime();
+        article.setSaveTime(new Timestamp(timeStamp));
+        ResultSet resultSet;
+        try {
+            articleService.update(article);
+            resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());
+        }catch (Exception e){
+            resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
         }
         return resultSet;
     }

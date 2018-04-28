@@ -18,6 +18,8 @@ public class Article {
     private String markdownContent;
     // 文章html内容
     private String htmlContent;
+    //文章状态; 0: 草稿； 1：发布；默认为0
+    private int status;
     //文章标签
     private List<Tag> tags;
     //文章分类
@@ -77,6 +79,13 @@ public class Article {
 
     public void setHtmlContent(String htmlContent) {
         this.htmlContent = htmlContent;
+    }
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public List<Tag> getTags() {

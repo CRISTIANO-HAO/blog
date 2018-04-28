@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="tagDiv">
                         <h3>文章标签</h3>
-                        <input type="text" name="tag" value="<c:forEach items="${article.tags}" var="tag">${tag.tagName}；</c:forEach>">
+                        <input type="text" name="tags" value="<c:forEach items="${article.tags}" var="tag">${tag.tagName}；</c:forEach>">
                     </div>
                 </div>
             </div>
@@ -117,6 +117,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     path    : "<%=basePath %>" + "resource/markdown/lib/"
                 });
             });
+
+            //监听标签框的失焦点事件
+            $('input[name = tags]').on("blur",function () {
+                var val = $(this).val().trim();
+                //匹配不是中文，字母，数字跟空格的字符，也就是匹配标点符号
+                var reg = /[^\u4E00-\u9FA5\w\s]/g;
+                if(val){
+                    //用中文的分号分隔
+                    val = val.replace(reg,"；");
+                    //把重复的间隔符号去掉
+                    val = val.replace(/；+/g,"；");
+                    if (val[0] == "；"){
+                        val = val.slice(1);
+                    }
+                    $(this).val(val);
+                }
+            });
+
+            //监听标题输入框的失焦事件
+            $('input[name = title]').on("blur",function () {
+                var val = $(this).val().trim();
+                if(val){
+                    $.ajax({
+                        url: "<%=basePath %>" + "admin/article/title/ifexist",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            title: val
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result.result.ifExist){
+                                alert("文章标题已经存在！！")
+                            }
+                        }
+                    })
+                }
+            })
             
             $('#saveBtn').click(function(){
                 var categories = [];
@@ -126,16 +164,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     categories.push({categoryId:id});
                 })
 
+                //拼凑标签字段
+                var tags  = [];
+                var tagsInputArr = $('input[name = tags]').val().split("；");
+                tagsInputArr.forEach(function (value) {
+                    var tagName = value;
+                    //防止空字符串
+                    if (tagName){
+                        tags.push({tagName:tagName});
+                    }
+                });
+
+                //封装文章的所有数据
                 var data = {
                     articleId : "${article.articleId}",
+                    title: $('input[name = title]').val(),
                     markdownContent: testEditor.getMarkdown(),
                     htmlContent:testEditor.getHTML(),
                     summaryContent: $('textarea[name = summaryContent]').val(),
                     categories:categories,
+                    tags: tags,
                 };
+
                 $.ajax({
                     type: "POST",
-                    url: "admin/article/add",
+                    url: "admin/article/update/${article.articleId}",
                     contentType: "application/json",
                     data:JSON.stringify(data),
                     success: function(result){

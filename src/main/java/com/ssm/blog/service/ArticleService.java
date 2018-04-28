@@ -17,4 +17,6 @@ public interface ArticleService {
 	int getTotalCount(String searchParam);
 
 	boolean ifExistTitle(String title);
+
+	void update(Article article);
 }

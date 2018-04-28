@@ -40,4 +40,10 @@ public interface ArticleDao {
 	*
 	* */
 	int ifExistTitle(@Param("title") String title);
+
+	/*
+	* 更新文章
+	*
+	* */
+	void update(@Param("article") Article article);
 }

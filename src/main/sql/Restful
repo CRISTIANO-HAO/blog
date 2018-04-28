@@ -3,10 +3,12 @@
 后台Article模块：
 
 admin/article/add
+admin/article/publish/articleId
+admin/article/title/ifexist
 admin/article/articleAdd
 admin/article/update/{articleId}
 admin/article/get/{articleId}
 admin/article/delete/{articleId}
 admin/article/list/page/{pageIndex}
 admin/article/list/page/{pageIndex}/search/{searchParam}
-admin/article/list/category/page/{pageIndex}
+admin/article/category/list/page/{pageIndex}

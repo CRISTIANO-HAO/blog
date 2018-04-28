@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.blog.dao.TagDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+    <resultMap id="tagMap" type="com.ssm.blog.entity.Tag">
+        <id column="id" property="id"/>
+        <result column="tagName" property="tagName"/>
+        <result column="articleId" property="articleId"/>
+    </resultMap>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM
+            tag
+        WHERE
+            articleId = #{articleId}
+    </delete>
+
+
+    <insert id="add">
+        INSERT INTO
+            tag(tagName,articleId)
+        VALUES
+            <foreach collection="tags" item="tag" separator=",">
+                (#{tag.tagName},#{articleId})
+            </foreach>
+    </insert>
+</mapper>

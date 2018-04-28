@@ -98,6 +98,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 if(val){
                     //用中文的分号分隔
                     val = val.replace(reg,"；");
+                    //把重复的间隔符号去掉
+                    val = val.replace(/；+/g,"；");
+                    if (val[0] == "；"){
+                        val = val.slice(1);
+                    }
                     $(this).val(val);
                 }
             });
@@ -138,7 +143,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 var tagsInputArr = $('input[name = tags]').val().split("；");
                 tagsInputArr.forEach(function (value) {
                     var tagName = value;
-                    tags.push({tagName:tagName})
+                    //防止空字符串
+                    if (tagName){
+                        tags.push({tagName:tagName});
+                    }
                 });
 
                 //封装文章的所有数据
@@ -161,10 +169,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     contentType: "application/json",
                     data:JSON.stringify(data),
                     success: function(result){
-                        console.log(result)
+                        console.log(result);
+                        alert(result.result);
                     },
                 });
         	});
+            
+            //点击发布文章
+            $('#publishBtn').click(function () {
+                $.ajax({
+                    url: "<%=basePath %>" + "admin/article/publish",
+                    type:"GET",
+                    data: {
+                        articleId: "",
+                    },
+                    success: function () {
+
+                    }
+                })
+            })
 
             //文章分类的显示隐藏
             $('.categoryList').click(function () {

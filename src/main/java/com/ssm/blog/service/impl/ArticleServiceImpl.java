@@ -1,5 +1,6 @@
 package com.ssm.blog.service.impl;
 
+import com.ssm.blog.dao.TagDao;
 import com.ssm.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class ArticleServiceImpl implements ArticleService{
 	@Autowired
 	private ArticleDao articleDao;
+	@Autowired
+    private TagDao tagDao;
 
 	@Override
 	public Article getById(Long articleId) {
@@ -48,4 +51,12 @@ public class ArticleServiceImpl implements ArticleService{
 	    boolean ifExistTitle = articleDao.ifExistTitle(title) > 0 ? true : false;
         return ifExistTitle;
     }
+
+	@Override
+    @Transactional
+	public void update(Article article) {
+		tagDao.delete(article.getArticleId());
+		tagDao.add(article.getTags(),article.getArticleId());
+		articleDao.update(article);
+	}
 }
