@@ -29,9 +29,10 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	@Transactional
-	public void add(Article article) {
-		
-		articleDao.add(article);
+	public void addArticle(Article article) {
+		articleDao.addArticle(article);
+		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+		tagDao.addTag(article.getTags(),article.getArticleId());
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Transactional
 	public void update(Article article) {
 		tagDao.deleteByArticleId(article.getArticleId());
-		tagDao.addArticleAndTag(article.getTags(),article.getArticleId());
+		tagDao.addTag(article.getTags(),article.getArticleId());
 
         articleCategoryDao.deleteByArticleId(article.getArticleId());
 		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());

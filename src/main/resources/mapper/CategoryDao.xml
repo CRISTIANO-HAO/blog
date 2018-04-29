@@ -5,7 +5,7 @@
 
     <resultMap id="categoryMap" type="com.ssm.blog.entity.Category">
         <id column="categoryId" property="categoryId"></id>
-        <result column="categoryNae" property="categoryName"/>
+        <result column="categoryName" property="categoryName"/>
     </resultMap>
 
     <select id="list" resultMap="categoryMap">

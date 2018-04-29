@@ -124,6 +124,12 @@
     color: #bbb;
 }
 
+.main-right .box .box-header .addArticle a{
+    display: block;
+    height: 5px;
+    width: 5px;
+}
+
 .main-right .box .box-body{
     border-top-left-radius: 0;
     border-top-right-radius: 0;

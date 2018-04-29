@@ -17,8 +17,7 @@
             articleId = #{articleId}
     </delete>
 
-
-    <insert id="addArticleAndTag">
+    <insert id="addTag">
         INSERT INTO
             tag(tagName,articleId)
         VALUES

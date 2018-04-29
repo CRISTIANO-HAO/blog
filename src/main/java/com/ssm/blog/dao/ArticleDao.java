@@ -15,7 +15,7 @@ public interface ArticleDao {
 	* 新增文章
 	*
 	* */
-	void add(@Param("article") Article article);
+	void addArticle(@Param("article") Article article);
 
 	/*
 	* 获取文章列表

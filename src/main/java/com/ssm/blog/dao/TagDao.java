@@ -11,5 +11,5 @@ public interface TagDao {
 
     void deleteByArticleId(@Param("articleId") Long articleId);
 
-    void addArticleAndTag(@Param("tags") List<Tag> tags, @Param("articleId") Long articleId);
+    void addTag(@Param("tags") List<Tag> tags, @Param("articleId") Long articleId);
 }

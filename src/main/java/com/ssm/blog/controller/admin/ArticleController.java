@@ -16,6 +16,8 @@ import com.ssm.blog.dto.ResultSet;
 import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping(value = "/admin/article")
 public class ArticleController {
@@ -52,12 +54,15 @@ public class ArticleController {
         article.setStatus(0);
 
         ResultSet resultSet;
-        try {
-            articleService.add(article);
+
+        articleService.addArticle(article);
+        resultSet = new ResultSet(true, 200, "新增成功！");
+        /*try {
+            articleService.addArticle(article);
             resultSet = new ResultSet(true, 200, "新增成功！");
         } catch (Exception e) {
             resultSet = new ResultSet(false, 500, "新增报错！！");
-        }
+        }*/
         return resultSet;
     }
 

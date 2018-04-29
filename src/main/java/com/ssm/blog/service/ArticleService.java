@@ -8,7 +8,7 @@ import com.ssm.blog.utils.Page;
 
 public interface ArticleService {
 
-	void add(Article article);
+	void addArticle(Article article);
 
 	Article getById(Long articleId);
 

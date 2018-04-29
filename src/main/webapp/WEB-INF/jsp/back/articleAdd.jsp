@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body>
         <header class="clear">
             <div class="head-left left">
-                <span>Hello Mr.HAO</span>
+                <a href="javascript:location.href = document.referrer"><span>Hello Mr.HAO</span></a>
             </div>
             <div class="head-right">
                 <div class="left">

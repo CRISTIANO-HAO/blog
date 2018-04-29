@@ -12,4 +12,5 @@ public interface ArticleCategoryDao {
     void deleteByArticleId(@Param("articleId") Long articleId);
 
     void addArticleAndCategoryId (@Param("categories")List<Category> categories,@Param("articleId") Long articleId);
+
 }
