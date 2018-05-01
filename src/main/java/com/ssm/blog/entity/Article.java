@@ -80,6 +80,7 @@ public class Article {
     public void setHtmlContent(String htmlContent) {
         this.htmlContent = htmlContent;
     }
+
     public int getStatus() {
         return status;
     }

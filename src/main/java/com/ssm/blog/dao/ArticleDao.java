@@ -27,7 +27,7 @@ public interface ArticleDao {
 	* 获取文章
 	*
 	* */
-	Article get(@Param("articleId") Long articleId);
+	Article getArticleById(@Param("articleId") Long articleId);
 
 	/*
 	* 获取总数量

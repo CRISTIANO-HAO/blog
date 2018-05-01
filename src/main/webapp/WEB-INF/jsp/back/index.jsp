@@ -73,6 +73,7 @@
                         <thead>
                         <tr>
                             <th>序号</th>
+                            <th>状态</th>
                             <th>文章标题</th>
                             <th>文章标签</th>
                             <th>文章编辑</th>
@@ -82,7 +83,17 @@
                         <c:forEach items="${articleList}" var="article" varStatus="status">
                             <tr>
                                 <td>${(page.pageIndex - 1) * page.pageSize + status.index + 1}</td>
-                                <td>${article.title}</td>
+                                <td>
+                                    <c:if test="${article.status == 0}">
+                                        <i class="fa fa-save"></i><span>草稿</span>
+                                    </c:if>
+                                    <c:if test="${article.status == 1}">
+                                        <i class="fa fa-expeditedssl"></i><span>发布</span>
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <a href="<%=basePath %>admin/article/get/${article.articleId}">${article.title}</a>
+                                </td>
                                 <td>
                                     <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex" >
                                         <c:if test="${categoryIndex.index < (article.categories.size() - 1)}">
@@ -95,7 +106,7 @@
                                 </td>
                                 <td>
                                     <div>
-                                        <a href="<%=basePath %>admin/article/${article.articleId}">
+                                        <a href="<%=basePath %>admin/article/edit/${article.articleId}">
                                             <span>编辑</span>
                                             <i class="fa fa-eraser"></i>
                                         </a>

@@ -7,6 +7,7 @@
     <resultMap id="articleMap" type="com.ssm.blog.entity.Article">
         <id column="articleId" property="articleId"/>
         <result column="title" property="title"/>
+        <result column="status" property="status"/>
         <result column="saveTime" property="saveTime"/>
         <result column="publishTime" property="publishTime"/>
         <result column="summaryContent" property="summaryContent"/>
@@ -21,12 +22,12 @@
 
     <insert id="addArticle" parameterType="Article">
         INSERT INTO
-            article(articleId,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
+            article(articleId,status,saveTime,publishTime,title,summaryContent,markdownContent,htmlContent)
         VALUES
-            (#{article.articleId},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent})
+            (#{article.articleId},#{article.status},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryContent},#{article.markdownContent},#{article.htmlContent})
     </insert>
 
-    <select id="get" resultMap="articleAndCategoryAndTagMap" parameterType="java.lang.Long">
+    <select id="getArticleById" resultMap="articleAndCategoryAndTagMap" parameterType="java.lang.Long">
         SELECT
             *
         FROM
@@ -56,7 +57,7 @@
             (
                 SELECT * FROM
                     article a
-                <where><if test="searchParam != null and searchParam != ''"> article.title like '%' #{searchParam} '%'</if></where>
+                <where><if test="searchParam != null and searchParam != ''"> a.title like '%' #{searchParam} '%'</if></where>
                 ORDER BY a.publishTime DESC , a.saveTime DESC
                 LIMIT #{offsetCount}, #{pageSize}
             ) a
@@ -80,10 +81,12 @@
             article a
         <trim prefix="set" suffixOverrides=",">
             <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
+            <if test="article.saveTime == article.publishTime">a.publishTime = #{article.publishTime},</if>
             <if test="article.title != null">a.title = #{article.title},</if>
             <if test="article.summaryContent != null">a.summaryContent = #{article.summaryContent},</if>
             <if test="article.markdownContent != null">a.markdownContent = #{article.markdownContent},</if>
             <if test="article.htmlContent != null">a.htmlContent = #{article.htmlContent},</if>
+            <if test="article.status != null">a.status = #{article.status},</if>
         </trim>
         WHERE
             a.articleId = #{article.articleId}

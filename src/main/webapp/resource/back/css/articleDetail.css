@@ -1,0 +1,75 @@
+
+.comment{
+    text-align: left;
+    padding: 20px;
+}
+
+.comment h4{
+    background-color: #eee;
+    line-height: 2;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+#commentTree{
+    min-height: 100px;
+    padding: 10px 0;
+}
+
+#commentTree>div{
+    padding: 10px;
+}
+
+#commentTree .user-profile{
+    float: left;
+}
+
+#commentTree .user-profile img{
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    border: solid 1px #ddd;
+    background: #FFFFFF;
+    border-radius: 100%;
+}
+
+#commentTree .comment-main{
+    margin-left: 55px;
+    padding: 0 5px 5px;
+}
+
+#commentTree .comment-main .comment-msg{
+    /*height: 25px;*/
+    line-height: 25px;
+}
+
+#commentTree .comment-main .comment-time{
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+#commentTree .comment-main .agree-disagree{
+    font-size: 11px;
+}
+
+#commentTree .comment-main .agree-disagree i{
+    margin-right: 10px;
+}
+
+#msgContent{
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    text-indent: 2em;
+}
+
+#sendMsg{
+    float: right;
+    line-height: 2;
+    border-radius: 5px;
+    width: 60px;
+    font-size: 11px;
+    outline: none;
+}

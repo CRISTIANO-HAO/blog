@@ -44,6 +44,10 @@ a:hover{
     color: #000;
 }
 
+input,button,textarea{
+    outline: none;
+}
+
 .clear:before {
     content: '';
     display: table;

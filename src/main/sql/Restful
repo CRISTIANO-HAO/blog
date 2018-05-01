@@ -2,8 +2,9 @@
 
 后台Article模块：
 
+admin/article/edit/{articleId}
 admin/article/add
-admin/article/publish/articleId
+admin/article/publish
 admin/article/title/ifexist
 admin/article/articleAdd
 admin/article/update/{articleId}

@@ -10,7 +10,7 @@ public interface ArticleService {
 
 	void addArticle(Article article);
 
-	Article getById(Long articleId);
+	Article getArticleById(Long articleId);
 
 	List<Article> list(int offsetCount,int pageSize,String searchParam);
 

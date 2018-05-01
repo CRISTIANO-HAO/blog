@@ -16,8 +16,6 @@ import com.ssm.blog.dto.ResultSet;
 import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 @RequestMapping(value = "/admin/article")
 public class ArticleController {
@@ -54,15 +52,12 @@ public class ArticleController {
         article.setStatus(0);
 
         ResultSet resultSet;
-
-        articleService.addArticle(article);
-        resultSet = new ResultSet(true, 200, "新增成功！");
-        /*try {
+        try {
             articleService.addArticle(article);
             resultSet = new ResultSet(true, 200, "新增成功！");
         } catch (Exception e) {
             resultSet = new ResultSet(false, 500, "新增报错！！");
-        }*/
+        }
         return resultSet;
     }
 
@@ -70,10 +65,30 @@ public class ArticleController {
     * 发布文章
     *
     * */
-    @RequestMapping(value = "/publish/articleId",method = RequestMethod.GET)
+    @RequestMapping(value = "/publish",method = RequestMethod.POST)
     @ResponseBody
-    public ResultSet publish(@PathVariable(value = "articleId") Long articleId){
-        return null;
+    public ResultSet publish(@RequestBody Article article){
+        Long timeStamp = new Date().getTime();
+        article.setSaveTime(new Timestamp(timeStamp));
+
+        //设置文章状态为发布;当status为1时，则是取消发布状态为草稿状态
+        if (article.getStatus() == 1){
+            article.setStatus(0);
+            article.setPublishTime(null);
+        }else {
+            article.setStatus(1);
+            article.setPublishTime(new Timestamp(timeStamp));
+        }
+
+        ResultSet resultSet;
+
+        try {
+            articleService.update(article);
+            resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());
+        }catch (Exception e){
+            resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+        return resultSet;
     }
 
 
@@ -99,26 +114,28 @@ public class ArticleController {
         //添加分页查询的信息
         Page page = new Page(pageIndex,pageSize,totalCount);
         //结果集对象
-        ResultSet resultSet;
+        ResultSet resultSet = null;
+        List<Article> articleList = null;
         try {
-            List<Article> articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
+            articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
             resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), articleList);
         } catch (Exception e) {
             resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
         }
-        model.addAttribute("articleList",resultSet.getResult());
+        System.out.println(articleList.size());
+        model.addAttribute("articleList", articleList);
         model.addAttribute("page",page);
         model.addAttribute("searchParam",searchParam);
         return "back/index";
     }
 
     /*
-    * 文章详情
+    * 文章修改详情页
     *
     * */
-    @RequestMapping(value = "/{articleId}",method = {RequestMethod.GET})
-    public String getArticleById(Model model,@PathVariable(value = "articleId") Long articleId){
-        Article article = articleService.getById(articleId);
+    @RequestMapping(value = "/edit/{articleId}",method = {RequestMethod.GET})
+    public String editArticleById(Model model,@PathVariable(value = "articleId") Long articleId){
+        Article article = articleService.getArticleById(articleId);
         List<Category> categories = categoryService.list();
         model.addAttribute("article",article);
         model.addAttribute("categories",categories);
@@ -160,5 +177,13 @@ public class ArticleController {
             resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
         }
         return resultSet;
+    }
+
+    @RequestMapping(value = "get/{articleId}",method = RequestMethod.GET)
+    public String getArticleById(Model model,@PathVariable("articleId") Long articleId){
+        Article article = articleService.getArticleById(articleId);
+
+        model.addAttribute("article",article);
+        return "back/articleDetail";
     }
 }

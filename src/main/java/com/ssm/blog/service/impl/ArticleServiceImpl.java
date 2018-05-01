@@ -22,8 +22,8 @@ public class ArticleServiceImpl implements ArticleService{
     private ArticleCategoryDao articleCategoryDao;
 
 	@Override
-	public Article getById(Long articleId) {
-		Article article = articleDao.get(articleId);
+	public Article getArticleById(Long articleId) {
+		Article article = articleDao.getArticleById(articleId);
 		return article;
 	}
 
@@ -57,12 +57,14 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
     @Transactional
 	public void update(Article article) {
+		//更新标签
 		tagDao.deleteByArticleId(article.getArticleId());
 		tagDao.addTag(article.getTags(),article.getArticleId());
-
+        //更新分类
         articleCategoryDao.deleteByArticleId(article.getArticleId());
 		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
 
 		articleDao.update(article);
 	}
+
 }

@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body>
         <header class="clear">
             <div class="head-left left">
-                <span>Hello Mr.HAO</span>
+                <a href="javascript:location.href = document.referrer"><span>Hello Mr.HAO</span></a>
             </div>
             <div class="head-right">
                 <div class="left">
@@ -83,7 +83,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="right">
                     <div class="btnDiv">
                         <button id="saveBtn" type="button">保存</button>
-                        <button id="publishBtn" type="button">发布</button>
+                        <c:if test="${article.status == 0}">
+                            <button id="publishBtn" type="button">发布</button>
+                        </c:if>
+                        <c:if test="${article.status == 1}">
+                            <button id="publishBtn" type="button">取消发布</button>
+                        </c:if>
                         <button id="deleteBtn" type="button">删除</button>
                     </div>
                     <div class="tagDiv">
@@ -155,8 +160,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     })
                 }
             })
-            
+
+            //点击保存文章
             $('#saveBtn').click(function(){
+                var data = returnArticleData();
+
+                $.ajax({
+                    type: "POST",
+                    url: "admin/article/update/${article.articleId}",
+                    contentType: "application/json",
+                    data:JSON.stringify(data),
+                    success: function(result){
+                        alert(result.result)
+                    },
+                });
+        	});
+
+            $("#publishBtn").click(function () {
+                var data = returnArticleData();
+
+                $.ajax({
+                    type: "POST",
+                    url: "admin/article/publish",
+                    contentType: "application/json",
+                    data:JSON.stringify(data),
+                    success: function(result){
+                        alert(result.result)
+                    },
+                });
+            })
+
+            //返回文章对象的封装数据
+            function returnArticleData() {
                 var categories = [];
                 var categoriesInput = $('input[name = categoryId][disabled != disabled]');
                 categoriesInput.each(function () {
@@ -179,24 +214,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 var data = {
                     articleId : "${article.articleId}",
                     title: $('input[name = title]').val(),
+                    status : "${article.status}",
                     markdownContent: testEditor.getMarkdown(),
-                    htmlContent:testEditor.getHTML(),
+                    //htmlContent:testEditor.getHTML(),
+                    htmlContent: $(".editormd-preview").html(),
                     summaryContent: $('textarea[name = summaryContent]').val(),
                     categories:categories,
                     tags: tags,
                 };
 
-                $.ajax({
-                    type: "POST",
-                    url: "admin/article/update/${article.articleId}",
-                    contentType: "application/json",
-                    data:JSON.stringify(data),
-                    success: function(result){
-                        console.log(result)
-                    },
-                });
-        	});
+                return data;
+            }
 
+            //列表的显示隐藏控制
             $('.categoryList').click(function () {
                 $('.categoryUl ul').toggleClass("hide");
             })
