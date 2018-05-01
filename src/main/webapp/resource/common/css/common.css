@@ -48,14 +48,10 @@ input,button,textarea{
     outline: none;
 }
 
-.clear:before {
-    content: '';
-    display: table;
-}
-
 .clear:after {
     content: '';
     display: block;
+    font-size: 0px;
     line-height: 0;
     clear: both;
 }
