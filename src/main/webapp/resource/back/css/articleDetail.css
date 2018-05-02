@@ -71,6 +71,10 @@
     border: 1px solid #DDD;
 }
 
+#commentTree .comment-main .evenClass{
+    background-color: #fff;
+}
+
 #msgContent{
     width: 100%;
     border-radius: 5px;

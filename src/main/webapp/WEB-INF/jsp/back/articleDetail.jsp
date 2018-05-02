@@ -203,6 +203,18 @@
         pid: 7,
         value: "aaaa"
     }, {
+        id: 15,
+        pid: 13,
+        value: "aaaaa"
+    }, {
+        id: 16,
+        pid: 14,
+        value: "aaaaa"
+    }, {
+        id: 17,
+        pid: 15,
+        value: "aaaaaa"
+    }, {
         id: 8,
         pid: 2,
         value: "bb"
@@ -260,6 +272,71 @@
         return result;
     }
 
-    console.log(iteration(arr,result))
+    arr = iteration(arr,result);
+    console.log(arr);
+
+
+    function addStr(obj) {
+        var str = "";
+        var replyStr = {strItem : "",odd:1} ;
+        str += '<div class="comment-item">'
+            + '<div class="user-profile">'
+            + '<a>'
+            + '<img src="<%=basePath %>resource/back/img/visitor.jpg">'
+            + '</a>'
+            + '</div>'
+            + '<div class="comment-main">'
+            + '<div class="comment-msg clear">'
+            + '<div class="agree-disagree right">'
+            + '<i class="fa fa-thumbs-up">(10)</i>'
+            + '<i class="fa fa-thumbs-down">(0)</i>'
+            + '<span class="reply-comment">回复</span>'
+            + '</div>'
+            + '<div class="user-msg">'
+            + '<a class="user-name" href="/admin">早起不吃虫</a>'
+            + '<span class="comment-time">2018-05-01 18:17:30</span>'
+            + '</div>'
+            + '</div>'
+            + '<div class="comment-content">'
+            + '<p>'+ obj["value"]+'</p>'
+            + '</div>';
+        replyStr = replyHtml(obj["children"],replyStr);
+        str += replyStr.strItem;
+        str += "</div></div>";
+        return str;
+    }
+    function replyHtml(arr,replyStr) {
+        for (var i = 0;i < arr.length; i++){
+            replyStr.strItem += (replyStr.odd % 2 === 0 ? '<div class="reply-application evenClass">\n' : '<div class="reply-application">\n') +
+                '                        <div class="comment-msg clear">\n' +
+                '                            <div class="agree-disagree right">\n' +
+                '                                <i class="fa fa-thumbs-up">(10)</i>\n' +
+                '                                <i class="fa fa-thumbs-down">(0)</i>\n' +
+                '                                <span class="reply-comment">回复</span>\n' +
+                '                            </div>\n' +
+                '                            <div class="user-msg">\n' +
+                '                                <a class="user-name" href="/admin">早起不吃虫</a>\n' +
+                '                                <span class="comment-time">2018-05-01 18:17:30</span>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                '                        <div class="comment-content">\n' +
+                '                            <p>'+ arr[i]["value"]+'</p>\n' +
+                '                        </div>';
+            if (arr[i]["children"].length > 0){
+                replyStr.odd ++;
+                replyHtml(arr[i]["children"],replyStr);
+                replyStr.strItem += "</div>";
+            }else {
+                replyStr.strItem += "</div>";
+            }
+        }
+        return replyStr;
+    }
+    var str = "";
+    arr.forEach(function (value, index) {
+        str += addStr(value);
+    })
+    //console.log(str)
+    document.getElementById("commentTree").innerHTML = str;
 </script>
 </html>
