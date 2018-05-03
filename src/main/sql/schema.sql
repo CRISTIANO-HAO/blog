@@ -43,4 +43,18 @@ CREATE TABLE tag(
 )ENGINE=InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8 COMMENT = '标签表';
 
 
+/*评论表*/
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment`(
+  id INT NOT NULL PRIMARY KEY ,
+  pid INT NOT NULL DEFAULT '0',
+  content TEXT,
+  publishTime DATETIME NOT NULL ,
+  agreeNum INT DEFAULT '0',
+  disagreeNum INT DEFAULT '0',
+  articleId BIGINT NOT NULL,
+  userId BIGINT
+)ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8 COMMENT = '评论表';
+
+
 

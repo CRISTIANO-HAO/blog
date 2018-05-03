@@ -39,8 +39,11 @@
 }
 
 #commentTree .comment-main .comment-msg{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     line-height: 25px;
-    height: 25px;
 }
 
 #commentTree .comment-main .comment-time{
@@ -48,6 +51,10 @@
     text-decoration: none;
     font-size: 12px;
     margin-left: 10px;
+}
+
+#commentTree .comment-main .user-msg{
+    display: inline-block;
 }
 
 #commentTree .comment-main .agree-disagree{

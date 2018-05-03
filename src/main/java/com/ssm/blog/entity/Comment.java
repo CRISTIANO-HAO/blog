@@ -1,6 +1,8 @@
 package com.ssm.blog.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
     //评论的唯一id；
@@ -14,11 +16,15 @@ public class Comment {
     //评论内容
     private String content;
     //评论的时间
-    private Date createTime;
+    private Date publishTime;
     //赞同数
     private int agreeNum;
     //反对数
     private int disagreeNum;
+    //父节点
+    private Comment parentComment;
+    //子节点
+    private List<Comment> childrenComment = new ArrayList<Comment>();
 
     public int getId() {
         return id;
@@ -60,12 +66,12 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getPublishTime() {
+        return publishTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
     }
 
     public int getAgreeNum() {
@@ -82,5 +88,21 @@ public class Comment {
 
     public void setDisagreeNum(int disagreeNum) {
         this.disagreeNum = disagreeNum;
+    }
+
+    public Comment getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(Comment parentComment) {
+        this.parentComment = parentComment;
+    }
+
+    public List<Comment> getChildrenComment() {
+        return childrenComment;
+    }
+
+    public void setChildrenComment(Comment childrenComment) {
+        this.childrenComment.add(childrenComment);
     }
 }

@@ -1,7 +1,6 @@
 本博客URL设计规范：
 
 后台Article模块：
-
 admin/article/edit/{articleId}
 admin/article/add
 admin/article/publish
@@ -13,3 +12,6 @@ admin/article/delete/{articleId}
 admin/article/list/page/{pageIndex}
 admin/article/list/page/{pageIndex}/search/{searchParam}
 admin/article/category/list/page/{pageIndex}
+
+后台评论模块
+admin/comment/get/{articleId}

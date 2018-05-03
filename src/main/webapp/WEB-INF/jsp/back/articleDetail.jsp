@@ -43,45 +43,45 @@
                     </a>
                 </div>
                 <div class="comment-main">
-                    <div class="comment-msg clear">
-                        <div class="agree-disagree right">
-                            <i class="fa fa-thumbs-up">(10)</i>
-                            <i class="fa fa-thumbs-down">(0)</i>
-                            <span class="reply-comment">回复</span>
-                        </div>
+                    <div class="comment-msg">
                         <div class="user-msg">
                             <a class="user-name" href="/admin">早起不吃虫</a>
                             <span class="comment-time">2018-05-01 18:17:30</span>
+                        </div>
+                        <div class="agree-disagree">
+                            <i class="fa fa-thumbs-up">(10)</i>
+                            <i class="fa fa-thumbs-down">(0)</i>
+                            <span class="reply-comment">回复</span>
                         </div>
                     </div>
                     <div class="comment-content">
                         <p>这是一条无聊的评论。。。。</p>
                     </div>
                     <div class="reply-application">
-                        <div class="comment-msg clear">
-                            <div class="agree-disagree right">
-                                <i class="fa fa-thumbs-up">(10)</i>
-                                <i class="fa fa-thumbs-down">(0)</i>
-                                <span class="reply-comment">回复</span>
-                            </div>
+                        <div class="comment-msg">
                             <div class="user-msg">
                                 <a class="user-name" href="/admin">早起不吃虫</a>
                                 <span class="comment-time">2018-05-01 18:17:30</span>
+                            </div>
+                            <div class="agree-disagree">
+                                <i class="fa fa-thumbs-up">(10)</i>
+                                <i class="fa fa-thumbs-down">(0)</i>
+                                <span class="reply-comment">回复</span>
                             </div>
                         </div>
                         <div class="comment-content">
                             <p>这是一条无聊的评论。。。。</p>
                         </div>
                         <div class="reply-application">
-                            <div class="comment-msg clear">
-                                <div class="agree-disagree right">
-                                    <i class="fa fa-thumbs-up">(10)</i>
-                                    <i class="fa fa-thumbs-down">(0)</i>
-                                    <span class="reply-comment">回复</span>
-                                </div>
+                            <div class="comment-msg">
                                 <div class="user-msg">
                                     <a class="user-name" href="/admin">早起不吃虫</a>
                                     <span class="comment-time">2018-05-01 18:17:30</span>
+                                </div>
+                                <div class="agree-disagree">
+                                    <i class="fa fa-thumbs-up">(10)</i>
+                                    <i class="fa fa-thumbs-down">(0)</i>
+                                    <span class="reply-comment">回复</span>
                                 </div>
                             </div>
                             <div class="comment-content">
@@ -89,30 +89,30 @@
                             </div>
                         </div>
                         <div class="reply-application">
-                            <div class="comment-msg clear">
-                                <div class="agree-disagree right">
-                                    <i class="fa fa-thumbs-up">(10)</i>
-                                    <i class="fa fa-thumbs-down">(0)</i>
-                                    <span class="reply-comment">回复</span>
-                                </div>
+                            <div class="comment-msg">
                                 <div class="user-msg">
                                     <a class="user-name" href="/admin">早起不吃虫</a>
                                     <span class="comment-time">2018-05-01 18:17:30</span>
+                                </div>
+                                <div class="agree-disagree">
+                                    <i class="fa fa-thumbs-up">(10)</i>
+                                    <i class="fa fa-thumbs-down">(0)</i>
+                                    <span class="reply-comment">回复</span>
                                 </div>
                             </div>
                             <div class="comment-content">
                                 <p>这是一条无聊的评论。。。。</p>
                             </div>
                             <div class="reply-application">
-                                <div class="comment-msg clear">
-                                    <div class="agree-disagree right">
-                                        <i class="fa fa-thumbs-up">(10)</i>
-                                        <i class="fa fa-thumbs-down">(0)</i>
-                                        <span class="reply-comment">回复</span>
-                                    </div>
+                                <div class="comment-msg">
                                     <div class="user-msg">
                                         <a class="user-name" href="/admin">早起不吃虫</a>
                                         <span class="comment-time">2018-05-01 18:17:30</span>
+                                    </div>
+                                    <div class="agree-disagree">
+                                        <i class="fa fa-thumbs-up">(10)</i>
+                                        <i class="fa fa-thumbs-down">(0)</i>
+                                        <span class="reply-comment">回复</span>
                                     </div>
                                 </div>
                                 <div class="comment-content">
@@ -122,30 +122,30 @@
                         </div>
                     </div>
                     <div class="reply-application">
-                        <div class="comment-msg clear">
-                            <div class="agree-disagree right">
-                                <i class="fa fa-thumbs-up">(10)</i>
-                                <i class="fa fa-thumbs-down">(0)</i>
-                                <span class="reply-comment">回复</span>
-                            </div>
+                        <div class="comment-msg">
                             <div class="user-msg">
                                 <a class="user-name" href="/admin">早起不吃虫</a>
                                 <span class="comment-time">2018-05-01 18:17:30</span>
+                            </div>
+                            <div class="agree-disagree">
+                                <i class="fa fa-thumbs-up">(10)</i>
+                                <i class="fa fa-thumbs-down">(0)</i>
+                                <span class="reply-comment">回复</span>
                             </div>
                         </div>
                         <div class="comment-content">
                             <p>这是一条无聊的评论。。。。</p>
                         </div>
                         <div class="reply-application">
-                            <div class="comment-msg clear">
-                                <div class="agree-disagree right">
-                                    <i class="fa fa-thumbs-up">(10)</i>
-                                    <i class="fa fa-thumbs-down">(0)</i>
-                                    <span class="reply-comment">回复</span>
-                                </div>
+                            <div class="comment-msg">
                                 <div class="user-msg">
                                     <a class="user-name" href="/admin">早起不吃虫</a>
                                     <span class="comment-time">2018-05-01 18:17:30</span>
+                                </div>
+                                <div class="agree-disagree">
+                                    <i class="fa fa-thumbs-up">(10)</i>
+                                    <i class="fa fa-thumbs-down">(0)</i>
+                                    <span class="reply-comment">回复</span>
                                 </div>
                             </div>
                             <div class="comment-content">
@@ -165,7 +165,20 @@
     </div>
 </main>
 </body>
+<script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
 <script type="text/javascript">
+    $.ajax({
+        url: "<%=basePath %>admin/comment/get/${article.articleId}",
+        type: "GET",
+        data: "",
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+        }
+    })
+</script>
+<%--<script src="<%=basePath %>resource/back/js/comment.js"></script>--%>
+<%--<script type="text/javascript">
     var arr = [{
         id: 1,
         pid: 0,
@@ -286,15 +299,15 @@
             + '</a>'
             + '</div>'
             + '<div class="comment-main">'
-            + '<div class="comment-msg clear">'
-            + '<div class="agree-disagree right">'
+            + '<div class="comment-msg">'
+            + '<div class="user-msg left">'
+            + '<a class="user-name" href="/admin">早起不吃虫</a>'
+            + '<span class="comment-time">2018-05-01 18:17:30</span>'
+            + '</div>'
+            + '<div class="agree-disagree">'
             + '<i class="fa fa-thumbs-up">(10)</i>'
             + '<i class="fa fa-thumbs-down">(0)</i>'
             + '<span class="reply-comment">回复</span>'
-            + '</div>'
-            + '<div class="user-msg">'
-            + '<a class="user-name" href="/admin">早起不吃虫</a>'
-            + '<span class="comment-time">2018-05-01 18:17:30</span>'
             + '</div>'
             + '</div>'
             + '<div class="comment-content">'
@@ -308,20 +321,20 @@
     function replyHtml(arr,replyStr) {
         for (var i = 0;i < arr.length; i++){
             replyStr.strItem += (replyStr.odd % 2 === 0 ? '<div class="reply-application evenClass">\n' : '<div class="reply-application">\n') +
-                '                        <div class="comment-msg clear">\n' +
-                '                            <div class="agree-disagree right">\n' +
-                '                                <i class="fa fa-thumbs-up">(10)</i>\n' +
-                '                                <i class="fa fa-thumbs-down">(0)</i>\n' +
-                '                                <span class="reply-comment">回复</span>\n' +
-                '                            </div>\n' +
-                '                            <div class="user-msg">\n' +
-                '                                <a class="user-name" href="/admin">早起不吃虫</a>\n' +
-                '                                <span class="comment-time">2018-05-01 18:17:30</span>\n' +
-                '                            </div>\n' +
-                '                        </div>\n' +
-                '                        <div class="comment-content">\n' +
-                '                            <p>'+ arr[i]["value"]+'</p>\n' +
-                '                        </div>';
+                '<div class="comment-msg">\n' +
+                '<div class="user-msg">\n' +
+                '<a class="user-name" href="/admin">早起不吃虫</a>\n' +
+                '<span class="comment-time">2018-05-01 18:17:30</span>\n' +
+                '</div>\n' +
+                '<div class="agree-disagree">\n' +
+                '<i class="fa fa-thumbs-up">(10)</i>\n' +
+                '<i class="fa fa-thumbs-down">(0)</i>\n' +
+                '<span class="reply-comment">回复</span>\n' +
+                '</div>\n' +
+                '</div>\n' +
+                '<div class="comment-content">\n' +
+                '<p>' + arr[i]["value"] + '</p>\n' +
+                '</div>';
             if (arr[i]["children"].length > 0){
                 replyStr.odd ++;
                 replyHtml(arr[i]["children"],replyStr);
@@ -336,7 +349,7 @@
     arr.forEach(function (value, index) {
         str += addStr(value);
     })
-    //console.log(str)
+
     document.getElementById("commentTree").innerHTML = str;
-</script>
+</script>--%>
 </html>
