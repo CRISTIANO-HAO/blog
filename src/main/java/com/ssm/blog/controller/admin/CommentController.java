@@ -29,6 +29,7 @@ public class CommentController {
         try {
             List<Comment> comments = commentService.getCommentsByArticleId(articleId);
             TreeNode treeNode = new TreeNode();
+            //转换成comment树，便于前端处理
             List commentList = treeNode.toTreeNode(comments);
             resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(),commentList);
         }catch (Exception e){

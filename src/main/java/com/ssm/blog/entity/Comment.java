@@ -23,7 +23,10 @@ public class Comment {
     private int disagreeNum;
     //父节点
     private Comment parentComment;
-    //子节点
+    /*
+    * 子节点
+    * 需要初始化，否则报空指针
+    * */
     private List<Comment> childrenComment = new ArrayList<Comment>();
 
     public int getId() {
@@ -103,6 +106,7 @@ public class Comment {
     }
 
     public void setChildrenComment(Comment childrenComment) {
+        //已经初始化，所以可以直接添加comment节点
         this.childrenComment.add(childrenComment);
     }
 }

@@ -173,9 +173,73 @@
         data: "",
         contentType: "application/json",
         success: function (result) {
-            console.log(result)
+            console.log(result);
+            var str = "";
+            result.result.forEach(function (value, index) {
+                str += addStr(value);
+            })
+
+            document.getElementById("commentTree").innerHTML = str;
         }
     })
+
+    function addStr(obj) {
+        var str = "";
+        var replyStr = {strItem : "",odd:1} ;
+        str += '<div class="comment-item">'
+            + '<div class="user-profile">'
+            + '<a>'
+            + '<img src="<%=basePath %>resource/back/img/visitor.jpg">'
+            + '</a>'
+            + '</div>'
+            + '<div class="comment-main">'
+            + '<div class="comment-msg">'
+            + '<div class="user-msg left">'
+            + '<a class="user-name" href="/admin">早起不吃虫</a>'
+            + '<span class="comment-time">'+obj.publishTime+'</span>'
+            + '</div>'
+            + '<div class="agree-disagree">'
+            + '<i class="fa fa-thumbs-up">(10)</i>'
+            + '<i class="fa fa-thumbs-down">(0)</i>'
+            + '<span class="reply-comment">回复</span>'
+            + '</div>'
+            + '</div>'
+            + '<div class="comment-content">'
+            + '<p>'+ obj["content"]+'</p>'
+            + '</div>';
+        replyStr = replyHtml(obj["childrenComment"],replyStr);
+        str += replyStr.strItem;
+        str += "</div></div>";
+        return str;
+    }
+    function replyHtml(arr,replyStr) {
+        for (var i = 0;i < arr.length; i++){
+            replyStr.strItem += (replyStr.odd % 2 === 0 ? '<div class="reply-application evenClass">\n' : '<div class="reply-application">\n') +
+                '<div class="comment-msg">\n' +
+                '<div class="user-msg">\n' +
+                '<a class="user-name" href="/admin">早起不吃虫</a>\n' +
+                '<span class="comment-time">2018-05-01 18:17:30</span>\n' +
+                '</div>\n' +
+                '<div class="agree-disagree">\n' +
+                '<i class="fa fa-thumbs-up">(10)</i>\n' +
+                '<i class="fa fa-thumbs-down">(0)</i>\n' +
+                '<span class="reply-comment">回复</span>\n' +
+                '</div>\n' +
+                '</div>\n' +
+                '<div class="comment-content">\n' +
+                '<p>' + arr[i]["content"] + '</p>\n' +
+                '</div>';
+            if (arr[i]["childrenComment"].length > 0){
+                replyStr.odd ++;
+                replyHtml(arr[i]["childrenComment"],replyStr);
+                replyStr.strItem += "</div>";
+            }else {
+                replyStr.strItem += "</div>";
+            }
+        }
+        return replyStr;
+    }
+
 </script>
 <%--<script src="<%=basePath %>resource/back/js/comment.js"></script>--%>
 <%--<script type="text/javascript">
