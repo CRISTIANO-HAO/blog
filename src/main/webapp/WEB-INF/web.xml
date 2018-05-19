@@ -10,6 +10,7 @@
 		<param-value>classpath:spring/spring-*.xml</param-value>
 	</context-param>
 	<!-- Spring监听器 -->
+	<!--读取web.xml中配置的context-param中的配置文件，提前在web容器初始化前准备业务对应的Application context;将创建好的Application context放置于ServletContext中，为springMVC部分的初始化做好准备-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -49,6 +50,7 @@
 	</filter-mapping>
 
 	<!--配置DispatcherServlet -->
+    <!--用ContextLoaderListener初始化上下文，接着使用DispatchServlet来初始化WebMVC的上下文-->
 	<servlet>
 		<servlet-name>blog-dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
