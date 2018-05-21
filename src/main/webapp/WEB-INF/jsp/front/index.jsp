@@ -36,10 +36,44 @@
                     <li>工具</li>
                 </ul>
             </div>
+            <div id="category-shrink">
+                <div class="category-msg">
+                    <i class="scale_yaodong"></i>
+                    <span>分类</span>
+                </div>
+                <section class="category-box">
+                    <ul class="clear">
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>Javascript</span>
+                        </li>
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>CSS</span>
+                        </li>
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>HTML5</span>
+                        </li>
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>Java</span>
+                        </li>
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>Spring</span>
+                        </li>
+                        <li class="left">
+                            <i class="scale_yaodong"></i>
+                            <span>MyBatis</span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
             <div id="search">
                 <form>
                     <input id="search-in" type="text" placeholder="搜索">
-                    <input id="submit-in" type="submit" value="">
+                    <input id="submit-in" class="scale_yaodong" type="submit" value="">
                 </form>
             </div>
         </div>
@@ -62,11 +96,11 @@
                             </div>
                         </div>
                         <div class="right comment-msg" title="评论">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-commentNum">13</span>
                         </div>
                         <div class="right click-msg" title="阅读量">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-clickNum">211</span>
                         </div>
                     </div>
@@ -88,11 +122,11 @@
                             </div>
                         </div>
                         <div class="right comment-msg" title="评论">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-commentNum">13</span>
                         </div>
                         <div class="right click-msg" title="阅读量">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-clickNum">211</span>
                         </div>
                     </div>
@@ -114,11 +148,11 @@
                             </div>
                         </div>
                         <div class="right comment-msg" title="评论">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-commentNum">13</span>
                         </div>
                         <div class="right click-msg" title="阅读量">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-clickNum">211</span>
                         </div>
                     </div>
@@ -140,11 +174,11 @@
                             </div>
                         </div>
                         <div class="right comment-msg" title="评论">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-commentNum">13</span>
                         </div>
                         <div class="right click-msg" title="阅读量">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-clickNum">211</span>
                         </div>
                     </div>
@@ -166,47 +200,94 @@
                             </div>
                         </div>
                         <div class="right comment-msg" title="评论">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-commentNum">13</span>
                         </div>
                         <div class="right click-msg" title="阅读量">
-                            <i></i>
+                            <i class="scale_yaodong"></i>
                             <span class="article-clickNum">211</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="article-correlation" class="right">
+                <div class="separation-line"></div>
                 <div id="category">
                     <div class="category-msg">
-                        <i></i>
+                        <i class="scale_yaodong"></i>
                         <span>分类</span>
                     </div>
-                    <section id="category-box">
+                    <section class="category-box">
                         <ul class="clear">
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>Javascript</span>
                             </li>
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>CSS</span>
                             </li>
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>HTML5</span>
                             </li>
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>Java</span>
                             </li>
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>Spring</span>
                             </li>
                             <li class="left">
-                                <i></i>
+                                <i class="scale_yaodong"></i>
                                 <span>MyBatis</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="separation-line"></div>
+                <div id="archives">
+                    <div id="archives-msg">
+                        <i class="scale_yaodong"></i>
+                        <span>归档</span>
+                    </div>
+                    <section id="archives-box">
+                        <ul>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
+                            </li>
+                            <li>
+                                <i class="scale_yaodong"></i>
+                                <span>2018年05月</span>
+                                <span>(8)</span>
                             </li>
                         </ul>
                     </section>
@@ -216,5 +297,7 @@
         <div id="footer"></div>
     </div>
 </div>
+<script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script src="<%=basePath %>resource/front/js/index.js"></script>
 </body>
 </html>
