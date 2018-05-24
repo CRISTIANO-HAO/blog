@@ -9,7 +9,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>My Admination</title>
+    <title>博客</title>
 
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -35,6 +35,42 @@
                     <li>扯淡</li>
                     <li>工具</li>
                 </ul>
+            </div>
+            <div id="nav-column" class="clear">
+                <div id="logo" class="left">
+                    早起不吃虫
+                </div>
+                <div id="mobile-menu" class="right">
+                    <i class="icon"></i>
+                </div>
+                <nav id="nav">
+                    <ul class="clear">
+                        <li>
+                            <i></i>
+                            <span>首页</span>
+                        </li>
+                        <li>
+                            <i></i>
+                            <span>热门</span>
+                        </li>
+                        <li>
+                            <i></i>
+                            <span>前端</span>
+                        </li>
+                        <li>
+                            <i></i>
+                            <span>后端</span>
+                        </li>
+                        <li>
+                            <i></i>
+                            <span>扯淡</span>
+                        </li>
+                        <li>
+                            <i></i>
+                            <span>工具</span>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div id="category-shrink">
                 <div class="category-msg">
@@ -79,135 +115,144 @@
         </div>
         <div id="content" class="clear">
             <div id="article-list" class="left">
-                <div class="article-item">
-                    <h3 class="article-title">Javascript深入浅出</h3>
-                    <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                        从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                        穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                        要知道去年销分的时候中午饭我都没吃去排的队……
-                    </div>
-                    <div class="article-msg clear">
-                        <div class="left">
-                            <div class="article-publishTime">2018-05-01 12:20:21</div>
-                            <div class="article-tags">
-                                <span class="tag-msg">标签：</span>
-                                <span class="tag-item">js</span>；
-                                <span class="tag-item">入门</span>
+                <div>
+                    <div class="article-item">
+                        <h3 class="article-title"><a href="<%=basePath%>article/1234567">Javascript深入浅出</a></h3>
+                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
+                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
+                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
+                            要知道去年销分的时候中午饭我都没吃去排的队……
+                        </div>
+                        <div class="article-msg clear">
+                            <div class="left">
+                                <div class="article-publishTime">2018-05-01 12:20:21</div>
+                                <div class="article-tags">
+                                    <span class="tag-msg">标签：</span>
+                                    <span class="tag-item">js</span>；
+                                    <span class="tag-item">入门</span>
+                                </div>
+                            </div>
+                            <div class="right comment-msg" title="评论">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-commentNum">13</span>
+                            </div>
+                            <div class="right click-msg" title="阅读量">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-clickNum">211</span>
                             </div>
                         </div>
-                        <div class="right comment-msg" title="评论">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-commentNum">13</span>
+                    </div>
+                    <div class="article-item" >
+                        <h3 class="article-title">Javascript深入浅出</h3>
+                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
+                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
+                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
+                            要知道去年销分的时候中午饭我都没吃去排的队……
                         </div>
-                        <div class="right click-msg" title="阅读量">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-clickNum">211</span>
+                        <div class="article-msg clear">
+                            <div class="left">
+                                <div class="article-publishTime">2018-05-01 12:20:21</div>
+                                <div class="article-tags">
+                                    <span class="tag-msg">标签：</span>
+                                    <span class="tag-item">js</span>；
+                                    <span class="tag-item">入门</span>
+                                </div>
+                            </div>
+                            <div class="right comment-msg" title="评论">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-commentNum">13</span>
+                            </div>
+                            <div class="right click-msg" title="阅读量">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-clickNum">211</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Javascript深入浅出</h3>
+                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
+                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
+                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
+                            要知道去年销分的时候中午饭我都没吃去排的队……
+                        </div>
+                        <div class="article-msg clear">
+                            <div class="left">
+                                <div class="article-publishTime">2018-05-01 12:20:21</div>
+                                <div class="article-tags">
+                                    <span class="tag-msg">标签：</span>
+                                    <span class="tag-item">js</span>；
+                                    <span class="tag-item">入门</span>
+                                </div>
+                            </div>
+                            <div class="right comment-msg" title="评论">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-commentNum">13</span>
+                            </div>
+                            <div class="right click-msg" title="阅读量">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-clickNum">211</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Javascript深入浅出</h3>
+                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
+                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
+                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
+                            要知道去年销分的时候中午饭我都没吃去排的队……
+                        </div>
+                        <div class="article-msg clear">
+                            <div class="left">
+                                <div class="article-publishTime">2018-05-01 12:20:21</div>
+                                <div class="article-tags">
+                                    <span class="tag-msg">标签：</span>
+                                    <span class="tag-item">js</span>；
+                                    <span class="tag-item">入门</span>
+                                </div>
+                            </div>
+                            <div class="right comment-msg" title="评论">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-commentNum">13</span>
+                            </div>
+                            <div class="right click-msg" title="阅读量">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-clickNum">211</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Javascript深入浅出</h3>
+                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
+                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
+                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
+                            要知道去年销分的时候中午饭我都没吃去排的队……
+                        </div>
+                        <div class="article-msg clear">
+                            <div class="left">
+                                <div class="article-publishTime">2018-05-01 12:20:21</div>
+                                <div class="article-tags">
+                                    <span class="tag-msg">标签：</span>
+                                    <span class="tag-item">js</span>；
+                                    <span class="tag-item">入门</span>
+                                </div>
+                            </div>
+                            <div class="right comment-msg" title="评论">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-commentNum">13</span>
+                            </div>
+                            <div class="right click-msg" title="阅读量">
+                                <i class="scale_yaodong"></i>
+                                <span class="article-clickNum">211</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="article-item" >
-                    <h3 class="article-title">Javascript深入浅出</h3>
-                    <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                        从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                        穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                        要知道去年销分的时候中午饭我都没吃去排的队……
-                    </div>
-                    <div class="article-msg clear">
-                        <div class="left">
-                            <div class="article-publishTime">2018-05-01 12:20:21</div>
-                            <div class="article-tags">
-                                <span class="tag-msg">标签：</span>
-                                <span class="tag-item">js</span>；
-                                <span class="tag-item">入门</span>
-                            </div>
-                        </div>
-                        <div class="right comment-msg" title="评论">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-commentNum">13</span>
-                        </div>
-                        <div class="right click-msg" title="阅读量">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-clickNum">211</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="article-item">
-                    <h3 class="article-title">Javascript深入浅出</h3>
-                    <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                        从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                        穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                        要知道去年销分的时候中午饭我都没吃去排的队……
-                    </div>
-                    <div class="article-msg clear">
-                        <div class="left">
-                            <div class="article-publishTime">2018-05-01 12:20:21</div>
-                            <div class="article-tags">
-                                <span class="tag-msg">标签：</span>
-                                <span class="tag-item">js</span>；
-                                <span class="tag-item">入门</span>
-                            </div>
-                        </div>
-                        <div class="right comment-msg" title="评论">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-commentNum">13</span>
-                        </div>
-                        <div class="right click-msg" title="阅读量">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-clickNum">211</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="article-item">
-                    <h3 class="article-title">Javascript深入浅出</h3>
-                    <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                        从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                        穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                        要知道去年销分的时候中午饭我都没吃去排的队……
-                    </div>
-                    <div class="article-msg clear">
-                        <div class="left">
-                            <div class="article-publishTime">2018-05-01 12:20:21</div>
-                            <div class="article-tags">
-                                <span class="tag-msg">标签：</span>
-                                <span class="tag-item">js</span>；
-                                <span class="tag-item">入门</span>
-                            </div>
-                        </div>
-                        <div class="right comment-msg" title="评论">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-commentNum">13</span>
-                        </div>
-                        <div class="right click-msg" title="阅读量">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-clickNum">211</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="article-item">
-                    <h3 class="article-title">Javascript深入浅出</h3>
-                    <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                        从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                        穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                        要知道去年销分的时候中午饭我都没吃去排的队……
-                    </div>
-                    <div class="article-msg clear">
-                        <div class="left">
-                            <div class="article-publishTime">2018-05-01 12:20:21</div>
-                            <div class="article-tags">
-                                <span class="tag-msg">标签：</span>
-                                <span class="tag-item">js</span>；
-                                <span class="tag-item">入门</span>
-                            </div>
-                        </div>
-                        <div class="right comment-msg" title="评论">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-commentNum">13</span>
-                        </div>
-                        <div class="right click-msg" title="阅读量">
-                            <i class="scale_yaodong"></i>
-                            <span class="article-clickNum">211</span>
-                        </div>
-                    </div>
+                <div id="loading">
+                    <span class="scale-item"></span>
+                    <span class="scale-item"></span>
+                    <span class="scale-item"></span>
+                    <span class="scale-item"></span>
+                    <span class="scale-item"></span>
                 </div>
             </div>
             <div id="article-correlation" class="right">
