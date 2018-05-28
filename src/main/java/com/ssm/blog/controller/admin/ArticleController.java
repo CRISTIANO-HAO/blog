@@ -5,7 +5,9 @@ import java.util.*;
 
 import com.ssm.blog.dto.ResultEnum;
 import com.ssm.blog.entity.Category;
+import com.ssm.blog.entity.Column;
 import com.ssm.blog.service.CategoryService;
+import com.ssm.blog.service.ColumnService;
 import com.ssm.blog.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ import com.ssm.blog.dto.ResultSet;
 import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 
-@Controller
+@Controller("adminArticleController")
 @RequestMapping(value = "/admin/article")
 public class ArticleController {
 
@@ -24,6 +26,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ColumnService columnService;
 
     /*
     * 跳转添加博客页面
@@ -32,7 +36,9 @@ public class ArticleController {
     @RequestMapping(value = "/articleAdd")
     public String articleAdd(Model model){
         List<Category> categories = categoryService.list();
+        List<Column> columns = columnService.list();
         model.addAttribute("categories",categories);
+        model.addAttribute("columns",columns);
         return "back/articleAdd";
     }
 
@@ -137,8 +143,10 @@ public class ArticleController {
     public String editArticleById(Model model,@PathVariable(value = "articleId") Long articleId){
         Article article = articleService.getArticleById(articleId);
         List<Category> categories = categoryService.list();
+        List<Column> columns = columnService.list();
         model.addAttribute("article",article);
         model.addAttribute("categories",categories);
+        model.addAttribute("columns",columns);
         return "back/articleEdit";
     }
 

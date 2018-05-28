@@ -16,6 +16,11 @@ admin/article/category/list/page/{pageIndex}
 后台评论模块
 admin/comment/get/{articleId}
 
+前端Article模块
+article/list
+article/{articleId}
+article/search/{what}
+
 
 
 

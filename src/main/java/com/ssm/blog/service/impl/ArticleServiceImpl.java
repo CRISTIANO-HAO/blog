@@ -1,6 +1,7 @@
 package com.ssm.blog.service.impl;
 
 import com.ssm.blog.dao.ArticleCategoryDao;
+import com.ssm.blog.dao.ArticleColumnDao;
 import com.ssm.blog.dao.TagDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class ArticleServiceImpl implements ArticleService{
     private TagDao tagDao;
 	@Autowired
     private ArticleCategoryDao articleCategoryDao;
+	@Autowired
+    private ArticleColumnDao articleColumnDao;
 
 	@Override
 	public Article getArticleById(Long articleId) {
@@ -32,6 +35,7 @@ public class ArticleServiceImpl implements ArticleService{
 	public void addArticle(Article article) {
 		articleDao.addArticle(article);
 		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+		articleColumnDao.addArticleAndColumnId(article.getColumns(),article.getArticleId());
 		tagDao.addTag(article.getTags(),article.getArticleId());
 	}
 
@@ -63,8 +67,17 @@ public class ArticleServiceImpl implements ArticleService{
         //更新分类
         articleCategoryDao.deleteByArticleId(article.getArticleId());
 		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+		//更新专栏
+        articleColumnDao.deleteByArticleId(article.getArticleId());
+        articleColumnDao.addArticleAndColumnId(article.getColumns(),article.getArticleId());
 
 		articleDao.update(article);
+	}
+
+	@Override
+	public List<Article> getArticleByPage(Integer pageIndex, Integer pageSize) {
+		List<Article> articleList = articleDao.getArticleByPage(pageIndex,pageSize);
+		return articleList;
 	}
 
 }

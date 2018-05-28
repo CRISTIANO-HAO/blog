@@ -19,4 +19,6 @@ public interface ArticleService {
 	boolean ifExistTitle(String title);
 
 	void update(Article article);
+
+	List<Article> getArticleByPage(Integer pageIndex, Integer pageSize);
 }

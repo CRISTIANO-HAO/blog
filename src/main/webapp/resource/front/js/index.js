@@ -10,6 +10,8 @@ $(document).ready(function () {
         }
         //文字展现效果
         scrollShowArticle();
+        //获取文章下一页
+        loadArticle.getNextPage();
     });
     
     /*文章展现效果*/
@@ -41,13 +43,88 @@ $(document).ready(function () {
         $("#mobi-menu").blur();
     });
 
-    /*页面到达底部时，加载下一页*/
-    function getNextPage() {
-        //检测是否到达底部
-        if (Math.ceil($(window).height() + $(window).scrollTop()) >= $(document).height()){
-            $.ajax({
 
-            })
+    /*
+    * 定义文章加载列表组件
+    *
+    * */
+    var loadArticle = {
+        //每次加载文章个数
+        pageSize: 3,
+        //是否已经全部加载完成
+        hasLoadAll: false,
+        /*页面到达底部时，加载下一页*/
+        getNextPage:function() {
+            var self = this;
+            //文章未充满屏幕或者到达底部，则请求下一页
+            if ($("#article-list").height() < $(window).height() || Math.ceil($(window).height() + $(window).scrollTop()) >= $(document).height()){
+                //已经加载完毕，不再触发请求；
+                if (self.hasLoadAll){return;}
+                $.ajax({
+                    url:"article/list",
+                    type:"POST",
+                    beforeSend:function () {
+                        $("#loading").show();
+                    },
+                    data:{
+                        //加载文章列表起始序号
+                        pageIndex:$("#article-list .article-item").length,
+                        //每次加载文章个数
+                        pageSize: self.pageSize,
+                    },
+                    success:function (result) {
+                        //全部请求完成后，阻止继续请求
+                        if (result.result.length < self.pageSize){
+                            self.hasLoadAll = true;
+                        }
+                        //防止连续触发
+                        setTimeout(function () {
+                            $("#loading").hide();
+                            self.renderArticleList(result.result);
+                            //全部请求完成后，显示结束标志
+                            if (result.result.length < self.pageSize){
+                                $("#loadingCompleted").show();
+                            }
+                        },500);
+                    }
+                });
+            }
+        },
+        //渲染文章列表
+        renderArticleList:function(arr) {
+            if (Object.prototype.toString.call(arr) !== "[object Array]"){
+                return;
+            }
+            var htmlStr = "";
+            arr.forEach(function (el) {
+                htmlStr += '<div class="article-item">\n' +
+                    '                        <h3 class="article-title"><a href="article/1234567">'+ el["title"] +'</a></h3>\n' +
+                    '                        <div class="article-summary">'+ el["summaryHtmlContent"]+'</div>\n' +
+                    '                        <div class="article-msg clear">\n' +
+                    '                            <div class="left">\n' +
+                    '                                <div class="article-publishTime">'+ $.utils().timeFormat(el["publishTime"]) +'</div>\n' +
+                    '                                <div class="article-tags">\n' +
+                    '                                    <span class="tag-msg">标签：</span>\n';
+                for(var i = 0;i < el.tags.length;i++){ htmlStr += '<span class="tag-item">'+ el.tags[i].tagName +'</span>；\n'} ;
+                htmlStr +=  '                                </div>\n' +
+                    '                            </div>\n' +
+                    '                            <div class="right comment-msg" title="评论">\n' +
+                    '                                <i class="scale_yaodong"></i>\n' +
+                    '                                <span class="article-commentNum">13</span>\n' +
+                    '                            </div>\n' +
+                    '                            <div class="right click-msg" title="阅读量">\n' +
+                    '                                <i class="scale_yaodong"></i>\n' +
+                    '                                <span class="article-clickNum">211</span>\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                    </div>'
+            });
+            $("#article-list-container").append(htmlStr);
+            //触发滚动事件，添加文章出现的效果
+            $(window).trigger("scroll");
         }
     }
+
+    //初始加载文章列表
+    loadArticle.getNextPage();
 })

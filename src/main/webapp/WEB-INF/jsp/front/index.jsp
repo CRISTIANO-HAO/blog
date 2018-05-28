@@ -18,6 +18,7 @@
     <meta http-equiv="description" content="This is my page">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+    <link rel="stylesheet" href="<%=basePath %>resource/markdown/css/editormd.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
 
@@ -115,8 +116,8 @@
         </div>
         <div id="content" class="clear">
             <div id="article-list" class="left">
-                <div>
-                    <div class="article-item">
+                <div id="article-list-container">
+                    <%--<div class="article-item">
                         <h3 class="article-title"><a href="<%=basePath%>article/1234567">Javascript深入浅出</a></h3>
                         <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
                             从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
@@ -245,7 +246,7 @@
                                 <span class="article-clickNum">211</span>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
                 <div id="loading">
                     <span class="scale-item"></span>
@@ -253,6 +254,10 @@
                     <span class="scale-item"></span>
                     <span class="scale-item"></span>
                     <span class="scale-item"></span>
+                </div>
+                <div id="loadingCompleted">
+                    <i></i>
+                    <span>加载完成...</span>
                 </div>
             </div>
             <div id="article-correlation" class="right">
@@ -343,6 +348,7 @@
     </div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script src="<%=basePath %>resource/front/js/utils.js"></script>
 <script src="<%=basePath %>resource/front/js/index.js"></script>
 </body>
 </html>

@@ -31,12 +31,12 @@ body{
     background-color: #fff;
 }
 
-.article-title .right .btnDiv{
+.article-title .btnDiv{
     margin: 10px 0px 10px;
     text-align: right;
 }
 
-.article-title .left .categoryDiv .categoryList{
+.article-title .left .categoryDiv .categoryList,.article-title .right .columnDiv .columnList{
     width: 300px;
     height: 35px;
     line-height: 35px;
@@ -48,11 +48,11 @@ body{
     cursor: pointer;
 }
 
-.article-title .left .categoryUl {
+.article-title .left .categoryUl,.article-title .right .columnUl{
     position: relative;
 }
 
-.article-title .left .categoryUl ul{
+.article-title .left .categoryUl ul,.article-title .right .columnUl ul{
     position: absolute;
     width: 100%;
     z-index: 11;
@@ -62,7 +62,7 @@ body{
     border-radius: 5px;
 }
 
-.article-title .left .categoryUl li{
+.article-title .left .categoryUl li,.article-title .right .columnUl li{
     height: 25px;
     line-height: 25px;
     font-size: 12px;
@@ -71,7 +71,7 @@ body{
     border-bottom: 1px solid #ccc;
 }
 
-.article-title .left .categoryUl li.choseCategory{
+.article-title .left .categoryUl li.choseCategory,.article-title .right .columnUl li.choseColumn{
     background-color: #eee;
 }
 
@@ -89,13 +89,10 @@ body{
     opacity: 0.8;
 }
 
-.article-title .right .tagDiv{
-    margin: 48px 0px 10px;
-    text-align: left;
-}
 
-.article-title .right .tagDiv h3{
-    margin-bottom: 10px;
+.article-title .right .tagDiv h3,.article-title .right .columnDiv h3{
+    margin: 10px 0px 10px;
+    text-align: left;
 }
 
 .article-title .right .tagDiv input{
@@ -113,11 +110,15 @@ body{
     background-color: #fff;
 }
 
-.article-summary{
-    margin: 1% 5% 5%;
+#layout h3{
+    padding: 0 5%;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
+
 .article-summary h3{
+    padding: 0 5%;
     text-align: left;
     margin-bottom: 10px;
 }

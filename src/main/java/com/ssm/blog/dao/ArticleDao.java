@@ -46,4 +46,10 @@ public interface ArticleDao {
 	*
 	* */
 	void update(@Param("article") Article article);
+
+	/*
+	* 获取文章分页列表
+	*
+	* */
+    List<Article> getArticleByPage(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 }

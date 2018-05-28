@@ -31,6 +31,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </header>
         <main>
             <div class="article-title clear">
+                <div class="btnDiv">
+                    <button id="addBtn" type="button">新建</button>
+                    <button id="publishBtn" type="button">发布</button>
+                </div>
                 <div class="left">
                     <div>
                         <h3>文章标题</h3>
@@ -54,9 +58,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
                 <div class="right">
-                    <div class="btnDiv">
-                        <button id="addBtn" type="button">新建</button>
-                        <button id="publishBtn" type="button">发布</button>
+                    <div class="columnDiv">
+                        <h3>文章专栏</h3>
+                        <div>
+                            <div class="columnList"> </div>
+                        </div>
+                        <div class="columnUl">
+                            <ul class="hide">
+                                <c:forEach items="${columns}" var="column">
+                                    <li>
+                                        <span> ${column.columnName}</span>
+                                        <input type="hidden" name="columnId" value="${column.columnId}" disabled>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
                     <div class="tagDiv">
                         <h3>文章标签</h3>
@@ -65,13 +81,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
             <div id="layout">
+                <h3>文章正文</h3>
                 <div id="test-editormd">
                     <textarea style="display:none;" name="markdownContent"></textarea>
                 </div>
             </div>
             <div class="article-summary">
                 <h3>文章摘要</h3>
-                <textarea rows="5" name="summaryContent"></textarea>
+                <div id="summaryContent">
+                    <textarea rows="5" name="summaryMarkdownContent"></textarea>
+                </div>
             </div>
         </main>
 
@@ -81,9 +100,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var testEditor;
             //markdown插件的初始化
             $(function() {
-                testEditor = editormd("test-editormd", {
+                testEditor1 = editormd("test-editormd", {
                     width   : "90%",
                     height  : 640,
+                    syncScrolling : "single",
+                    saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+                    path    : "<%=basePath %>resource/markdown/lib/"
+                });
+
+                testEditor2 = editormd("summaryContent", {
+                    width   : "90%",
+                    height  : 300,
                     syncScrolling : "single",
                     saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
                     path    : "<%=basePath %>resource/markdown/lib/"
@@ -138,6 +165,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     categories.push({categoryId:id});
                 });
 
+                //拼凑分类字段
+                var columns = [];
+                var columnsInput = $('input[name = columnId][disabled != disabled]');
+                columnsInput.each(function () {
+                    var id = $(this).val();
+                    columns.push({columnId:id});
+                });
+
                 //拼凑标签字段
                 var tags  = [];
                 var tagsInputArr = $('input[name = tags]').val().split("；");
@@ -153,11 +188,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 var data = {
                     articleId : "${article.articleId}",
                     title: $('input[name = title]').val(),
-                    markdownContent: testEditor.getMarkdown(),
-                    htmlContent:testEditor.getHTML(),
-                    summaryContent: $('textarea[name = summaryContent]').val(),
+                    markdownContent: testEditor1.getMarkdown(),
+                    htmlContent: $("#test-editormd .editormd-preview").html(),
+                    summaryMarkdownContent: testEditor2.getMarkdown(),
+                    summaryHtmlContent: $("#summaryContent .editormd-preview").html(),
                     categories:categories,
                     tags: tags,
+                    columns:columns
                 };
 
                 console.log(data)
@@ -225,6 +262,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }
                 });
                 $('.categoryList').html(contentArr.join("；"))
+            });
+
+            //文章分类的显示隐藏
+            $('.columnList').click(function () {
+                $('.columnUl ul').toggleClass("hide");
+            })
+
+            //分类选项的点击事件
+            $('.columnUl ul li').click(function () {
+                var _this = $(this);
+                //控制输入框的禁用与选项的显示隐藏
+                _input = _this.find("input");
+                _input.attr("disabled",!_input.attr("disabled"));
+                _this.toggleClass("choseColumn");
+
+                //处理显示框
+                var choseColumn = _this.find("span").html().trim();
+                var content = $('.columnList').text().replace(/\s/g,"");
+                //中文的分号分隔
+                var contentArr = content.split('；');
+                contentArr.forEach(function (value,index) {
+                    //当数组的值为空时；
+                    if (value == ""){
+                        contentArr[index] = choseColumn;
+                        return;
+                    }
+                    //当已经有该类时，删掉；
+                    if(value == choseColumn){
+                        contentArr.splice(index,1);
+                        return;
+                    }
+                    //没有找到该类时，加入；
+                    if (index == contentArr.length -1){
+                        contentArr.push(choseColumn);
+                        return;
+                    }
+                });
+                $('.columnList').html(contentArr.join("；"))
             })
         </script>
     </body>

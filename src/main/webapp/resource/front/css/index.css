@@ -475,6 +475,17 @@ body {
     margin-bottom: 1rem;
 }
 
+#article-list .article-item .article-title a{
+    color: #000;
+    text-decoration: none;
+}
+
+#article-list .article-item .article-title a:hover{
+    color: #dd230a;
+    text-decoration: underline;
+    text-underline: #dd230a;
+}
+
 #article-list .article-item .article-summary {
     font-size: 1.0rem;
     line-height: 1.5;
@@ -707,10 +718,11 @@ body {
 #loading{
     clear: both;
     height: 2rem;
-    margin: 1rem auto;
+    margin: 2rem auto 4rem;
     background-color: #e2d5b3;
     text-align: center;
     line-height: 2rem;
+    display: none;
 }
 
 #loading .scale-item{
@@ -763,6 +775,35 @@ body {
     }
 }
 
+#loadingCompleted{
+    clear: both;
+    height: 5rem;
+    margin: 2rem auto 4rem;
+    background-color: #e2d5b3;
+    text-align: center;
+    line-height: 5rem;
+    display: none;
+}
+
+#loadingCompleted i{
+    display: inline-block;
+    height: 5rem;
+    width: 5rem;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-image: url("../../../resource/front/image/remen.png");
+}
+
+#loadingCompleted span{
+    display: inline-block;
+    color: #438383;
+    font-size: 1.0rem;
+    vertical-align: middle;
+}
+
 /*主页基本样式结束*/
 
 
@@ -774,7 +815,6 @@ body {
     width: 65%;
     min-width: 640px;
     max-width: 940px;
-    height: 80%;
     background-color: #FFFAED;
 }
 

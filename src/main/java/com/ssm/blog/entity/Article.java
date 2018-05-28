@@ -12,8 +12,10 @@ public class Article {
     private Date publishTime;
     // 文章标题
     private String title;
-    // 文章摘要
-    private String summaryContent;
+    // 文章html摘要
+    private String summaryHtmlContent;
+    //文章摘要markdown内容
+    private String summaryMarkdownContent;
     // 文章markdown内容
     private String markdownContent;
     // 文章html内容
@@ -24,6 +26,8 @@ public class Article {
     private List<Tag> tags;
     //文章分类
     private List<Category> categories;
+    //文章所属专栏
+    private List<Column> columns;
 
     public long getArticleId() {
         return articleId;
@@ -57,16 +61,24 @@ public class Article {
         this.title = title;
     }
 
-    public String getSummaryContent() {
-        return summaryContent;
+    public String getSummaryHtmlContent() {
+        return summaryHtmlContent;
     }
 
-    public void setSummaryContent(String summaryContent) {
-        this.summaryContent = summaryContent;
+    public void setSummaryHtmlContent(String summaryHtmlContent) {
+        this.summaryHtmlContent = summaryHtmlContent;
     }
 
     public String getMarkdownContent() {
         return markdownContent;
+    }
+
+    public String getSummaryMarkdownContent() {
+        return summaryMarkdownContent;
+    }
+
+    public void setSummaryMarkdownContent(String summaryMarkdownContent) {
+        this.summaryMarkdownContent = summaryMarkdownContent;
     }
 
     public void setMarkdownContent(String markdownContent) {
@@ -105,4 +117,11 @@ public class Article {
         this.categories = categories;
     }
 
+    public List<Column> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(List<Column> columns) {
+        this.columns = columns;
+    }
 }
