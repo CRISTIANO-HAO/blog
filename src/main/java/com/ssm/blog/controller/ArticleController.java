@@ -6,10 +6,7 @@ import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +28,21 @@ public class ArticleController {
         }catch (Exception e){
             resultSet = new ResultSet(true, ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
         }
+        return resultSet;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "article/column/{column}",method = RequestMethod.POST)
+    public ResultSet getColumnArticleByPage(@PathVariable(value = "column") String column,@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex,@RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
+        ResultSet resultSet = null;
+
+        try {
+            List<Article> articleList = articleService.getColumnArticleByPage(column,pageIndex,pageSize);
+            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(),articleList);
+        }catch (Exception e){
+            resultSet = new ResultSet(true, ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+
         return resultSet;
     }
 }

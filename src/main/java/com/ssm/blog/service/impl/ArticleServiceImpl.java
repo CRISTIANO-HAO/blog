@@ -66,17 +66,28 @@ public class ArticleServiceImpl implements ArticleService{
 		tagDao.addTag(article.getTags(),article.getArticleId());
         //更新分类
         articleCategoryDao.deleteByArticleId(article.getArticleId());
-		articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+        //防止空数组报错
+		if (article.getCategories().size() > 0){
+            articleCategoryDao.addArticleAndCategoryId(article.getCategories(),article.getArticleId());
+        }
 		//更新专栏
         articleColumnDao.deleteByArticleId(article.getArticleId());
-        articleColumnDao.addArticleAndColumnId(article.getColumns(),article.getArticleId());
-
+        //防止空数组报错
+        if (article.getColumns().size() > 0){
+            articleColumnDao.addArticleAndColumnId(article.getColumns(),article.getArticleId());
+        }
 		articleDao.update(article);
 	}
 
 	@Override
 	public List<Article> getArticleByPage(Integer pageIndex, Integer pageSize) {
 		List<Article> articleList = articleDao.getArticleByPage(pageIndex,pageSize);
+		return articleList;
+	}
+
+	@Override
+	public List<Article> getColumnArticleByPage(String column, Integer pageIndex, Integer pageSize) {
+		List<Article> articleList = articleDao.getColumnArticleByPage(column,pageIndex,pageSize);
 		return articleList;
 	}
 

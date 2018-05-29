@@ -21,4 +21,6 @@ public interface ArticleService {
 	void update(Article article);
 
 	List<Article> getArticleByPage(Integer pageIndex, Integer pageSize);
+
+    List<Article> getColumnArticleByPage(String column, Integer pageIndex, Integer pageSize);
 }

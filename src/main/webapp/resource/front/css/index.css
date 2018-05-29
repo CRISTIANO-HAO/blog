@@ -166,8 +166,8 @@ body {
     font-size: 1.6rem;
 }
 
-#column-ul #homepage {
-    font-size: 1.2rem;
+#column-ul .active {
+    font-size: 1.6rem;
 }
 
 #nav-column{

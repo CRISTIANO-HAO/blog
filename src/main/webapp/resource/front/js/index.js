@@ -49,8 +49,9 @@ $(document).ready(function () {
     *
     * */
     var loadArticle = {
+        url:"article/list",
         //每次加载文章个数
-        pageSize: 3,
+        pageSize: 30,
         //是否已经全部加载完成
         hasLoadAll: false,
         /*页面到达底部时，加载下一页*/
@@ -61,7 +62,7 @@ $(document).ready(function () {
                 //已经加载完毕，不再触发请求；
                 if (self.hasLoadAll){return;}
                 $.ajax({
-                    url:"article/list",
+                    url:self.url,
                     type:"POST",
                     beforeSend:function () {
                         $("#loading").show();
@@ -77,6 +78,7 @@ $(document).ready(function () {
                         if (result.result.length < self.pageSize){
                             self.hasLoadAll = true;
                         }
+                        console.log(result)
                         //防止连续触发
                         setTimeout(function () {
                             $("#loading").hide();
@@ -127,4 +129,31 @@ $(document).ready(function () {
 
     //初始加载文章列表
     loadArticle.getNextPage();
+
+    /*
+    * 点击column获取不同类型文章
+    *
+    * */
+    $("#column #column-ul li").click(function () {
+        var self = $(this);
+        var column = self.text().trim();
+        //点击获取active
+        self.addClass("active");
+        self.siblings().removeClass("active");
+        //点击重置请求的url;
+        if(column === "首页"){
+            loadArticle.url = "article/list";
+        }else if (column === "热门"){
+            loadArticle.url = "article/list";
+        }else {
+            loadArticle.url = "article/column/" + column;
+        }
+
+        //先清空原有的文章
+        $("#article-list-container").html("");
+        $("#loadingCompleted").hide();
+        //重置请求组件
+        loadArticle.hasLoadAll = false;
+        loadArticle.getNextPage();
+    })
 })

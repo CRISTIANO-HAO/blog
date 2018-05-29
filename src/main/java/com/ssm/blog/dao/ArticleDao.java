@@ -52,4 +52,10 @@ public interface ArticleDao {
 	*
 	* */
     List<Article> getArticleByPage(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+
+    /*
+    * 获取专栏文章
+    *
+    * */
+    List<Article> getColumnArticleByPage(@Param("column") String column,@Param("pageIndex") Integer pageIndex,@Param("pageSize") Integer pageSize);
 }

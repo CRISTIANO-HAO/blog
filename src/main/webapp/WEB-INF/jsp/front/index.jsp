@@ -29,7 +29,7 @@
         <div id="header">
             <div id="column">
                 <ul id="column-ul" class="clear">
-                    <li id="homepage">首页</li>
+                    <li class="active">首页</li>
                     <li>热门</li>
                     <li>前端</li>
                     <li>后端</li>

@@ -15,7 +15,7 @@
         <result column="markdownContent" property="markdownContent"/>
         <result column="htmlContent" property="htmlContent"/>
     </resultMap>
-    <resultMap id="articleAndCategoryAndTagMap" type="com.ssm.blog.entity.Article" extends="articleMap">
+    <resultMap id="completeArticle" type="com.ssm.blog.entity.Article" extends="articleMap">
         <collection property="categories" ofType="com.ssm.blog.entity.Category" resultMap="com.ssm.blog.dao.CategoryDao.categoryMap"/>
         <collection property="columns" ofType="com.ssm.blog.entity.Column" resultMap="com.ssm.blog.dao.ColumnDao.columnMap"/>
         <collection property="tags" ofType="com.ssm.blog.entity.Tag" resultMap="com.ssm.blog.dao.TagDao.tagMap" />
@@ -29,7 +29,7 @@
             (#{article.articleId},#{article.status},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryMarkdownContent},#{article.summaryHtmlContent},#{article.markdownContent},#{article.htmlContent})
     </insert>
 
-    <select id="getArticleByPage" resultMap="articleAndCategoryAndTagMap" parameterType="java.lang.Integer">
+    <select id="getArticleByPage" resultMap="completeArticle" parameterType="java.lang.Integer">
         SELECT
             *
         FROM
@@ -44,7 +44,7 @@
         LEFT JOIN category c ON a_c.category_id = c.categoryId
     </select>
 
-    <select id="getArticleById" resultMap="articleAndCategoryAndTagMap" parameterType="java.lang.Long">
+    <select id="getArticleById" resultMap="completeArticle" parameterType="java.lang.Long">
         SELECT
             *
         FROM
@@ -69,7 +69,7 @@
 
     </select>
 
-    <select id="list" resultMap="articleAndCategoryAndTagMap">
+    <select id="list" resultMap="completeArticle">
         SELECT
             *
         FROM
@@ -111,4 +111,19 @@
         WHERE
             a.articleId = #{article.articleId}
     </update>
+
+    <select id="getColumnArticleByPage" resultMap="completeArticle">
+        SELECT
+            *
+        FROM
+            (
+                SELECT * FROM article a
+                    WHERE a.status = 1
+                    ORDER BY a.publishTime DESC , a.saveTime DESC
+                    LIMIT #{pageIndex}, #{pageSize}
+            )a
+        LEFT JOIN tag t ON a.articleId = t.articleId
+        LEFT JOIN article_column a_c ON a.articleId = a_c.article_id
+        LEFT JOIN `column` col ON a_c.column_id = col.columnId WHERE col.columnName = #{column}
+    </select>
 </mapper>

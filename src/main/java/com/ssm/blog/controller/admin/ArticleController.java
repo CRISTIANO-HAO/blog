@@ -85,9 +85,7 @@ public class ArticleController {
             article.setStatus(1);
             article.setPublishTime(new Timestamp(timeStamp));
         }
-
-        ResultSet resultSet;
-
+        ResultSet resultSet = null;
         try {
             articleService.update(article);
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());
