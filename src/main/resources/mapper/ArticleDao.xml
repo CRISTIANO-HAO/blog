@@ -16,78 +16,82 @@
         <result column="htmlContent" property="htmlContent"/>
     </resultMap>
     <resultMap id="completeArticle" type="com.ssm.blog.entity.Article" extends="articleMap">
-        <collection property="categories" ofType="com.ssm.blog.entity.Category" resultMap="com.ssm.blog.dao.CategoryDao.categoryMap"/>
-        <collection property="columns" ofType="com.ssm.blog.entity.Column" resultMap="com.ssm.blog.dao.ColumnDao.columnMap"/>
-        <collection property="tags" ofType="com.ssm.blog.entity.Tag" resultMap="com.ssm.blog.dao.TagDao.tagMap" />
+        <collection property="categories" ofType="com.ssm.blog.entity.Category"
+                    resultMap="com.ssm.blog.dao.CategoryDao.categoryMap"/>
+        <collection property="columns" ofType="com.ssm.blog.entity.Column"
+                    resultMap="com.ssm.blog.dao.ColumnDao.columnMap"/>
+        <collection property="tags" ofType="com.ssm.blog.entity.Tag" resultMap="com.ssm.blog.dao.TagDao.tagMap"/>
     </resultMap>
 
 
     <insert id="addArticle" parameterType="Article">
         INSERT INTO
-            article(articleId,status,saveTime,publishTime,title,summaryMarkdownContent,summaryHtmlContent,markdownContent,htmlContent)
+            article (articleId, status, saveTime, publishTime, title, summaryMarkdownContent, summaryHtmlContent, markdownContent, htmlContent)
         VALUES
-            (#{article.articleId},#{article.status},#{article.saveTime},#{article.publishTime},#{article.title},#{article.summaryMarkdownContent},#{article.summaryHtmlContent},#{article.markdownContent},#{article.htmlContent})
+            (#{article.articleId}, #{article.status}, #{article.saveTime}, #{article.publishTime}, #{article.title},
+             #{article.summaryMarkdownContent}, #{article.summaryHtmlContent}, #{article.markdownContent},
+             #{article.htmlContent})
     </insert>
 
     <select id="getArticleByPage" resultMap="completeArticle" parameterType="java.lang.Integer">
-        SELECT
-            *
+        SELECT *
         FROM
             (
-                SELECT * FROM article a
-                    WHERE a.status = 1
-                ORDER BY a.publishTime DESC , a.saveTime DESC
+                SELECT *
+                FROM article a
+                WHERE a.status = 1
+                ORDER BY a.publishTime DESC, a.saveTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
-            )a
-        LEFT JOIN tag t ON a.articleId = t.articleId
-        LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
-        LEFT JOIN category c ON a_c.category_id = c.categoryId
+            ) a
+            LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
+            LEFT JOIN category c ON a_c.category_id = c.categoryId
     </select>
 
     <select id="getArticleById" resultMap="completeArticle" parameterType="java.lang.Long">
-        SELECT
-            *
+        SELECT *
         FROM
             article a
-        LEFT JOIN tag t ON a.articleId = t.articleId
-        LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
-        LEFT JOIN category c ON a_t.category_id = c.categoryId
-        LEFT JOIN article_column a_c ON a.articleId = a_c.article_id
-        LEFT JOIN `column` col ON a_c.column_id = col.columnId
+            LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
+            LEFT JOIN category c ON a_t.category_id = c.categoryId
+            LEFT JOIN article_column a_c ON a.articleId = a_c.article_id
+            LEFT JOIN `column` col ON a_c.column_id = col.columnId
         WHERE
             a.articleId = #{articleId}
     </select>
 
     <select id="getTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT
-            count(*)
+        count(*)
         FROM
-            article a
+        article a
         <where>
-            <if test="searchParam != null and searchParam != ''"> a.title like '%' #{searchParam} '%'</if>
+            <if test="searchParam != null and searchParam != ''">a.title like '%' #{searchParam} '%'</if>
         </where>
 
     </select>
 
     <select id="list" resultMap="completeArticle">
         SELECT
-            *
+        *
         FROM
-            (
-                SELECT * FROM
-                    article a
-                <where><if test="searchParam != null and searchParam != ''"> a.title like '%' #{searchParam} '%'</if></where>
-                ORDER BY a.publishTime DESC , a.saveTime DESC
-                LIMIT #{offsetCount}, #{pageSize}
-            ) a
+        (
+        SELECT * FROM
+        article a
+        <where>
+            <if test="searchParam != null and searchParam != ''">a.title like '%' #{searchParam} '%'</if>
+        </where>
+        ORDER BY a.publishTime DESC , a.saveTime DESC
+        LIMIT #{offsetCount}, #{pageSize}
+        ) a
         LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
         LEFT JOIN category t ON t.categoryId = a_t.category_id
         ORDER BY a.publishTime DESC , a.saveTime DESC
     </select>
 
     <select id="ifExistTitle" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT
-            count(*)
+        SELECT count(*)
         FROM
             article a
         WHERE
@@ -97,33 +101,74 @@
 
     <update id="update" parameterType="Article">
         UPDATE
-            article a
+        article a
         <trim prefix="set" suffixOverrides=",">
             <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
             <if test="article.saveTime == article.publishTime">a.publishTime = #{article.publishTime},</if>
             <if test="article.title != null">a.title = #{article.title},</if>
-            <if test="article.summaryMarkdownContent != null">a.summaryMarkdownContent = #{article.summaryMarkdownContent},</if>
+            <if test="article.summaryMarkdownContent != null">a.summaryMarkdownContent =
+                #{article.summaryMarkdownContent},
+            </if>
             <if test="article.summaryHtmlContent != null">a.summaryHtmlContent = #{article.summaryHtmlContent},</if>
             <if test="article.markdownContent != null">a.markdownContent = #{article.markdownContent},</if>
             <if test="article.htmlContent != null">a.htmlContent = #{article.htmlContent},</if>
             <if test="article.status != null">a.status = #{article.status},</if>
         </trim>
         WHERE
-            a.articleId = #{article.articleId}
+        a.articleId = #{article.articleId}
     </update>
 
     <select id="getColumnArticleByPage" resultMap="completeArticle">
-        SELECT
-            *
+        SELECT *
         FROM
             (
-                SELECT * FROM article a
-                    WHERE a.status = 1
-                    ORDER BY a.publishTime DESC , a.saveTime DESC
-                    LIMIT #{pageIndex}, #{pageSize}
-            )a
+                SELECT *
+                FROM
+                    article a,
+                    `column` col,
+                    article_column a_c
+                WHERE
+                    a.articleId = a_c.article_id
+                    AND a_c.column_id = col.columnId
+                    AND columnName = #{column}
+                ORDER BY a.publishTime DESC, a.saveTime DESC
+                LIMIT #{pageIndex}, #{pageSize}
+            ) a
+            LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
+            LEFT JOIN category c ON c.categoryId = a_t.category_id
+    </select>
+
+    <select id="searchArticleByPage" resultMap="completeArticle">
+        SELECT *
+        FROM
+            (
+                SELECT *
+                FROM
+                    article a
+                WHERE
+                    a.title LIKE '%' #{keyword} '%'
+                    OR a.articleId IN
+                    (
+                        SELECT t.articleId
+                        FROM tag t
+                        WHERE t.tagName LIKE '%' #{keyword} '%'
+                    )
+                    OR a.articleId IN
+                    (
+                        SELECT a_c.article_id
+                        FROM article_category a_c,category c
+                        WHERE a_c.category_id = c.categoryId AND c.categoryName LIKE '%' #{keyword} '%'
+                    )
+                    OR a.articleId IN
+                    (
+                        SELECT a_col.article_id
+                        FROM article_column a_col,`column` col
+                        WHERE a_col.column_id = col.columnId AND col.columnName LIKE '%' #{keyword} '%'
+                    )
+                ORDER BY a.publishTime DESC, a.saveTime DESC
+                LIMIT #{pageIndex}, #{pageSize}
+            ) a
         LEFT JOIN tag t ON a.articleId = t.articleId
-        LEFT JOIN article_column a_c ON a.articleId = a_c.article_id
-        LEFT JOIN `column` col ON a_c.column_id = col.columnId WHERE col.columnName = #{column}
     </select>
 </mapper>

@@ -45,4 +45,19 @@ public class ArticleController {
 
         return resultSet;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "article/search/{keyword}",method = RequestMethod.POST)
+    public ResultSet searchArticleByPage(@PathVariable(value = "keyword") String keyword,@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex,@RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
+        ResultSet resultSet = null;
+
+        try {
+            List<Article> articleList = articleService.searchArticleByPage(keyword,pageIndex,pageSize);
+            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(),articleList);
+        }catch (Exception e){
+            resultSet = new ResultSet(true, ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+
+        return resultSet;
+    }
 }

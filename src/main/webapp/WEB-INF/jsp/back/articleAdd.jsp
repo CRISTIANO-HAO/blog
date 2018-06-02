@@ -197,8 +197,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     columns:columns
                 };
 
-                console.log(data)
-
                 //新增文章的请求
                 $.ajax({
                     type: "POST",

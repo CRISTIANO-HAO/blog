@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    //监听页面滚动事件
     $(window).scroll(function () {
         //小屏幕下底部导航的显示隐藏
         if (window.innerWidth < 768){
@@ -11,9 +13,11 @@ $(document).ready(function () {
         //文字展现效果
         scrollShowArticle();
         //获取文章下一页
-        loadArticle.getNextPage();
+        if (loadArticle.pageIndex > 0){
+            loadArticle.getNextPage();
+        }
     });
-    
+
     /*文章展现效果*/
     scrollShowArticle();
     function scrollShowArticle() {
@@ -49,9 +53,24 @@ $(document).ready(function () {
     *
     * */
     var loadArticle = {
+        //请求开关，等待一次请求完成后，才能继续请求
+        requestFlag: true,
+        //重置请求组件的配置
+        reset:function () {
+            //防止滚动中途点击，重置容器位置
+            $(window).scrollTop(0);
+            //先清空原有的文章
+            $("#article-list-container").html("");
+            $("#loadingCompleted").hide();
+            this.hasLoadAll = false;
+            this.pageIndex = 0;
+        },
+        //请求url
         url:"article/list",
+        //文章加载起始位置
+        pageIndex:0,
         //每次加载文章个数
-        pageSize: 30,
+        pageSize: 3,
         //是否已经全部加载完成
         hasLoadAll: false,
         /*页面到达底部时，加载下一页*/
@@ -59,17 +78,19 @@ $(document).ready(function () {
             var self = this;
             //文章未充满屏幕或者到达底部，则请求下一页
             if ($("#article-list").height() < $(window).height() || Math.ceil($(window).height() + $(window).scrollTop()) >= $(document).height()){
-                //已经加载完毕，不再触发请求；
-                if (self.hasLoadAll){return;}
+                //已经加载完毕，不再触发请求；请求进行中也无法发起第二次请求
+                if (self.hasLoadAll || !self.requestFlag){return;}
                 $.ajax({
                     url:self.url,
                     type:"POST",
                     beforeSend:function () {
                         $("#loading").show();
+                        //关闭请求开关
+                        self.requestFlag = false;
                     },
                     data:{
                         //加载文章列表起始序号
-                        pageIndex:$("#article-list .article-item").length,
+                        pageIndex: self.pageIndex,
                         //每次加载文章个数
                         pageSize: self.pageSize,
                     },
@@ -83,12 +104,19 @@ $(document).ready(function () {
                         setTimeout(function () {
                             $("#loading").hide();
                             self.renderArticleList(result.result);
+                            //重置文章起始位置
+                            self.pageIndex = $("#article-list .article-item").length;
                             //全部请求完成后，显示结束标志
                             if (result.result.length < self.pageSize){
                                 $("#loadingCompleted").show();
                             }
                         },500);
                     }
+                }).always(function () {
+                    //等到请求文章全部渲染，重置打开请求开关
+                    setTimeout(function () {
+                        self.requestFlag = true;
+                    },600)
                 });
             }
         },
@@ -137,6 +165,8 @@ $(document).ready(function () {
     $("#column #column-ul li").click(function () {
         var self = $(this);
         var column = self.text().trim();
+        //隐藏搜索信息
+        $("#search-param").hide();
         //点击获取active
         self.addClass("active");
         self.siblings().removeClass("active");
@@ -149,11 +179,32 @@ $(document).ready(function () {
             loadArticle.url = "article/column/" + column;
         }
 
-        //先清空原有的文章
-        $("#article-list-container").html("");
-        $("#loadingCompleted").hide();
         //重置请求组件
-        loadArticle.hasLoadAll = false;
+        loadArticle.reset();
+        loadArticle.getNextPage();
+    })
+    
+    /*
+    * 点击搜索关键词
+    * 
+    * */
+    $("#submit-in").click(function () {
+        //搜索时，回到首页栏
+        $("#column-ul li").eq(0).addClass("active").siblings().removeClass("active");
+        //获取搜索关键词
+        var keyword = $("#search-in").val().trim();
+
+        //搜索关键词为空，返回首页
+        if (keyword === ""){
+            loadArticle.url = "article/list";
+            $("#search-param").hide();
+        }else {
+            loadArticle.url = "article/search/" + keyword;
+            $("#search-param").show();
+            $("#search-keyword").html($("#search-in").val());
+        }
+        //重置请求组件参数
+        loadArticle.reset();
         loadArticle.getNextPage();
     })
 })

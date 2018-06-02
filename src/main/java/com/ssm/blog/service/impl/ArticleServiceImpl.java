@@ -91,4 +91,10 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleList;
 	}
 
+	@Override
+	public List<Article> searchArticleByPage(String keyword, Integer pageIndex, Integer pageSize) {
+		List<Article> articleList = articleDao.searchArticleByPage(keyword,pageIndex,pageSize);
+		return articleList;
+	}
+
 }

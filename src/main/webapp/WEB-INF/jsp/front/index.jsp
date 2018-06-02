@@ -110,12 +110,15 @@
             <div id="search">
                 <form>
                     <input id="search-in" type="text" placeholder="搜索">
-                    <input id="submit-in" class="scale_yaodong" type="submit" value="">
+                    <input id="submit-in" class="scale_yaodong" type="button">
                 </form>
             </div>
         </div>
         <div id="content" class="clear">
             <div id="article-list" class="left">
+                <div id="search-param">
+                    <span>您搜索的是：</span><span id="search-keyword">前端</span>
+                </div>
                 <div id="article-list-container">
                     <%--<div class="article-item">
                         <h3 class="article-title"><a href="<%=basePath%>article/1234567">Javascript深入浅出</a></h3>
@@ -298,11 +301,11 @@
                 </div>
                 <div class="separation-line"></div>
                 <div id="archives">
-                    <div id="archives-msg">
+                    <div class="archives-msg">
                         <i class="scale_yaodong"></i>
                         <span>归档</span>
                     </div>
-                    <section id="archives-box">
+                    <section class="archives-box">
                         <ul>
                             <li>
                                 <i class="scale_yaodong"></i>

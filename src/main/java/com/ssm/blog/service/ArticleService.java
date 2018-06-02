@@ -23,4 +23,6 @@ public interface ArticleService {
 	List<Article> getArticleByPage(Integer pageIndex, Integer pageSize);
 
     List<Article> getColumnArticleByPage(String column, Integer pageIndex, Integer pageSize);
+
+    List<Article> searchArticleByPage(String keyword, Integer pageIndex, Integer pageSize);
 }
