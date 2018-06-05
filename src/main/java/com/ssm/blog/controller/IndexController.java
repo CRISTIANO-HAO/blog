@@ -24,9 +24,4 @@ public class IndexController {
 		String index = index();
 		return index;
 	}
-
-	@RequestMapping(value = "/article/{articleId}",method = RequestMethod.GET)
-	public String getArticleById(@PathVariable("articleId") Long articleId){
-		return "front/article";
-	}
 }

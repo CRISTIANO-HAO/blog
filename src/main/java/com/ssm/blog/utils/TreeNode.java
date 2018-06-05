@@ -42,7 +42,7 @@ public class TreeNode {
                 for (int j = 0; j < comments.size(); j++) {
                     if (commentList.get(i).getId() == comments.get(j).getPid()){
                         //当comment容器某节点的id等于某comment的pid时，把该comment设置为该节点的子节点
-                        commentList.get(i).setChildrenComment(comments.get(j));
+                        commentList.get(i).setTreeChildrenComment(comments.get(j));
                     }
                 }
                 //当comment容器某节点有子节点时，以子节点为基础迭代添加孙节点
@@ -54,7 +54,7 @@ public class TreeNode {
             for (int i = 0; i < commentList.size(); i++) {
                 for (int j = 0; j < comments.size(); j++) {
                     if (commentList.get(i).getId() == comments.get(j).getPid()){
-                        commentList.get(i).setChildrenComment(comments.get(j));
+                        commentList.get(i).setTreeChildrenComment(comments.get(j));
                     }
                 }
                 if (commentList.get(i).getChildrenComment().size() > 0){
@@ -65,5 +65,4 @@ public class TreeNode {
         //返回comment树容器
         return commentList;
     }
-
 }

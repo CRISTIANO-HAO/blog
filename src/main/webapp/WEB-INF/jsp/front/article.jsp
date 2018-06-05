@@ -114,30 +114,36 @@
             </div>
         </div>
         <div id="content">
-            <div id="article-detail"></div>
+            <div id="article-detail">
+                <h3 class="article-title">${article.title}</h3>
+                <input type="hidden" id="articleId" value="${article.articleId}">
+                <div>
+                    ${article.htmlContent}
+                </div>
+            </div>
             <div id="comment">
-                <div class="comment-form">
+                <div id="rootComment-form" class="comment-form">
                     <div class="avatar-wrap left">
                         <div class="avatar"></div>
                     </div>
                     <div class="comment-form-info clear">
                         <div class="comment-form-input">
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" class="username" placeholder="您的名称">
                             </div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" class="user-email" placeholder="您的邮箱">
                             </div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" class="user-website" placeholder="您的网站">
                             </div>
                         </div>
                         <div class="comment-form-text">
-                            <textarea rows="5"></textarea>
+                            <textarea rows="5" class="comment-content"></textarea>
                         </div>
                         <div class="comment-form-btn">
                             <span>Ctrl + 回车 直接提交</span>
-                            <button>发布评论</button>
+                            <button class="submit-btn">发布评论</button>
                         </div>
                     </div>
                 </div>
@@ -154,6 +160,31 @@
                             <div class="answer-box">
                                 <span class="publishTime">2018-05-06 08:09:23</span>
                                 <a class="reply-btn">回复</a>
+                                <div class="comment-form">
+                                    <div class="avatar-wrap left">
+                                        <div class="avatar"></div>
+                                    </div>
+                                    <div class="comment-form-info clear">
+                                        <div class="comment-form-input">
+                                            <div class="input-wrap">
+                                                <input type="text" class="username" placeholder="您的名称">
+                                            </div>
+                                            <div class="input-wrap">
+                                                <input type="text" class="user-email" placeholder="您的邮箱">
+                                            </div>
+                                            <div class="input-wrap">
+                                                <input type="text" class="user-website" placeholder="你的网站">
+                                            </div>
+                                        </div>
+                                        <div class="comment-form-text">
+                                            <textarea rows="5" class="comment-content"></textarea>
+                                        </div>
+                                        <div class="comment-form-btn">
+                                            <span>Ctrl + 回车 直接提交</span>
+                                            <button class="submit-btn">发布评论</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="comment-item">
                                 <div class="avatar-wrap left">
@@ -225,6 +256,6 @@
     </div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
-<script src="<%=basePath %>resource/front/js/index.js"></script>
+<script src="<%=basePath %>resource/front/js/article.js"></script>
 </body>
 </html>

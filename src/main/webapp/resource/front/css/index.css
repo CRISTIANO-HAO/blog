@@ -840,7 +840,11 @@ body {
 }
 
 #comment{
-    padding: 2rem 1.2rem;
+    padding: 1.2rem 1.2rem 2rem;
+}
+
+.comment-form{
+    margin-top: 0.8rem;
 }
 
 .avatar{
@@ -913,7 +917,7 @@ body {
     padding-left: 4rem;
 }
 
-#comment-list .comment-wrap .username{
+#comment-list .comment-wrap a.username{
     color: #ef3a3a;
     font-size: 1.1rem;
     font-weight: bold;

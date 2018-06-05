@@ -10,4 +10,6 @@ import java.util.List;
 public interface CommentDao {
 
     List<Comment> getCommentsByArticleId(@Param("articleId") Long articleId);
+
+    void addComment(@Param("comment") Comment comment);
 }

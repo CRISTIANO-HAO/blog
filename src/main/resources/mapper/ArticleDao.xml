@@ -134,9 +134,9 @@
                 ORDER BY a.publishTime DESC, a.saveTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
-            LEFT JOIN tag t ON a.articleId = t.articleId
-            LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
-            LEFT JOIN category c ON c.categoryId = a_t.category_id
+        LEFT JOIN tag t ON a.articleId = t.articleId
+        LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
+        LEFT JOIN category c ON c.categoryId = a_t.category_id
     </select>
 
     <select id="searchArticleByPage" resultMap="completeArticle">

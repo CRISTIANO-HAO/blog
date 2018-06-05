@@ -10,7 +10,7 @@ public class User {
     //用户邮箱
     private String email;
     //用户链接
-    private String userLink;
+    private String website;
     //注册时间
     private Date registerTime;
 
@@ -38,12 +38,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUserLink() {
-        return userLink;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setUserLink(String userLink) {
-        this.userLink = userLink;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public Date getRegisterTime() {

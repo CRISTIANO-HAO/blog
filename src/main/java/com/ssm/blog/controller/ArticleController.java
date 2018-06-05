@@ -6,6 +6,7 @@ import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,5 +60,12 @@ public class ArticleController {
         }
 
         return resultSet;
+    }
+
+    @RequestMapping(value = "article/{articleId}",method = RequestMethod.GET)
+    public String getArticleById(@PathVariable("articleId") Long articleId, Model model){
+        Article article = articleService.getArticleById(articleId);
+        model.addAttribute("article",article);
+        return "front/article";
     }
 }

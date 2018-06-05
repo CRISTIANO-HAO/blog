@@ -13,6 +13,12 @@ public class Comment {
     private Long articleId;
     //用户id；
     private Long userId;
+    //用户名称
+    private String username;
+    //用户邮箱
+    private String email;
+    //用户网址
+    private String website;
     //评论内容
     private String content;
     //评论的时间
@@ -61,6 +67,34 @@ public class Comment {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setChildrenComment(List<Comment> childrenComment) {
+        this.childrenComment = childrenComment;
+    }
+
     public String getContent() {
         return content;
     }
@@ -105,7 +139,7 @@ public class Comment {
         return childrenComment;
     }
 
-    public void setChildrenComment(Comment childrenComment) {
+    public void setTreeChildrenComment(Comment childrenComment) {
         //已经初始化，所以可以直接添加comment节点
         this.childrenComment.add(childrenComment);
     }

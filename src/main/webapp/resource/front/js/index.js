@@ -128,7 +128,7 @@ $(document).ready(function () {
             var htmlStr = "";
             arr.forEach(function (el) {
                 htmlStr += '<div class="article-item">\n' +
-                    '                        <h3 class="article-title"><a href="article/1234567">'+ el["title"] +'</a></h3>\n' +
+                    '                        <h3 class="article-title"><a href="article/' + el["articleId"] + '">'+ el["title"] +'</a></h3>\n' +
                     '                        <div class="article-summary">'+ el["summaryHtmlContent"]+'</div>\n' +
                     '                        <div class="article-msg clear">\n' +
                     '                            <div class="left">\n' +
@@ -207,4 +207,14 @@ $(document).ready(function () {
         loadArticle.reset();
         loadArticle.getNextPage();
     })
+
+    /*
+    * 回车搜索文章
+    *
+    * */
+    $("#search-in").on("keypress",function (event) {
+        if(event.keyCode == 13){
+            $("#submit-in").trigger("click");
+        }
+    });
 })

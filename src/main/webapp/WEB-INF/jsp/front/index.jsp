@@ -108,7 +108,7 @@
                 </section>
             </div>
             <div id="search">
-                <form>
+                <form onsubmit="return false;">
                     <input id="search-in" type="text" placeholder="搜索">
                     <input id="submit-in" class="scale_yaodong" type="button">
                 </form>

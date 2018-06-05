@@ -66,7 +66,8 @@ CREATE TABLE `comment`(
   agreeNum INT DEFAULT '0',
   disagreeNum INT DEFAULT '0',
   articleId BIGINT NOT NULL,
-  userId BIGINT
+  userId BIGINT,
+	userWebsite VARCHAR(50)
 )ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8 COMMENT = '评论表';
 
 /*用户表*/
@@ -74,8 +75,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
 	userId BIGINT NOT NULL PRIMARY KEY ,
 	username VARCHAR(25),
-	email VARCHAR(25) NOT NULL ,
-	userLink VARCHAR(100),
+	email VARCHAR(25) NOT NULL UNIQUE ,
+	website VARCHAR(100),
 	registerTime TIMESTAMP NOT NULL
 )ENGINE = InnoDB CHARSET = utf8 COMMENT = '用户表';
 

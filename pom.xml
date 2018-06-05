@@ -11,18 +11,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>jstl</artifactId> 
-			<version>1.2</version> <scope>provided</scope> </dependency> <dependency> 
-			<groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.1</version> 
-			<scope>provided</scope> </dependency> <dependency> <groupId>org.glassfish</groupId> 
-			<artifactId>javax.annotation</artifactId> <version>3.0.1</version> </dependency> 
-			<dependency> <groupId>org.glassfish</groupId> <artifactId>javax.ejb</artifactId> 
-			<version>3.0.1</version> </dependency> <dependency> <groupId>org.jboss.weld</groupId> 
-			<artifactId>weld-osgi-bundle</artifactId> <version>1.0.1-SP3</version> </dependency> 
-			<dependency> <groupId>org.glassfish</groupId> <artifactId>javax.servlet</artifactId> 
-			<version>3.0.1</version> </dependency> -->
-
-
 		<dependency>
 			<!--3.0的junit是使用编程的方式来进行测试，而junit4是使用注解的方式来运行junit -->
 			<groupId>junit</groupId>
@@ -99,6 +87,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.4</version>
 		</dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.5.4</version>
+        </dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -170,8 +163,7 @@
 			<version>1.0.8</version>
 		</dependency>
 
-
-	</dependencies>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>

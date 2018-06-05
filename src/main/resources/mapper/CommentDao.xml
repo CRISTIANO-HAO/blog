@@ -9,6 +9,9 @@
         <result column="pid" property="pid"/>
         <result column="articleId" property="articleId"/>
         <result column="userId" property="userId"/>
+        <result column="website" property="website"/>
+        <result column="email" property="email"/>
+        <result column="username" property="username"/>
         <result column="content" property="content"/>
         <result column="publishTime" property="publishTime"/>
         <result column="agreeNum" property="agreeNum"/>
@@ -23,4 +26,10 @@
         WHERE
             c.articleId = #{articleId}
     </select>
+
+    <insert id="addComment">
+        INSERT INTO
+            comment(pid,articleId,userId,username,email,website,content,publishTime)
+        VALUE (#{comment.pid},#{comment.articleId},#{comment.userId},#{comment.username},#{comment.email},#{comment.website},#{comment.content},#{comment.publishTime})
+    </insert>
 </mapper>

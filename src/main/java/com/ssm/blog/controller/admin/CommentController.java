@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-@Controller
+@Controller("adminCommentContoller")
 @RequestMapping("admin/comment")
 public class CommentController {
 
