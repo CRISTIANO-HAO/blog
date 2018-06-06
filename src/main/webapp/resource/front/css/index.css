@@ -886,6 +886,12 @@ body {
     padding: 0.5rem;
 }
 
+input.isEmpty,textarea.isEmpty{
+    border-color: #ef4242 !important;
+    -webkit-box-shadow: 2px -1px 10px #e8b5b5;
+    box-shadow: 2px -1px 10px #e8b5b5;
+}
+
 .comment-form-info .comment-form-btn{
     text-align: right;
     margin-top: 0.5rem;
@@ -905,11 +911,17 @@ body {
     background-color: #ef4242;
     border: none;
     color: #fff;
+    cursor: pointer;
+}
+
+.comment-form-info .comment-form-btn button:hover{
+    opacity: 0.8;
 }
 
 #comment-list .comment-item{
     margin-top: 0.8rem;
     padding-top: 0.8rem;
+    min-height: 3.8rem;
     border-top: 1px solid #e2e2e2;
 }
 
@@ -923,6 +935,7 @@ body {
     font-weight: bold;
     display: block;
     white-space: nowrap;
+    min-height: 1.4rem;
 }
 
 #comment-list .comment-wrap .comment-text{

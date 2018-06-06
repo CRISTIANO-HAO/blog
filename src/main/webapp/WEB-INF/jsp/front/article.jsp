@@ -256,6 +256,7 @@
     </div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script src="<%=basePath %>resource/front/js/utils.js"></script>
 <script src="<%=basePath %>resource/front/js/article.js"></script>
 </body>
 </html>

@@ -25,6 +25,7 @@
             comment c
         WHERE
             c.articleId = #{articleId}
+        ORDER BY c.publishTime ASC
     </select>
 
     <insert id="addComment">
