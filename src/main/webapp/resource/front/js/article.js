@@ -24,7 +24,11 @@ $(document).ready(function () {
 
         //校验评论信息
         if (!msgValidate(data,commentForm)){
+            //提示信息显示
+            commentForm.find(".tip").show();
             return;
+        }else {
+            commentForm.find(".tip").hide();
         }
 
         $.ajax({
@@ -49,24 +53,40 @@ $(document).ready(function () {
     *
     * */
     function msgValidate(data,self) {
-        if (!(data.username && data.email && data.content)){
-            if(data.username === ""){
-                self.find(".username").addClass("isEmpty");
-            }else {
-                self.find(".username").removeClass("isEmpty");
-            }
-            if(data.email === ""){
-                self.find(".user-email").addClass("isEmpty");
-            }else {
-                self.find(".user-email").removeClass("isEmpty");
-            }
-            if(data.content === ""){
-                self.find(".comment-content").addClass("isEmpty");
-            }else {
-                self.find(".comment-content").removeClass("isEmpty");
-            }
-            return false;
+        var url_reg = new RegExp("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+[A-Za-z0-9-_%&\?\/.=#]+?$");
+        var email_reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        //判断是否全部符合校验要求
+        var allIsValidate = true;
+
+        //非空校验
+        if(data.username === ""){
+            self.find(".username").addClass("isEmpty");
+            allIsValidate = false;
+        }else {
+            self.find(".username").removeClass("isEmpty");
         }
+        if(data.email === "" || !email_reg.test(data.email)){
+            self.find(".user-email").addClass("isEmpty");
+            allIsValidate = false;
+        }else {
+            self.find(".user-email").removeClass("isEmpty");
+        }
+        if(data.content === ""){
+            self.find(".comment-content").addClass("isEmpty");
+            allIsValidate = false;
+        }else {
+            self.find(".comment-content").removeClass("isEmpty");
+        }
+
+        //当网址不为空时，校验其准确性
+        if (data.website && !url_reg.test(data.website)){
+            self.find(".user-website").addClass("isEmpty");
+            allIsValidate = false;
+        }else {
+            self.find(".user-website").removeClass("isEmpty");
+        }
+
+        return allIsValidate;
     }
     
     /*
@@ -94,6 +114,7 @@ $(document).ready(function () {
             '                                        <div class="avatar"></div>\n' +
             '                                    </div>\n' +
             '                                    <div class="comment-form-info clear">\n' +
+            '                                        <div class="tip">标红项必填或不合法</div>\n'+
             '                                        <div class="comment-form-input">\n' +
             '                                            <div class="input-wrap">\n' +
             '                                                <input class="commentId" type="hidden" value="'+ answerBox.find(".commentId").val() +'"/>\n' +

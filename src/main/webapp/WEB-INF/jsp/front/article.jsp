@@ -123,6 +123,7 @@
             </div>
             <div id="comment">
                 <div id="rootComment-form" class="comment-form">
+                    <div class="tip">标红项必填或不合法</div>
                     <div class="avatar-wrap left">
                         <div class="avatar"></div>
                     </div>
@@ -132,7 +133,7 @@
                                 <input type="text" class="username" placeholder="您的名称">
                             </div>
                             <div class="input-wrap">
-                                <input type="text" class="user-email" placeholder="您的邮箱">
+                                <input type="email" class="user-email" placeholder="您的邮箱">
                             </div>
                             <div class="input-wrap">
                                 <input type="text" class="user-website" placeholder="您的网站">
@@ -254,6 +255,29 @@
         </div>
         <div id="footer"></div>
     </div>
+</div>
+<div id="mask">
+    <div class="spinner">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="tip-text"></div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
 <script src="<%=basePath %>resource/front/js/utils.js"></script>
