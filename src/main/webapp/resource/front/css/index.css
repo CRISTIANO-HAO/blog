@@ -883,6 +883,7 @@ body {
 .avatar{
     height: 3rem;
     width: 3rem;
+    border-radius: 0.5rem;
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: contain;
@@ -980,6 +981,13 @@ input.isEmpty,textarea.isEmpty{
     font-size: 0.8rem;
     line-height: 1.5;
     margin: 0.3rem auto;
+}
+
+#comment-list .nothing{
+    padding: 3rem 1rem 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #c9bb98;
 }
 
 #mask{

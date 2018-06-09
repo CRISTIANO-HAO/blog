@@ -31,6 +31,7 @@ public class CommentController {
         comment.setPublishTime(time);
 
         ResultSet resultSet = null;
+
         try {
             commentService.addComment(comment);
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());

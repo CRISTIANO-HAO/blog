@@ -37,14 +37,23 @@ $(document).ready(function () {
             contentType: "application/json;charset=UTF-8",
             dataType:"json",
             beforeSend:function () {
-
+                $('#mask').show();
             },
             data:JSON.stringify(data),
             success:function (result) {
                 if (result.success){
+                    //清空评论内容
+                    commentForm.find(".comment-content").val("");
+                    //设置评论的cookie信息
+                    utils.cookie.setCookie('username',data.username);
+                    utils.cookie.setCookie('email',data.email);
+                    utils.cookie.setCookie('website',data.website);
+                    //渲染评论列表
                     getArticleComment();
                 }
             }
+        }).always(function () {
+            $('#mask').hide();
         })
     });
 
@@ -94,12 +103,15 @@ $(document).ready(function () {
     * 
     * */
     $("#comment").on("click",".comment-item .reply-btn",function () {
-        var answerBox = $(this).closest(".answer-box");
+        var self = $(this);
+        var answerBox = self.closest(".answer-box");
         var htmlStr = patchAnswerBox(answerBox);
         if (answerBox.find(".comment-form").length == 0){
             answerBox.append(htmlStr);
+            self.html("取消");
         }else {
             answerBox.find(".comment-form").remove();
+            self.html("回复");
         }
     });
 
@@ -118,13 +130,13 @@ $(document).ready(function () {
             '                                        <div class="comment-form-input">\n' +
             '                                            <div class="input-wrap">\n' +
             '                                                <input class="commentId" type="hidden" value="'+ answerBox.find(".commentId").val() +'"/>\n' +
-            '                                                <input type="text" class="username" placeholder="您的名称">\n' +
+            '                                                <input type="text" class="username" value="'+ utils.cookie.getCookie("username") +'" placeholder="您的名称">\n' +
             '                                            </div>\n' +
             '                                            <div class="input-wrap">\n' +
-            '                                                <input type="text" class="user-email" placeholder="您的邮箱">\n' +
+            '                                                <input type="text" class="user-email" value="'+ utils.cookie.getCookie("email") +'" placeholder="您的邮箱">\n' +
             '                                            </div>\n' +
             '                                            <div class="input-wrap">\n' +
-            '                                                <input type="text" class="user-website" placeholder="你的网站">\n' +
+            '                                                <input type="text" class="user-website" value="'+ utils.cookie.getCookie("website") +'" placeholder="你的网站">\n' +
             '                                            </div>\n' +
             '                                        </div>\n' +
             '                                        <div class="comment-form-text">\n' +
@@ -164,7 +176,12 @@ $(document).ready(function () {
         }
         var commentContainer = $("#comment-list");
         var htmlStr = {str:""};
-        iretation(arr,htmlStr);
+        if (arr.length > 0){
+            iretation(arr,htmlStr);
+        }else {
+            htmlStr += '<div class="nothing">暂无相关评论...</div>';
+        }
+
         commentContainer.html(htmlStr.str);
         //迭代拼凑字符串
         function iretation(arr,htmlStr) {

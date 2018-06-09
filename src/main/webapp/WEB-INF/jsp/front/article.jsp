@@ -149,7 +149,8 @@
                     </div>
                 </div>
                 <div id="comment-list">
-                    <div class="comment-item">
+                    <div class="nothing">暂无相关评论...</div>
+                    <%--<div class="comment-item">
                         <div class="avatar-wrap left">
                             <div class="avatar"></div>
                         </div>
@@ -248,7 +249,7 @@
                                 <a class="reply-btn">回复</a>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
                 <div id="comment-footer"></div>
             </div>

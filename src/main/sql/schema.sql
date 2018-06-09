@@ -70,6 +70,10 @@ CREATE TABLE `comment`(
 	userWebsite VARCHAR(50)
 )ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8 COMMENT = '评论表';
 
+/*更改字符集，才能存储emoji表情*/
+ALTER DATABASE `blog` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+ALTER TABLE `comment` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
 /*用户表*/
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(

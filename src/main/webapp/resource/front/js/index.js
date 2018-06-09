@@ -99,7 +99,6 @@ $(document).ready(function () {
                         if (result.result.length < self.pageSize){
                             self.hasLoadAll = true;
                         }
-                        console.log(result)
                         //防止连续触发
                         setTimeout(function () {
                             $("#loading").hide();

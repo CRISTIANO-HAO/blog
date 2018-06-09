@@ -34,4 +34,40 @@
     $.extend({utils: function () {
             return new utils();
         }});
-})(jQuery)
+})(jQuery);
+
+var utils = {};
+utils.cookie = {
+    cookiesObj:{},
+    refreshCookies: function () {
+        var cookies = document.cookie.split("; ");//这里有个空格
+        var cookiesObj = {};
+        for (var i = 0;i < cookies.length;i++){
+            var index = cookies[i].indexOf("=");
+            var name = cookies[i].substring(0,index);
+            var value = decodeURIComponent(cookies[i].substring(index + 1));
+            cookiesObj[name] = value;
+        }
+        //存储已经遍历好的cookie对象
+        this.cookiesObj = cookiesObj;
+    },
+    setCookie: function (key,value,expires) {
+        var time = new Date().getTime();
+        expires = time + (expires || 365)*24*60*60*1000;
+        //cookie日期格式需转换UTC
+        expires = new Date(expires).toUTCString();
+        //cookies只支持ASCII字符，而且不能有逗号，分号；
+        document.cookie = key + '=' + encodeURIComponent(value) + ';' + 'expires=' + expires + ";";
+        //刷新cookie对象
+        this.refreshCookies();
+    },
+    getCookie: function (key) {
+        //判断是否已经存在cookie对象
+        if(JSON.stringify(this.cookiesObj)!== "{}"){
+            return this.cookiesObj[key] || '';
+        }
+        //刷新cookie对象
+        this.refreshCookies();
+        return this.cookiesObj[key] || '';
+    }
+}
