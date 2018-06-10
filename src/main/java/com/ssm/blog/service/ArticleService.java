@@ -3,6 +3,7 @@ package com.ssm.blog.service;
 import java.util.List;
 import java.util.Map;
 
+import com.ssm.blog.dto.Archive;
 import com.ssm.blog.entity.Article;
 import com.ssm.blog.utils.Page;
 
@@ -25,4 +26,10 @@ public interface ArticleService {
     List<Article> getColumnArticleByPage(String column, Integer pageIndex, Integer pageSize);
 
     List<Article> searchArticleByPage(String keyword, Integer pageIndex, Integer pageSize);
+
+    List<Article> getCategoryArticleByPage(String category, Integer pageIndex, Integer pageSize);
+
+    List<Archive> getArticleArchives();
+
+	List<Article> getArchivesArticleByPage(String timerange, Integer pageIndex, Integer pageSize);
 }

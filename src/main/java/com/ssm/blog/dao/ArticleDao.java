@@ -3,6 +3,7 @@ package com.ssm.blog.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ssm.blog.dto.Archive;
 import com.ssm.blog.utils.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -64,4 +65,22 @@ public interface ArticleDao {
     *
     * */
     List<Article> searchArticleByPage(@Param("keyword") String column,@Param("pageIndex") Integer pageIndex,@Param("pageSize") Integer pageSize);
+
+    /*
+    * 获取分类文章列表
+    *
+    * */
+    List<Article> getCategoryArticleByPage(@Param("category") String category,@Param("pageIndex") Integer pageIndex,@Param("pageSize") Integer pageSize);
+
+    /*
+    * 获取文章归档信息
+    *
+    * */
+    List<Archive> getArticleArchives();
+
+    /*
+    * 获取归档文章列表
+    *
+    * */
+    List<Article> getArchivesArticleByPage(@Param("timerange") String timerange,@Param("pageIndex") Integer pageIndex,@Param("pageSize") Integer pageSize);
 }

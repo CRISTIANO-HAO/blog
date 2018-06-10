@@ -3,6 +3,7 @@ package com.ssm.blog.service.impl;
 import com.ssm.blog.dao.ArticleCategoryDao;
 import com.ssm.blog.dao.ArticleColumnDao;
 import com.ssm.blog.dao.TagDao;
+import com.ssm.blog.dto.Archive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,5 +97,23 @@ public class ArticleServiceImpl implements ArticleService{
 		List<Article> articleList = articleDao.searchArticleByPage(keyword,pageIndex,pageSize);
 		return articleList;
 	}
+
+	@Override
+	public List<Article> getCategoryArticleByPage(String category, Integer pageIndex, Integer pageSize) {
+		List<Article> articleList = articleDao.getCategoryArticleByPage(category,pageIndex,pageSize);
+		return articleList;
+	}
+
+	@Override
+	public List getArticleArchives() {
+		List<Archive> archives = articleDao.getArticleArchives();
+		return archives;
+	}
+
+    @Override
+    public List<Article> getArchivesArticleByPage(String timerange, Integer pageIndex, Integer pageSize) {
+        List<Article> articleList = articleDao.getArchivesArticleByPage(timerange,pageIndex,pageSize);
+        return articleList;
+    }
 
 }

@@ -128,7 +128,8 @@
                     `column` col,
                     article_column a_c
                 WHERE
-                    a.articleId = a_c.article_id
+                    a.status = 1
+                    AND a.articleId = a_c.article_id
                     AND a_c.column_id = col.columnId
                     AND columnName = #{column}
                 ORDER BY a.publishTime DESC, a.saveTime DESC
@@ -147,26 +148,77 @@
                 FROM
                     article a
                 WHERE
-                    a.title LIKE '%' #{keyword} '%'
-                    OR a.articleId IN
+                    a.status = 1
+                    AND
                     (
-                        SELECT t.articleId
-                        FROM tag t
-                        WHERE t.tagName LIKE '%' #{keyword} '%'
-                    )
-                    OR a.articleId IN
-                    (
-                        SELECT a_c.article_id
-                        FROM article_category a_c,category c
-                        WHERE a_c.category_id = c.categoryId AND c.categoryName LIKE '%' #{keyword} '%'
-                    )
-                    OR a.articleId IN
-                    (
-                        SELECT a_col.article_id
-                        FROM article_column a_col,`column` col
-                        WHERE a_col.column_id = col.columnId AND col.columnName LIKE '%' #{keyword} '%'
+                        a.title LIKE '%' #{keyword} '%'
+                        OR a.articleId IN
+                           (
+                               SELECT t.articleId
+                               FROM tag t
+                               WHERE t.tagName LIKE '%' #{keyword} '%'
+                           )
+                        OR a.articleId IN
+                           (
+                               SELECT a_c.article_id
+                               FROM article_category a_c, category c
+                               WHERE a_c.category_id = c.categoryId AND c.categoryName LIKE '%' #{keyword} '%'
+                           )
+                        OR a.articleId IN
+                           (
+                               SELECT a_col.article_id
+                               FROM article_column a_col, `column` col
+                               WHERE a_col.column_id = col.columnId AND col.columnName LIKE '%' #{keyword} '%'
+                           )
                     )
                 ORDER BY a.publishTime DESC, a.saveTime DESC
+                LIMIT #{pageIndex}, #{pageSize}
+            ) a
+            LEFT JOIN tag t ON a.articleId = t.articleId
+    </select>
+
+    <select id="getCategoryArticleByPage" resultMap="completeArticle">
+        SELECT *
+        FROM
+            (
+                SELECT a.* FROM article a ,article_category a_c, category c
+                WHERE a.status = 1
+                AND a.articleId = a_c.article_id
+                AND a_c.category_id = c.categoryId
+                AND c.categoryName = #{category}
+                ORDER BY a.publishTime DESC, a.saveTime DESC
+                LIMIT #{pageIndex}, #{pageSize}
+            )a
+        LEFT JOIN tag t ON a.articleId = t.articleId
+        LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
+        LEFT JOIN category c ON c.categoryId = a_c.category_id
+    </select>
+
+    <select id="getArticleArchives" resultType="com.ssm.blog.dto.Archive">
+        SELECT
+            YEAR (a.publishTime) AS 'year',
+            MONTH (a.publishTime) AS 'month',
+            COUNT(*) AS 'count'
+        FROM
+            article a
+        WHERE a.`status` = 1
+        GROUP BY YEAR(a.publishTime) DESC,MONTH(a.publishTime)
+    </select>
+
+    <select id="getArchivesArticleByPage" resultMap="completeArticle">
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    article a
+                WHERE
+                    a.`status` = 1
+                    AND date_format(a.publishTime, '%Y-%m') = #{timerange}
+                ORDER BY
+                    a.publishTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
         LEFT JOIN tag t ON a.articleId = t.articleId

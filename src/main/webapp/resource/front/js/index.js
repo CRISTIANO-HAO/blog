@@ -107,6 +107,11 @@ $(document).ready(function () {
                             self.pageIndex = $("#article-list .article-item").length;
                             //全部请求完成后，显示结束标志
                             if (result.result.length < self.pageSize){
+                                if (result.result.length === 0 && self.pageIndex === 0){
+                                    $("#loadingCompleted>span").html("暂无相关文章...");
+                                }else {
+                                    $("#loadingCompleted>span").html("全部加载完成...");
+                                }
                                 $("#loadingCompleted").show();
                             }
                         },500);
@@ -153,9 +158,34 @@ $(document).ready(function () {
             $(window).trigger("scroll");
         }
     }
+    
+    
+    /*
+    * 点击各项搜索分类隐藏显示处理
+    * 
+    * */
+    function clickController(_this) {
+        var column = $('#column-ul');
+        var category = $('#category ul');
+        var archives = $('#archives ul');
+        var header = $('#article-list-header');
 
-    //初始加载文章列表
-    loadArticle.getNextPage();
+        //重置各个列表状态
+        column.find('li').removeClass("active");
+        category.find("li").removeClass("active");
+        archives.find("li").removeClass("active");
+        header.children().hide();
+
+        if (_this.closest("#column-ul").length > 0){
+            header.hide();
+        }else {
+            column.find("li").eq(0).addClass("active");
+            header.show();
+        }
+    }
+    
+    
+    
 
     /*
     * 点击column获取不同类型文章
@@ -164,11 +194,10 @@ $(document).ready(function () {
     $("#column #column-ul li").click(function () {
         var self = $(this);
         var column = self.text().trim();
-        //隐藏搜索信息
-        $("#search-param").hide();
+        //重置列表状态
+        clickController(self);
         //点击获取active
         self.addClass("active");
-        self.siblings().removeClass("active");
         //点击重置请求的url;
         if(column === "首页"){
             loadArticle.url = "article/list";
@@ -188,8 +217,9 @@ $(document).ready(function () {
     * 
     * */
     $("#submit-in").click(function () {
-        //搜索时，回到首页栏
-        $("#column-ul li").eq(0).addClass("active").siblings().removeClass("active");
+        var self = $(this);
+        //重置列表状态
+        clickController(self);
         //获取搜索关键词
         var keyword = $("#search-in").val().trim();
 
@@ -216,4 +246,60 @@ $(document).ready(function () {
             $("#submit-in").trigger("click");
         }
     });
+
+
+    /*
+    * 点击加载分类列表
+    *
+    * */
+    $('#category').on('click',"ul li",function () {
+        var self = $(this);
+        var category = self.find("span").html().trim();
+
+        //重置列表状态
+        clickController(self);
+        self.addClass("active");
+
+        //提示头显示
+        $('#category-keyword').html(category);
+        $('#category-param').show();
+
+        //重置请求组件
+        loadArticle.url = "article/category/" + category;
+        loadArticle.reset();
+        loadArticle.getNextPage();
+    });
+
+
+    /*
+    * 点击加载归档列表
+    *
+    * */
+    $("#archives").on("click","ul li",function () {
+        var self = $(this);
+        var timerange = self.attr("data-timerange");
+
+        //重置列表状态
+        clickController(self);
+        self.addClass("active");
+
+        //提示头显示
+        $('#archives-keyword').html(timerange);
+        $('#archives-param').show();
+
+        //重置请求组件
+        loadArticle.url = "article/archives/" + timerange;
+        loadArticle.reset();
+        loadArticle.getNextPage();
+    })
+
+
+    /*
+    * 初始加载文章列表
+    *
+    * */
+    {
+        //初始加载文章列表
+        loadArticle.getNextPage();
+    }
 })

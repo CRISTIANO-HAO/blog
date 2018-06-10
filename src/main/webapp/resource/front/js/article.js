@@ -1,4 +1,19 @@
 $(document).ready(function () {
+
+    /*
+    * 初始加载
+    *
+    * */
+    {
+        //从cookie取出评论信息
+        var rootForm = $('#rootComment-form');
+        rootForm.find('.username').val(utils.cookie.getCookie("username"));
+        rootForm.find('.user-email').val(utils.cookie.getCookie("email"));
+        rootForm.find('.user-website').val(utils.cookie.getCookie("website"));
+        //获取文章评论列表
+        getArticleComment();
+    }
+
     /*
     * 点击提交评论
     *
@@ -56,6 +71,17 @@ $(document).ready(function () {
             $('#mask').hide();
         })
     });
+
+    /*
+    * CTRL + 回车键发布评论
+    *
+    * */
+    $("body").on("keypress",".comment-form .comment-content",function (e) {
+        if (e.ctrlKey && (e.which == 13 || e.which == 10)){
+            var commentForm = $(this).closest(".comment-form");
+            commentForm.find(".submit-btn").trigger("click");
+        }
+    })
 
     /*
     * 评论信息校验
@@ -165,7 +191,6 @@ $(document).ready(function () {
             }
         })
     }
-    getArticleComment();
 
     /*
     * 渲染评论列表

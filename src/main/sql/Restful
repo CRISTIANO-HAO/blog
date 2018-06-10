@@ -20,6 +20,7 @@ admin/comment/get/{articleId}
 前端Article模块
 article/list
 article/column/{column}
+article/category/{category}
 article/{articleId}
 article/search/{what}
 comment/list/{articleId}

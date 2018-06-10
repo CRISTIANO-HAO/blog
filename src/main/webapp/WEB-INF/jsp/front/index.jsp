@@ -116,8 +116,16 @@
         </div>
         <div id="content" class="clear">
             <div id="article-list" class="left">
-                <div id="search-param">
-                    <span>您搜索的是：</span><span id="search-keyword">前端</span>
+                <div id="article-list-header">
+                    <div id="search-param">
+                        <span>您搜索的是：</span><span id="search-keyword">前端</span>
+                    </div>
+                    <div id="category-param">
+                        <span>分类：</span><span id="category-keyword">前端</span>
+                    </div>
+                    <div id="archives-param">
+                        <span>归档：</span><span id="archives-keyword">2018-08</span>
+                    </div>
                 </div>
                 <div id="article-list-container">
                     <%--<div class="article-item">
@@ -260,7 +268,7 @@
                 </div>
                 <div id="loadingCompleted">
                     <i></i>
-                    <span>加载完成...</span>
+                    <span>全部加载完成...</span>
                 </div>
             </div>
             <div id="article-correlation" class="right">
@@ -272,30 +280,12 @@
                     </div>
                     <section class="category-box">
                         <ul class="clear">
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>Javascript</span>
-                            </li>
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>CSS</span>
-                            </li>
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>HTML5</span>
-                            </li>
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>Java</span>
-                            </li>
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>Spring</span>
-                            </li>
-                            <li class="left">
-                                <i class="scale_yaodong"></i>
-                                <span>MyBatis</span>
-                            </li>
+                            <c:forEach items="${categories}" var="category">
+                                <li class="left">
+                                    <i class="scale_yaodong"></i>
+                                    <span>${category.categoryName}</span>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </section>
                 </div>
@@ -307,41 +297,13 @@
                     </div>
                     <section class="archives-box">
                         <ul>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
-                            <li>
-                                <i class="scale_yaodong"></i>
-                                <span>2018年05月</span>
-                                <span>(8)</span>
-                            </li>
+                            <c:forEach items="${archives}" var="archive">
+                                <li data-timerange="${archive.year}-${archive.month}">
+                                    <i class="scale_yaodong"></i>
+                                    <span>${archive.year}年${archive.month}月</span>
+                                    <span>(${archive.count})</span>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </section>
                 </div>
