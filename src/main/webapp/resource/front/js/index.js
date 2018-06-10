@@ -29,11 +29,6 @@ $(document).ready(function () {
         })
     }
 
-    /*小屏幕下分类的隐藏与展现*/
-    $("#category-shrink").on("click",".category-msg",function () {
-        $(this).toggleClass("show");
-        $("#category-shrink .category-box").toggleClass("show");
-    });
 
     /*底部导航菜单点击时添加全局类，区分展示效果*/
     $("#mobile-menu, #shadow").on("click", function () {
@@ -168,12 +163,15 @@ $(document).ready(function () {
         var column = $('#column-ul');
         var category = $('#category ul');
         var archives = $('#archives ul');
+        var category_shrink = $('#category-shrink');
+        var nav = $('#nav');
         var header = $('#article-list-header');
 
         //重置各个列表状态
         column.find('li').removeClass("active");
         category.find("li").removeClass("active");
         archives.find("li").removeClass("active");
+        category_shrink.find("li").removeClass("active");
         header.children().hide();
 
         if (_this.closest("#column-ul").length > 0){
@@ -184,8 +182,7 @@ $(document).ready(function () {
         }
     }
     
-    
-    
+
 
     /*
     * 点击column获取不同类型文章
@@ -210,7 +207,40 @@ $(document).ready(function () {
         //重置请求组件
         loadArticle.reset();
         loadArticle.getNextPage();
-    })
+    });
+
+
+    /*
+    * 点击nav获取小屏幕下专栏文章列表
+    *
+    * */
+    $("#nav ul li").click(function () {
+        var self = $(this);
+        var column = self.find("span").text().trim();
+        //重置列表状态
+        clickController(self);
+
+        $('#mobile-menu').trigger("click");
+        //提示头显示
+        $('#nav-keyword').html(column);
+        $('#nav-param').show();
+
+        //点击重置请求的url;
+        if(column === "首页"){
+            loadArticle.url = "article/list";
+        }else if (column === "热门"){
+            loadArticle.url = "article/list";
+        }else {
+            loadArticle.url = "article/column/" + column;
+        }
+
+        //重置请求组件
+        loadArticle.reset();
+        loadArticle.getNextPage();
+    });
+
+
+
     
     /*
     * 点击搜索关键词
@@ -263,6 +293,40 @@ $(document).ready(function () {
         //提示头显示
         $('#category-keyword').html(category);
         $('#category-param').show();
+
+        //重置请求组件
+        loadArticle.url = "article/category/" + category;
+        loadArticle.reset();
+        loadArticle.getNextPage();
+    });
+
+
+    /*
+    *小屏幕下分类的隐藏与展现
+    *
+    * */
+    $("#category-shrink").on("click",".category-msg",function () {
+        $(this).toggleClass("show");
+        $("#category-shrink .category-box").toggleClass("show");
+    });
+
+
+    /*
+    * 点击加载小屏幕下分类列表
+    *
+    * */
+    $('#category-shrink').on('click',"ul li",function () {
+        var self = $(this);
+        var category = self.find("span").html().trim();
+
+        //重置列表状态
+        clickController(self);
+        self.addClass("active");
+
+        //提示头显示
+        $('#category-keyword').html(category);
+        $('#category-param').show();
+        $('#category-shrink').find('.category-msg').trigger('click');
 
         //重置请求组件
         loadArticle.url = "article/category/" + category;
