@@ -1212,6 +1212,19 @@ input.isEmpty,textarea.isEmpty{
         width: 96%;
         min-width: 0px;
     }
+    #comment-list>.comment-item .comment-item{
+        border: 1px solid #e2d5b3;
+        padding: 0.8rem;
+    }
+    #comment-list>.comment-item .comment-item .avatar-wrap{
+        display: none;
+    }
+    #comment-list>.comment-item .comment-item .comment-wrap{
+        padding: 0;
+    }
+    #comment-list>.comment-item .comment-item .comment-form-info{
+        margin: 0;
+    }
 }
 
 @media only screen and (max-width: 500px) {

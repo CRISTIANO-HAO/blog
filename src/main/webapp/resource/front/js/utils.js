@@ -3,6 +3,18 @@
     utils.prototype = {
         construtor : utils,
         timeFormat:function (timeStamp,fmt) {
+            var now = new Date().getTime();
+            var interval = now - timeStamp
+            //按照分钟显示
+            if (interval < 60*60*1000){
+                return (Math.floor(interval/(60*1000)) || 1) + "分钟前";
+            }else if (interval < 24*60*60*1000){
+                return (Math.floor(interval/(60*60*1000)) || 1) + "小时前";
+            }else if (interval < 3*24*60*60*1000){
+                return (Math.floor(interval/(24*60*60*1000)) || 1) + "天前";
+            }
+
+            //超过三天，按照正常格式显示
             var date = new Date(timeStamp);
             if (!fmt){
                 fmt = "yyyy-MM-dd hh:mm:ss";
