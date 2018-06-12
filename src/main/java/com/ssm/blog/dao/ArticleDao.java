@@ -83,4 +83,10 @@ public interface ArticleDao {
     *
     * */
     List<Article> getArchivesArticleByPage(@Param("timerange") String timerange,@Param("pageIndex") Integer pageIndex,@Param("pageSize") Integer pageSize);
+
+    /*
+    * 获取所有文章的id列表
+    *
+    * */
+    List<Article> getAllArticleIdList();
 }

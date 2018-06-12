@@ -10,7 +10,7 @@
                 return (Math.floor(interval/(60*1000)) || 1) + "分钟前";
             }else if (interval < 24*60*60*1000){
                 return (Math.floor(interval/(60*60*1000)) || 1) + "小时前";
-            }else if (interval < 3*24*60*60*1000){
+            }else if (interval < 30*24*60*60*1000){
                 return (Math.floor(interval/(24*60*60*1000)) || 1) + "天前";
             }
 

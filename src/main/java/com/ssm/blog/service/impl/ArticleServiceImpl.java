@@ -28,6 +28,13 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public Article getArticleById(Long articleId) {
 		Article article = articleDao.getArticleById(articleId);
+		//获取所有发布文章的id列表
+		List<Article> articleList = articleDao.getAllArticleIdList();
+        for (int i = 0; i < articleList.size() ; i++) {
+            if (articleId == articleList.get(i).getArticleId()){
+
+            }
+        }
 		return article;
 	}
 

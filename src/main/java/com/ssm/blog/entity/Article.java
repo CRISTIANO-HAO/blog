@@ -22,6 +22,14 @@ public class Article {
     private String htmlContent;
     //文章状态; 0: 草稿； 1：发布；默认为0
     private int status;
+    //上一篇文章id
+    private long prevArticleId;
+    //上一篇文章标题
+    private String prevTitle;
+    //下一篇文章标题
+    private String nextTitle;
+    //下一篇文章id
+    private long nextArticleId;
     //文章标签
     private List<Tag> tags;
     //文章分类
@@ -99,6 +107,38 @@ public class Article {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getPrevArticleId() {
+        return prevArticleId;
+    }
+
+    public void setPrevArticleId(long prevArticleId) {
+        this.prevArticleId = prevArticleId;
+    }
+
+    public String getPrevTitle() {
+        return prevTitle;
+    }
+
+    public void setPrevTitle(String prevTitle) {
+        this.prevTitle = prevTitle;
+    }
+
+    public String getNextTitle() {
+        return nextTitle;
+    }
+
+    public void setNextTitle(String nextTitle) {
+        this.nextTitle = nextTitle;
+    }
+
+    public long getNextArticleId() {
+        return nextArticleId;
+    }
+
+    public void setNextArticleId(long nextArticleId) {
+        this.nextArticleId = nextArticleId;
     }
 
     public List<Tag> getTags() {

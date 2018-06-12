@@ -14,6 +14,10 @@
         <result column="summaryHtmlContent" property="summaryHtmlContent"/>
         <result column="markdownContent" property="markdownContent"/>
         <result column="htmlContent" property="htmlContent"/>
+        <result column="prevArticleId" property="prevArticleId"/>
+        <result column="prevTitle" property="prevTitle"/>
+        <result column="nextArticleId" property="nextArticleId"/>
+        <result column="nextTitle" property="nextTitle"/>
     </resultMap>
     <resultMap id="completeArticle" type="com.ssm.blog.entity.Article" extends="articleMap">
         <collection property="categories" ofType="com.ssm.blog.entity.Category"
@@ -43,13 +47,83 @@
                 ORDER BY a.publishTime DESC, a.saveTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
-            LEFT JOIN tag t ON a.articleId = t.articleId
-            LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
-            LEFT JOIN category c ON a_c.category_id = c.categoryId
+        LEFT JOIN tag t ON a.articleId = t.articleId
+        LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
+        LEFT JOIN category c ON a_c.category_id = c.categoryId
+        ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="getArticleById" resultMap="completeArticle" parameterType="java.lang.Long">
-        SELECT *
+        SELECT
+            a.*,
+            (
+                SELECT a.articleId
+                FROM
+                    article a
+                WHERE
+                    a.`status` = 1
+                    AND a.publishTime &lt; (
+                        SELECT a.publishTime
+                        FROM
+                            article a
+                        WHERE
+                            a.articleId = #{articleId}
+                    )
+                ORDER BY
+                    a.publishTime DESC
+                LIMIT 1
+            ) AS 'prevArticleId',
+            (
+                SELECT a.title
+                FROM
+                    article a
+                WHERE
+                    a.`status` = 1
+                    AND a.publishTime &lt; (
+                        SELECT a.publishTime
+                        FROM
+                            article a
+                        WHERE
+                            a.articleId = #{articleId}
+                    )
+                ORDER BY
+                    a.publishTime DESC
+                LIMIT 1
+            ) AS 'prevTitle',
+            (
+                SELECT a.articleId
+                FROM
+                    article a
+                WHERE
+                    a.`status` = 1
+                    AND a.publishTime &gt; (
+                        SELECT a.publishTime
+                        FROM
+                            article a
+                        WHERE
+                            a.articleId = #{articleId}
+                    )
+                ORDER BY
+                    a.publishTime ASC
+                LIMIT 1
+            ) AS 'nextArticleId',
+            (
+                SELECT a.title
+                FROM
+                    article a
+                WHERE
+                    a.`status` = 1
+                    AND a.publishTime &gt; (
+                        SELECT a.publishTime
+                        FROM
+                            article a
+                        WHERE
+                            a.articleId = #{articleId}
+                    )
+                ORDER BY
+                    a.publishTime ASC
+                LIMIT 1
+            ) AS 'nextTitle'
         FROM
             article a
             LEFT JOIN tag t ON a.articleId = t.articleId
@@ -87,7 +161,6 @@
         ) a
         LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
         LEFT JOIN category t ON t.categoryId = a_t.category_id
-        ORDER BY a.publishTime DESC , a.saveTime DESC
     </select>
 
     <select id="ifExistTitle" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -135,9 +208,10 @@
                 ORDER BY a.publishTime DESC, a.saveTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
-        LEFT JOIN tag t ON a.articleId = t.articleId
-        LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
-        LEFT JOIN category c ON c.categoryId = a_t.category_id
+            LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
+            LEFT JOIN category c ON c.categoryId = a_t.category_id
+        ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="searchArticleByPage" resultMap="completeArticle">
@@ -175,43 +249,44 @@
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
             LEFT JOIN tag t ON a.articleId = t.articleId
+        ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="getCategoryArticleByPage" resultMap="completeArticle">
         SELECT *
         FROM
             (
-                SELECT a.* FROM article a ,article_category a_c, category c
+                SELECT a.*
+                FROM article a, article_category a_c, category c
                 WHERE a.status = 1
-                AND a.articleId = a_c.article_id
-                AND a_c.category_id = c.categoryId
-                AND c.categoryName = #{category}
+                      AND a.articleId = a_c.article_id
+                      AND a_c.category_id = c.categoryId
+                      AND c.categoryName = #{category}
                 ORDER BY a.publishTime DESC, a.saveTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
-            )a
-        LEFT JOIN tag t ON a.articleId = t.articleId
-        LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
-        LEFT JOIN category c ON c.categoryId = a_c.category_id
+            ) a
+            LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
+            LEFT JOIN category c ON c.categoryId = a_c.category_id
+        ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="getArticleArchives" resultType="com.ssm.blog.dto.Archive">
         SELECT
-            YEAR (a.publishTime) AS 'year',
-            MONTH (a.publishTime) AS 'month',
-            COUNT(*) AS 'count'
+            YEAR(a.publishTime)  AS 'year',
+            MONTH(a.publishTime) AS 'month',
+            COUNT(*)             AS 'count'
         FROM
             article a
         WHERE a.`status` = 1
-        GROUP BY YEAR(a.publishTime) DESC,MONTH(a.publishTime)
+        GROUP BY YEAR(a.publishTime) DESC, MONTH(a.publishTime)
     </select>
 
     <select id="getArchivesArticleByPage" resultMap="completeArticle">
-        SELECT
-            *
+        SELECT *
         FROM
             (
-                SELECT
-                    *
+                SELECT *
                 FROM
                     article a
                 WHERE
@@ -221,6 +296,17 @@
                     a.publishTime DESC
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
-        LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN tag t ON a.articleId = t.articleId
+        ORDER BY a.publishTime DESC, a.saveTime DESC
+    </select>
+
+    <select id="getAllArticleIdList" resultMap="completeArticle">
+        SELECT a.articleId
+        FROM
+            article a
+        WHERE
+            a.`status` = 1
+        ORDER BY
+            a.publishTime DESC
     </select>
 </mapper>
