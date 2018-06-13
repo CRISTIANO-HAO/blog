@@ -142,7 +142,7 @@ body {
     align-items: center;
     width: 100%;
     background-color: #438383;
-    z-index: 1;
+    z-index: 1000;
 }
 
 #column-ul {
@@ -960,12 +960,25 @@ body {
     border-radius: 0.2rem;
 }
 
-.comment-form-info .comment-form-text textarea{
+.comment-form-info .comment-form-text{
     border: 1px solid #dcd5c3;
     width: 100%;
     margin-top: 0.5rem;
-    padding: 0.5rem;
     border-radius: 0.2rem;
+}
+
+#comment .comment-form .comment-form-text>div.w-e-toolbar{
+    background-color: #e2d5b3 !important;
+    border: none !important;
+    padding: 0.3rem;
+    border-radius-topleft: 0.2rem;
+    border-radius-topright: 0.2rem;
+}
+
+#comment .comment-form .comment-form-text>div.w-e-text-container{
+    border: none !important;
+    height: 8rem !important;
+    background-color: rgba(206, 168, 71, 0.1);
 }
 
 input.isEmpty,textarea.isEmpty{

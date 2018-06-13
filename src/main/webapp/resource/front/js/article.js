@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    /*
+    * 定义评论富文本对象全局容器
+    * */
+    var allEditorContaintor = {
+        rootEditor:new editor('#rootComment-form .comment-form-text')
+    };
 
     /*
     * 初始加载
@@ -131,11 +137,16 @@ $(document).ready(function () {
     $("#comment").on("click",".comment-item .reply-btn",function () {
         var self = $(this);
         var answerBox = self.closest(".answer-box");
-        var htmlStr = patchAnswerBox(answerBox);
+        //返回评论回复框信息
+        var commentBoxObj = patchAnswerBox(answerBox);
         if (answerBox.find(".comment-form").length == 0){
-            answerBox.append(htmlStr);
+            answerBox.append(commentBoxObj.htmlStr);
+            //创建评论富文本对象
+            allEditorContaintor[commentBoxObj.editorId] = new editor("#"+ commentBoxObj.editorId +" .comment-form-text");
             self.html("取消");
         }else {
+            //删除创建的评论富文本对象
+            delete allEditorContaintor[answerBox.find(".comment-form").attr("id")];
             answerBox.find(".comment-form").remove();
             self.html("回复");
         }
@@ -146,8 +157,11 @@ $(document).ready(function () {
     *
     * */
     function patchAnswerBox(answerBox) {
-        var htmlStr = "";
-        htmlStr += '<div class="comment-form">\n' +
+        var obj = {
+            htmlStr: "",
+            editorId: "editor" + Math.ceil(100000000 * Math.random())
+        }
+        obj.htmlStr += '<div id="' + obj.editorId + '" class="comment-form">\n' +
             '                                    <div class="avatar-wrap left">\n' +
             '                                        <div class="avatar"></div>\n' +
             '                                    </div>\n' +
@@ -166,7 +180,7 @@ $(document).ready(function () {
             '                                            </div>\n' +
             '                                        </div>\n' +
             '                                        <div class="comment-form-text">\n' +
-            '                                            <textarea rows="5" class="comment-content"></textarea>\n' +
+           // '                                            <textarea rows="5" class="comment-content"></textarea>\n' +
             '                                        </div>\n' +
             '                                        <div class="comment-form-btn">\n' +
             '                                            <span>Ctrl + 回车 直接提交</span>\n' +
@@ -174,7 +188,7 @@ $(document).ready(function () {
             '                                        </div>\n' +
             '                                    </div>\n' +
             '                                </div>';
-        return htmlStr;
+        return obj;
     }
 
     /*
@@ -233,4 +247,6 @@ $(document).ready(function () {
             }
         }
     }
+
+
 })

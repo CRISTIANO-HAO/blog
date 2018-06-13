@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="comment-form-text">
-                            <textarea rows="5" class="comment-content"></textarea>
+                            <%--<textarea rows="5" class="comment-content"></textarea>--%>
                         </div>
                         <div class="comment-form-btn">
                             <span>Ctrl + 回车 直接提交</span>
@@ -281,7 +281,9 @@
     <div class="tip-text"></div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script src="<%=basePath %>resource/common/js/wangEditor.min.js"></script>
 <script src="<%=basePath %>resource/front/js/utils.js"></script>
+<script src="<%=basePath %>resource/front/js/editor.js"></script>
 <script src="<%=basePath %>resource/front/js/article.js"></script>
 </body>
 </html>
