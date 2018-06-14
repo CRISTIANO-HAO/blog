@@ -7,11 +7,12 @@
             var interval = now - timeStamp
             //按照分钟显示
             if (interval < 60*60*1000){
-                return (Math.floor(interval/(60*1000)) || 1) + "分钟前";
+                var min = Math.abs(Math.floor(interval/(60*1000)));
+                return min > 1 ?  min + "分钟前" : "刚刚";
             }else if (interval < 24*60*60*1000){
-                return (Math.floor(interval/(60*60*1000)) || 1) + "小时前";
+                return Math.abs(Math.floor(interval/(60*60*1000)) || 1) + "小时前";
             }else if (interval < 30*24*60*60*1000){
-                return (Math.floor(interval/(24*60*60*1000)) || 1) + "天前";
+                return Math.abs(Math.floor(interval/(24*60*60*1000)) || 1) + "天前";
             }
 
             //超过三天，按照正常格式显示

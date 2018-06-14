@@ -1039,6 +1039,10 @@ input.isEmpty,textarea.isEmpty{
     margin: 0.3rem auto;
 }
 
+#comment-list .comment-wrap .answer-box{
+    margin-top: 0.8rem;
+}
+
 #comment-list .comment-wrap .reply-btn{
     cursor: pointer;
     display: inline-block;

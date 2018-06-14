@@ -3,8 +3,21 @@ $(document).ready(function () {
     * 定义评论富文本对象全局容器
     * */
     var allEditorContaintor = {
-        rootEditor:new editor('#rootComment-form .comment-form-text')
+        rootEditor:new editor('#rootEditor .comment-form-text')
     };
+
+    /*
+    * 删除多余富文本对象
+    *
+    * */
+    function deleteEditor() {
+        for (key in allEditorContaintor){
+            //保留根评论框对象
+            if (key !== "rootEditor"){
+                delete allEditorContaintor[key];
+            }
+        }
+    }
 
     /*
     * 初始加载
@@ -12,7 +25,7 @@ $(document).ready(function () {
     * */
     {
         //从cookie取出评论信息
-        var rootForm = $('#rootComment-form');
+        var rootForm = $('#rootEditor');
         rootForm.find('.username').val(utils.cookie.getCookie("username"));
         rootForm.find('.user-email').val(utils.cookie.getCookie("email"));
         rootForm.find('.user-website').val(utils.cookie.getCookie("website"));
@@ -26,12 +39,13 @@ $(document).ready(function () {
     * */
     $("#comment").on("click",".submit-btn",function (e) {
         var commentForm = $(this).closest(".comment-form");
+        var editor = allEditorContaintor[commentForm.attr("id")];
         var isReply = !commentForm.attr("id");
         var pid = commentForm.find(".commentId").val() || 0;
         var username = commentForm.find(".username").val();
         var email = commentForm.find(".user-email").val();
         var website = commentForm.find(".user-website").val();
-        var content = commentForm.find(".comment-content").val();
+        var content = editor.txt.html();
         var articleId = $("#articleId").val();
 
         var data = {
@@ -64,18 +78,20 @@ $(document).ready(function () {
             success:function (result) {
                 if (result.success){
                     //清空评论内容
-                    commentForm.find(".comment-content").val("");
+                    commentForm.find(".comment-form-text .w-e-text").html("");
                     //设置评论的cookie信息
                     utils.cookie.setCookie('username',data.username);
                     utils.cookie.setCookie('email',data.email);
                     utils.cookie.setCookie('website',data.website);
                     //渲染评论列表
                     getArticleComment();
+                    //删除多余的评论富文本对象
+                    deleteEditor();
                 }
             }
         }).always(function () {
             $('#mask').hide();
-        })
+        });
     });
 
     /*
@@ -113,10 +129,10 @@ $(document).ready(function () {
             self.find(".user-email").removeClass("isEmpty");
         }
         if(data.content === ""){
-            self.find(".comment-content").addClass("isEmpty");
+            self.find(".comment-form-text").addClass("isEmpty");
             allIsValidate = false;
         }else {
-            self.find(".comment-content").removeClass("isEmpty");
+            self.find(".comment-form-text").removeClass("isEmpty");
         }
 
         //当网址不为空时，校验其准确性

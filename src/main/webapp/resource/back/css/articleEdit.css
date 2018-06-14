@@ -2,8 +2,12 @@ body{
     min-width: 700px;
 }
 
-.article-title{
+main{
     margin: 1% 5%;
+}
+
+#layout{
+    margin: 10px 0;
 }
 
 .article-title .left>div{
@@ -111,14 +115,12 @@ body{
 }
 
 #layout h3{
-    padding: 0 5%;
     text-align: left;
     margin-bottom: 10px;
 }
 
 
 .article-summary h3{
-    padding: 0 5%;
     text-align: left;
     margin-bottom: 10px;
 }

@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div id="rootComment-form" class="comment-form">
+                <div id="rootEditor" class="comment-form">
                     <div class="tip">标红项必填或不合法</div>
                     <div class="avatar-wrap left">
                         <div class="avatar"></div>

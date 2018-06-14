@@ -71,3 +71,17 @@ input,textarea,button{
     line-height: 0;
     clear: both;
 }
+
+/*富文本编辑器样式*/
+code {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 0 3px;
+}
+pre code {
+    display: block;
+}

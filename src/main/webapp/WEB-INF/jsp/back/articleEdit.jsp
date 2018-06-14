@@ -10,7 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<base href="<%=basePath%>">
         <meta charset="utf-8" />
         <title>Simple example - Editor.md examples</title>
-        <link rel="stylesheet" href="<%=basePath %>resource/markdown/css/editormd.css" />
         <link rel="stylesheet" href="<%=basePath %>resource/common/css/common.css"/>
         <link rel="stylesheet" href="<%=basePath %>resource/back/css/articleEdit.css" />
         <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
@@ -143,38 +142,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="layout">
                 <h3>文章正文</h3>
                 <div id="test-editormd">
-                    <textarea style="display:none;" name="markdownContent">${article.markdownContent}</textarea>
+                    ${article.htmlContent}
                 </div>
             </div>
             <div class="article-summary">
                 <h3>文章摘要</h3>
                 <div id="summaryContent">
-                    <textarea rows="5" name="summaryContent">${article.summaryMarkdownContent}</textarea>
+                    ${article.summaryHtmlContent}
                 </div>
             </div>
         </main>
 
         <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
-        <script src="<%=basePath %>resource/markdown/editormd.min.js"></script>
+        <script src="<%=basePath %>resource/common/js/wangEditor.js"></script>
+        <script src="<%=basePath %>resource/back/js/editor.js"></script>
         <script type="text/javascript">
-			var testEditor;
+			var editor1,editor2;
 
             $(function() {
-                testEditor1 = editormd("test-editormd", {
-                    width   : "90%",
-                    height  : 640,
-                    syncScrolling : "single",
-                    saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
-                    path    : "<%=basePath %>" + "resource/markdown/lib/"
-                });
-
-                testEditor2 = editormd("summaryContent", {
-                    width   : "90%",
-                    height  : 300,
-                    syncScrolling : "single",
-                    saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
-                    path    : "<%=basePath %>" + "resource/markdown/lib/"
-                });
+                editor1 = new editor("#test-editormd");
+                editor2 = new editor("#summaryContent");
             });
 
             //监听标签框的失焦点事件
@@ -206,7 +193,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             title: val
                         },
                         success: function (result) {
-                            console.log(result);
                             if (result.result.ifExist){
                                 alert("文章标题已经存在！！")
                             }
@@ -276,10 +262,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     articleId : "${article.articleId}",
                     title: $('input[name = title]').val(),
                     status : "${article.status}",
-                    markdownContent: testEditor1.getMarkdown(),
-                    htmlContent: $("#test-editormd .editormd-preview").html(),
-                    summaryMarkdownContent: testEditor2.getMarkdown(),
-                    summaryHtmlContent: $("#summaryContent .editormd-preview").html(),
+                    markdownContent: editor1.txt.text(),
+                    htmlContent: editor1.txt.html(),
+                    summaryMarkdownContent: editor2.txt.text(),
+                    summaryHtmlContent: editor2.txt.html(),
                     categories:categories,
                     tags: tags,
                     columns:columns

@@ -55,7 +55,7 @@
 
     <select id="getArticleById" resultMap="completeArticle" parameterType="java.lang.Long">
         SELECT
-            a.*,
+            a.*,t.*,c.*,col.*,
             (
                 SELECT a.articleId
                 FROM
