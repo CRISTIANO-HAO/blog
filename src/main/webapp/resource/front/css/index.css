@@ -872,16 +872,67 @@ body {
 
 /*文章详情基本样式开始*/
 
-#article-detail,#comment{
-    margin: 2rem auto;
+#article-detail{
+    margin: auto;
+    padding: 1rem 0 0;
     width: 65%;
     min-width: 640px;
     max-width: 940px;
     background-color: #FFFAED;
 }
 
+#article-detail .article-category{
+    background-color: #f0ad4e;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0 1rem 1rem;
+}
+
+#article-detail .article-category .category-detail{
+    margin-bottom: 0.5rem;
+}
+
+#article-detail .article-category .category-detail span{
+    color: #dd230a;
+    font-weight: bolder;
+}
+
+#article-detail .article-category .prevAndNext .prevArticle{
+    margin-bottom: 0.5rem;
+}
+
+#article-detail .article-category .prevAndNext a{
+    color: #438383;
+}
+
+#article-detail .article-category .prevAndNext a:hover{
+    color: #d5331c;
+}
+
+#article-detail .article-title{
+    padding: 0rem 1rem 1rem;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    font-family: 'Trebuchet MS', Arial, 'Lucida Grande', Verdana, Lucida, Helvetica, sans-serif;
+}
+
+#article-detail .article-tag{
+    background: #438383;
+    color: #fff;
+    padding: 1rem;
+}
+
+#article-detail .article-tag .article-writer{
+    margin-bottom: 0.5rem;
+}
+
 #comment{
+    margin: 2rem auto;
     padding: 1.2rem 1.2rem 2rem;
+    width: 65%;
+    min-width: 640px;
+    max-width: 940px;
+    background-color: #FFFAED;
 }
 
 .comment-form{

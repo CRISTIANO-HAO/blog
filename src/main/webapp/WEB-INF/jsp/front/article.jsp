@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -18,6 +20,7 @@
     <meta http-equiv="description" content="This is my page">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-pojoaque.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
 
@@ -115,9 +118,61 @@
         </div>
         <div id="content">
             <div id="article-detail">
-                <h3 class="article-title">${article.title}</h3>
-                <input type="hidden" id="articleId" value="${article.articleId}">
-                <div>
+                <div class="article-category clear">
+                    <div class="category-detail left">分类：
+                        <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex">
+                            <c:choose>
+                                <c:when test="${(article.categories.size()-1) != categoryIndex.index}">
+                                    <span>${category.categoryName}；</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span>${category.categoryName}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </div>
+                    <div class="prevAndNext right">
+                        <div class="prevArticle">上一篇：
+                            <c:choose>
+                                <c:when test="${article.prevArticleId != ''}">
+                                    <a href="article/${article.prevArticleId}">${article.prevTitle}</a>
+                                </c:when>
+                                <c:otherwise>没有上一篇文章了</c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="nextArticle">下一篇：
+                            <c:choose>
+                                <c:when test="${article.nextArticleId != ''}">
+                                    <a href="article/${article.nextArticleId}">${article.nextTitle}</a>
+                                </c:when>
+                                <c:otherwise>没有下一篇文章了</c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="article-title">
+                    ${article.title}
+                    <input type="hidden" id="articleId" value="${article.articleId}">
+                </h3>
+                <div class="article-tag">
+                    <div class="article-writer clear">
+                        <div class="left">作者：早起不吃虫</div>
+                        <div class="right">日期：<ftm:formatDate value="${article.publishTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+                    </div>
+                    <div>标签：
+                        <c:forEach items="${article.tags}" var="tag" varStatus="tagIndex">
+                            <c:choose>
+                                <c:when test="${(article.tags.size()-1) != tagIndex.index}">
+                                    <span>${tag.tagName}；</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span>${tag.tagName}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="markdown haroopad">
                     ${article.htmlContent}
                 </div>
             </div>

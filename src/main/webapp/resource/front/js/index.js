@@ -127,7 +127,7 @@ $(document).ready(function () {
             var htmlStr = "";
             arr.forEach(function (el) {
                 htmlStr += '<div class="article-item">\n' +
-                    '                        <h3 class="article-title"><a href="article/' + el["articleId"] + '">'+ el["title"] +'</a></h3>\n' +
+                    '                        <h3 class="article-title"><a target="view_window" href="article/' + el["articleId"] + '">'+ el["title"] +'</a></h3>\n' +
                     '                        <div class="article-summary">'+ el["summaryHtmlContent"]+'</div>\n' +
                     '                        <div class="article-msg clear">\n' +
                     '                            <div class="left">\n' +
