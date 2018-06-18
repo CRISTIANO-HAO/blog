@@ -75,3 +75,7 @@ a{
     line-height: 0;
     clear: both;
 }
+
+code{
+    max-height: 30rem;
+}

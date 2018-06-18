@@ -20,7 +20,7 @@
     <meta http-equiv="description" content="This is my page">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-pojoaque.css"/>
+    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-sublime.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
 
@@ -29,91 +29,8 @@
 <div id="container">
     <div id="container-inner">
         <div id="header">
-            <div id="column">
-                <ul id="column-ul" class="clear">
-                    <li id="homepage">首页</li>
-                    <li>热门</li>
-                    <li>前端</li>
-                    <li>后端</li>
-                    <li>扯淡</li>
-                    <li>工具</li>
-                </ul>
-            </div>
-            <div id="nav-column" class="clear">
-                <div id="logo" class="left">
-                    早起不吃虫
-                </div>
-                <div id="mobile-menu" class="right">
-                    <i class="icon"></i>
-                </div>
-                <nav id="nav">
-                    <ul class="clear">
-                        <li>
-                            <i></i>
-                            <span>首页</span>
-                        </li>
-                        <li>
-                            <i></i>
-                            <span>热门</span>
-                        </li>
-                        <li>
-                            <i></i>
-                            <span>前端</span>
-                        </li>
-                        <li>
-                            <i></i>
-                            <span>后端</span>
-                        </li>
-                        <li>
-                            <i></i>
-                            <span>扯淡</span>
-                        </li>
-                        <li>
-                            <i></i>
-                            <span>工具</span>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="category-shrink">
-                <div class="category-msg">
-                    <i class="scale_yaodong"></i>
-                    <span>分类</span>
-                </div>
-                <section class="category-box">
-                    <ul class="clear">
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>Javascript</span>
-                        </li>
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>CSS</span>
-                        </li>
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>HTML5</span>
-                        </li>
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>Java</span>
-                        </li>
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>Spring</span>
-                        </li>
-                        <li class="left">
-                            <i class="scale_yaodong"></i>
-                            <span>MyBatis</span>
-                        </li>
-                    </ul>
-                </section>
-            </div>
-            <div id="search">
-                <form>
-                    <input id="search-in" type="text" placeholder="搜索">
-                    <input id="submit-in" class="scale_yaodong" type="submit" value="">
-                </form>
+            <div id="article-msg">
+                <div><a href="">早起不吃虫</a></div>
             </div>
         </div>
         <div id="content">
@@ -123,7 +40,7 @@
                         <c:forEach items="${article.categories}" var="category" varStatus="categoryIndex">
                             <c:choose>
                                 <c:when test="${(article.categories.size()-1) != categoryIndex.index}">
-                                    <span>${category.categoryName}；</span>
+                                    <span>${category.categoryName}</span>；
                                 </c:when>
                                 <c:otherwise>
                                     <span>${category.categoryName}</span>

@@ -145,6 +145,20 @@ body {
     z-index: 1000;
 }
 
+#article-msg a{
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    margin-left: 1.5rem;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: bolder;
+}
+
+#article-msg a:hover{
+    color: #dcd5c3;
+}
+
 #column-ul {
     margin-left: 2rem;
 }
