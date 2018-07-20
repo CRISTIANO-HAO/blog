@@ -10,10 +10,10 @@
         <result column="status" property="status"/>
         <result column="saveTime" property="saveTime"/>
         <result column="publishTime" property="publishTime"/>
-        <result column="summaryMarkdownContent" property="summaryMarkdownContent"/>
-        <result column="summaryHtmlContent" property="summaryHtmlContent"/>
-        <result column="markdownContent" property="markdownContent"/>
-        <result column="htmlContent" property="htmlContent"/>
+        <result column="summaryMarkdownContent" property="summaryMarkdownContent" javaType="string" jdbcType="VARCHAR"/>
+        <result column="summaryHtmlContent" property="summaryHtmlContent" javaType="string" jdbcType="VARCHAR"/>
+        <result column="markdownContent" property="markdownContent" javaType="string" jdbcType="VARCHAR"/>
+        <result column="htmlContent" property="htmlContent" javaType="string" jdbcType="VARCHAR"/>
         <result column="prevArticleId" property="prevArticleId"/>
         <result column="prevTitle" property="prevTitle"/>
         <result column="nextArticleId" property="nextArticleId"/>
@@ -30,12 +30,19 @@
 
     <insert id="addArticle" parameterType="Article">
         INSERT INTO
+        article (articleId, status, saveTime, publishTime, title)
+        VALUES
+        (#{article.articleId}, #{article.status}, #{article.saveTime}, #{article.publishTime}, #{article.title})
+    </insert>
+
+    <!--<insert id="addArticle" parameterType="Article">
+        INSERT INTO
             article (articleId, status, saveTime, publishTime, title, summaryMarkdownContent, summaryHtmlContent, markdownContent, htmlContent)
         VALUES
             (#{article.articleId}, #{article.status}, #{article.saveTime}, #{article.publishTime}, #{article.title},
              #{article.summaryMarkdownContent}, #{article.summaryHtmlContent}, #{article.markdownContent},
              #{article.htmlContent})
-    </insert>
+    </insert>-->
 
     <select id="getArticleByPage" resultMap="completeArticle" parameterType="java.lang.Integer">
         SELECT *
@@ -179,6 +186,19 @@
             <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
             <if test="article.saveTime == article.publishTime">a.publishTime = #{article.publishTime},</if>
             <if test="article.title != null">a.title = #{article.title},</if>
+            <if test="article.status != null">a.status = #{article.status},</if>
+        </trim>
+        WHERE
+        a.articleId = #{article.articleId}
+    </update>
+
+    <!--<update id="update" parameterType="Article">
+        UPDATE
+        article a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
+            <if test="article.saveTime == article.publishTime">a.publishTime = #{article.publishTime},</if>
+            <if test="article.title != null">a.title = #{article.title},</if>
             <if test="article.summaryMarkdownContent != null">a.summaryMarkdownContent =
                 #{article.summaryMarkdownContent},
             </if>
@@ -189,7 +209,7 @@
         </trim>
         WHERE
         a.articleId = #{article.articleId}
-    </update>
+    </update>-->
 
     <select id="getColumnArticleByPage" resultMap="completeArticle">
         SELECT *

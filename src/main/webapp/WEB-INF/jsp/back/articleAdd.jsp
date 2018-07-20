@@ -213,10 +213,10 @@
         var data = {
             articleId: "",
             title: $('input[name = title]').val(),
-            markdownContent: editor1.getMarkdown(),
+           /* markdownContent: editor1.getMarkdown(),
             htmlContent: $("#test-editormd .editormd-preview").html(),
             summaryMarkdownContent: editor2.getMarkdown(),
-            summaryHtmlContent:  $("#summaryContent .editormd-preview").html(),
+            summaryHtmlContent:  $("#summaryContent .editormd-preview").html(),*/
             categories: categories,
             tags: tags,
             columns: columns

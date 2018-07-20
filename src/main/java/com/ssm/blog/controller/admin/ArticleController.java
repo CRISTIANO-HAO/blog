@@ -126,7 +126,7 @@ public class ArticleController {
         } catch (Exception e) {
             resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
         }
-        System.out.println(articleList.size());
+
         model.addAttribute("articleList", articleList);
         model.addAttribute("page",page);
         model.addAttribute("searchParam",searchParam);

@@ -143,13 +143,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="layout">
                 <h3>文章正文</h3>
                 <div id="test-editormd">
-                    <textarea style="display:none;" name="markdownContent">${article.markdownContent}</textarea>
+                    <textarea readonly="readonly" style="display:none;" name="markdownContent">${article.markdownContent}</textarea>
                 </div>
             </div>
             <div class="article-summary">
                 <h3>文章摘要</h3>
                 <div id="summaryContent">
-                    <textarea rows="5" name="summaryMarkdownContent">${article.summaryMarkdownContent}</textarea>
+                    <textarea readonly="readonly" rows="5" name="summaryMarkdownContent">${article.summaryMarkdownContent}</textarea>
                 </div>
             </div>
         </main>
@@ -275,10 +275,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     articleId : "${article.articleId}",
                     title: $('input[name = title]').val(),
                     status : "${article.status}",
-                    markdownContent: editor1.getMarkdown(),
+                    /*markdownContent: editor1.getMarkdown(),
                     htmlContent: $("#test-editormd .editormd-preview").html(),
                     summaryMarkdownContent: editor2.getMarkdown(),
-                    summaryHtmlContent:  $("#summaryContent .editormd-preview").html(),
+                    summaryHtmlContent:  $("#summaryContent .editormd-preview").html(),*/
                     categories:categories,
                     tags: tags,
                     columns:columns
