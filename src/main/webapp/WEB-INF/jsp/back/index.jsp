@@ -154,7 +154,6 @@
             // searchParam: "00",
         },
         success: function (result) {
-            console.log(result);
         }
     })
 </script>

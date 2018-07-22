@@ -7,9 +7,11 @@
     <resultMap id="userMap" type="com.ssm.blog.entity.User">
         <id column="userId" property="userId"/>
         <result column="username" property="username"/>
+        <result column="password" property="password"/>
         <result column="email" property="email"/>
         <result column="website" property="website"/>
         <result column="registerTime" property="registerTime"/>
+        <result column="roles" property="roles"/>
     </resultMap>
 
     <select id="findUserByEmail" resultMap="userMap" parameterType="java.lang.String">
@@ -24,4 +26,10 @@
         VALUE
             (#{user.userId},#{user.username},#{user.email},#{user.website},#{user.registerTime})
     </insert>
+
+    <select id="getUserByName" resultMap="userMap" parameterType="java.lang.String">
+        SELECT * FROM
+            user u
+        WHERE u.username = #{username}
+    </select>
 </mapper>

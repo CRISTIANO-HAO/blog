@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--shiroFilter 名字和 web.xml 文件中的 shiroFilter是对应的，必须一致。-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份认证失败，则跳转到登录页面的配置 -->
+        <property name="loginUrl" value="goToLogin"/>
+        <!-- 权限认证失败，则跳转到指定页面 -->
+        <property name="unauthorizedUrl" value="403.html"/>
+        <property name="filterChainDefinitions">
+            <value>
+                / = anon
+                /goToLogin = anon
+                /login = anon
+                /admin/* = authc
+                /* = authc
+            </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <!--<entry key="rolesOr" value-ref="rolesOrFilter"></entry>-->
+            </util:map>
+        </property>
+    </bean>
+
+    <!--创建securityManager对象-->
+    <!--<bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager"/>-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="customReaml"/>
+        <property name="rememberMeManager" ref="cookieRememberMeManager"/>
+    </bean>
+
+    <!--自定义的Reaml-->
+    <bean id="customReaml" class="com.ssm.blog.reaml.CustomReaml">
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher" />
+    </bean>
+
+    <!--加密算法-->
+    <bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!--加密方式-->
+        <property name="hashAlgorithmName" value="md5"/>
+        <!--加密次数-->
+        <property name="hashIterations" value="5" />
+    </bean>
+
+    <!--自动登陆-->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie" >
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="2592000"/>
+    </bean>
+</beans>

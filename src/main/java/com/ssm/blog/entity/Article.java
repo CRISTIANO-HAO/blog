@@ -30,6 +30,8 @@ public class Article {
     private String nextTitle;
     //下一篇文章id
     private long nextArticleId;
+    //文章评论数量
+    private int commentNum;
     //文章标签
     private List<Tag> tags;
     //文章分类
@@ -139,6 +141,14 @@ public class Article {
 
     public void setNextArticleId(long nextArticleId) {
         this.nextArticleId = nextArticleId;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
     }
 
     public List<Tag> getTags() {

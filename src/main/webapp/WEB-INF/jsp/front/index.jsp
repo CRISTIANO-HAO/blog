@@ -9,7 +9,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>博客</title>
+    <title>早起不吃虫的博客</title>
 
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -17,8 +17,10 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="shortcut icon" href="<%=basePath %>resource/front/image/favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet" href="<%=basePath %>resource/markdown/css/editormd.css"/>
+
+    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-sublime.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
 

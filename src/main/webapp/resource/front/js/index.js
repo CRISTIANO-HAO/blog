@@ -71,8 +71,8 @@ $(document).ready(function () {
         /*页面到达底部时，加载下一页*/
         getNextPage:function() {
             var self = this;
-            //文章未充满屏幕或者到达底部，则请求下一页
-            if ($("#article-list").height() < $(window).height() || Math.ceil($(window).height() + $(window).scrollTop()) >= $(document).height()){
+            //文章未充满屏幕或者到达底部，则请求下一页; 后面多减 1 是为了兼容ie；
+            if ($("#article-list").height() < $(window).height() || Math.ceil($(window).height() + $(window).scrollTop()) >= $(document).height() - 1){
                 //已经加载完毕，不再触发请求；请求进行中也无法发起第二次请求
                 if (self.hasLoadAll || !self.requestFlag){return;}
                 $.ajax({
@@ -139,11 +139,11 @@ $(document).ready(function () {
                     '                            </div>\n' +
                     '                            <div class="right comment-msg" title="评论">\n' +
                     '                                <i class="scale_yaodong"></i>\n' +
-                    '                                <span class="article-commentNum">13</span>\n' +
+                    '                                <span class="article-commentNum">' + (el["commentNum"] || 0) +'</span>\n' +
                     '                            </div>\n' +
                     '                            <div class="right click-msg" title="阅读量">\n' +
                     '                                <i class="scale_yaodong"></i>\n' +
-                    '                                <span class="article-clickNum">211</span>\n' +
+                    '                                <span class="article-clickNum">0</span>\n' +
                     '                            </div>\n' +
                     '                        </div>\n' +
                     '                    </div>'

@@ -18,6 +18,7 @@
         <result column="prevTitle" property="prevTitle"/>
         <result column="nextArticleId" property="nextArticleId"/>
         <result column="nextTitle" property="nextTitle"/>
+        <result column="commentNum" property="commentNum"/>
     </resultMap>
     <resultMap id="completeArticle" type="com.ssm.blog.entity.Article" extends="articleMap">
         <collection property="categories" ofType="com.ssm.blog.entity.Category"
@@ -45,7 +46,7 @@
     </insert>-->
 
     <select id="getArticleByPage" resultMap="completeArticle" parameterType="java.lang.Integer">
-        SELECT *
+        SELECT a.*, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -57,6 +58,12 @@
         LEFT JOIN tag t ON a.articleId = t.articleId
         LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
         LEFT JOIN category c ON a_c.category_id = c.categoryId
+        LEFT JOIN (
+                      SELECT
+                          com.articleId, COUNT(*) AS commentNum
+                      FROM
+                          `comment` com GROUP BY com.articleId
+                  ) com ON a.articleId = com.articleId
         ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
@@ -212,7 +219,7 @@
     </update>-->
 
     <select id="getColumnArticleByPage" resultMap="completeArticle">
-        SELECT *
+        SELECT a.*, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -231,11 +238,20 @@
             LEFT JOIN tag t ON a.articleId = t.articleId
             LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
             LEFT JOIN category c ON c.categoryId = a_t.category_id
+            LEFT JOIN (
+                          SELECT
+                              com.articleId,
+                              COUNT(*) AS commentNum
+                          FROM
+                              `comment` com
+                          GROUP BY
+                              com.articleId
+                      ) com ON a.articleId = com.articleId
         ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="searchArticleByPage" resultMap="completeArticle">
-        SELECT *
+        SELECT a.*, t.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -269,11 +285,20 @@
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
             LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN (
+                          SELECT
+                              com.articleId,
+                              COUNT(*) AS commentNum
+                          FROM
+                              `comment` com
+                          GROUP BY
+                              com.articleId
+                      ) com ON a.articleId = com.articleId
         ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="getCategoryArticleByPage" resultMap="completeArticle">
-        SELECT *
+        SELECT a.*, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT a.*
@@ -288,6 +313,15 @@
             LEFT JOIN tag t ON a.articleId = t.articleId
             LEFT JOIN article_category a_c ON a.articleId = a_c.article_id
             LEFT JOIN category c ON c.categoryId = a_c.category_id
+            LEFT JOIN (
+                          SELECT
+                              com.articleId,
+                              COUNT(*) AS commentNum
+                          FROM
+                              `comment` com
+                          GROUP BY
+                              com.articleId
+                      ) com ON a.articleId = com.articleId
         ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
@@ -299,11 +333,11 @@
         FROM
             article a
         WHERE a.`status` = 1
-        GROUP BY YEAR(a.publishTime) DESC, MONTH(a.publishTime)
+        GROUP BY YEAR(a.publishTime) DESC, MONTH(a.publishTime) DESC
     </select>
 
     <select id="getArchivesArticleByPage" resultMap="completeArticle">
-        SELECT *
+        SELECT a.*, t.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -317,6 +351,15 @@
                 LIMIT #{pageIndex}, #{pageSize}
             ) a
             LEFT JOIN tag t ON a.articleId = t.articleId
+            LEFT JOIN (
+                          SELECT
+                              com.articleId,
+                              COUNT(*) AS commentNum
+                          FROM
+                              `comment` com
+                          GROUP BY
+                              com.articleId
+                      ) com ON a.articleId = com.articleId
         ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 

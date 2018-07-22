@@ -11,4 +11,10 @@ public interface UserDao {
     List<User> findUserByEmail(@Param("email") String email);
 
     void addUser(@Param("user") User user);
+
+    List<String> getPermissionByName(String username);
+
+    List<String> getRolesByName(String username);
+
+    List<User> getUserByName(@Param("username") String username);
 }

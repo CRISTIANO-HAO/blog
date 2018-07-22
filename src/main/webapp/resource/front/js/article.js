@@ -263,6 +263,4 @@ $(document).ready(function () {
             }
         }
     }
-
-
 })
