@@ -35,8 +35,6 @@
         <property name="filters">
             <util:map>
                 <!--<entry key="rolesOr" value-ref="rolesOrFilter"></entry>-->
-                <!--/admin = authc
-                /admin/* = authc-->
             </util:map>
         </property>
     </bean>

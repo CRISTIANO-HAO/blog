@@ -6,6 +6,9 @@ import org.springframework.web.servlet.view.JstlView;
 import java.io.File;
 import java.util.Locale;
 
+/*
+* 配置多个ResourceView
+* */
 public class HtmlResourceView extends InternalResourceView {
     @Override
     public boolean checkResource(Locale locale) throws Exception {
