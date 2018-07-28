@@ -28,18 +28,18 @@
     <!--3：配置JSP与HTML 显示ViewResolver-->
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="order" value="0"/>
+        <!--<property name="order" value="0"/> 此次不能加order，否则会一直忽视下面的htmlViewResolver-->
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--<bean id="htmlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="com.ssm.blog.controller.admin.HtmlResourceView"/>
+    <bean id="htmlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="com.ssm.blog.utils.HtmlResourceView"/>
         <property name="order" value="1"/>
-        <property name="prefix" value="/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".html"/>
         <property name="contentType" value="text/html;charset=UTF-8"></property>
-    </bean>-->
+    </bean>
 
     <!--4:扫描web相关的controller-->
     <context:component-scan base-package="com.ssm.blog.controller"/>

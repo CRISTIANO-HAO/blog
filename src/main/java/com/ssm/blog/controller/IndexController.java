@@ -35,17 +35,15 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(Model model){
-        List<Category> categories = categoryService.list();
-        List<Archive> archives = articleService.getArticleArchives();
-        model.addAttribute("categories",categories);
-        model.addAttribute("archives",archives);
-	    return "front/index";
+	     return "forward:/index";
 	}
 	
 	@RequestMapping("/index")
 	public String indexSec(Model model){
         List<Category> categories = categoryService.list();
+        List<Archive> archives = articleService.getArticleArchives();
         model.addAttribute("categories",categories);
+        model.addAttribute("archives",archives);
 		return "front/index";
 	}
 

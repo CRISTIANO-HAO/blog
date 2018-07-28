@@ -17,21 +17,26 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
-        <property name="loginUrl" value="goToLogin"/>
+        <property name="loginUrl" value="/goToLogin"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
         <property name="unauthorizedUrl" value="403.html"/>
         <property name="filterChainDefinitions">
             <value>
                 / = anon
+                /index = anon
+                /article/** = anon
+                /comment/** = anon
                 /goToLogin = anon
                 /login = anon
-                /admin/* = authc
-                /* = authc
+                /admin/** = authc
+                /** = authc
             </value>
         </property>
         <property name="filters">
             <util:map>
                 <!--<entry key="rolesOr" value-ref="rolesOrFilter"></entry>-->
+                <!--/admin = authc
+                /admin/* = authc-->
             </util:map>
         </property>
     </bean>

@@ -16,14 +16,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-@RequestMapping("/")
+@RequestMapping("/comment")
 @Controller
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping(value = "comment/submit",method = RequestMethod.POST,consumes = "application/json")
+    @RequestMapping(value = "/submit",method = RequestMethod.POST,consumes = "application/json")
     @ResponseBody
     public ResultSet submitComment(@RequestBody Comment comment){
         //添加评论时间
@@ -41,7 +41,7 @@ public class CommentController {
         return resultSet;
     }
 
-    @RequestMapping(value = "comment/list/{articleId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/list/{articleId}",method = RequestMethod.GET)
     @ResponseBody
     public ResultSet getCommentByArticleId(@PathVariable(value = "articleId") Long articleId){
         ResultSet resultSet = null;

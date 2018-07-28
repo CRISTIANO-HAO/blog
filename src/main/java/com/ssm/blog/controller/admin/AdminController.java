@@ -21,6 +21,7 @@ public class AdminController {
 	
 	@RequestMapping(value="",method = RequestMethod.GET)
 	public String index(){
+	    //return "admin/index";
 		return "forward:/admin/article/list/page/1";
 	}
 
