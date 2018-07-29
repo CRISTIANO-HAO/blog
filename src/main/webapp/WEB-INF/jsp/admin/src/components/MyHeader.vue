@@ -19,6 +19,8 @@
    background-color: #f0ad4e;
  }
   header{
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

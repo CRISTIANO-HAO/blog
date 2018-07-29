@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,7 @@ public class ArticleController {
     * */
     @RequestMapping(value = "article/list",method = RequestMethod.POST)
     @ResponseBody
-    public ResultSet getArticleByPage(@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex,@RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
+    public ResultSet getArticleByPage(@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
         ResultSet resultSet = null;
         try {
             List<Article> articleList = articleService.getArticleByPage(pageIndex,pageSize);

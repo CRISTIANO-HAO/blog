@@ -1,5 +1,7 @@
 <template>
-    <div id="content">i am content</div>
+    <div id="content">
+      <router-view></router-view>
+    </div>
 </template>
 
 <script>
@@ -10,7 +12,7 @@
 
 <style scoped>
  *{
-   background-color: #00c4ff;
+   background-color: #ffffff;
  }
   #content{
     height: 100%;

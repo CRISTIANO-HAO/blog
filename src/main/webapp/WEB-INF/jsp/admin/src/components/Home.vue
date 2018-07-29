@@ -27,10 +27,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+  #app,.home{
+    min-height: 100%;
+  }
  #container{
    display: flex;
    justify-content: space-between;
    align-items: flex-start;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   padding-top: 3rem;
  }
 </style>

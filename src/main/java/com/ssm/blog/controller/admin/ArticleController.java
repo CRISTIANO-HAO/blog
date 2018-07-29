@@ -133,6 +133,30 @@ public class ArticleController {
         return "back/index";
     }
 
+    @RequestMapping(value = "/page/{pageIndex}",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public ResultSet getArticlelist(@PathVariable(value = "pageIndex") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
+        //默认页数为第一页
+        if (pageIndex == null){
+            pageIndex = 1;
+        }
+
+        //获取查询的总数目
+        int totalCount = articleService.getTotalCount(searchParam);
+        //添加分页查询的信息
+        Page page = new Page(pageIndex,pageSize,totalCount);
+        //结果集对象
+        ResultSet resultSet = null;
+        List<Article> articleList = null;
+        try {
+            articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
+            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), articleList);
+        } catch (Exception e) {
+            resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
+        }
+        return resultSet;
+    }
+
     /*
     * 文章修改详情页
     *

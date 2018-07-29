@@ -87,4 +87,14 @@
 		<location>/WEB-INF/jsp/front/404.jsp</location>
 	</error-page>
 
+    <!-- 跨域问题解决 -->
+    <filter>
+        <filter-name>AccessControlAllowOriginFilter</filter-name>
+        <filter-class>com.ssm.blog.filter.AccessControlAllowOriginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessControlAllowOriginFilter</filter-name>
+        <url-pattern>/article/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

@@ -24,6 +24,8 @@
             <value>
                 / = anon
                 /index = anon
+                /index.html = anon
+                /resource/** = anon
                 /article/** = anon
                 /comment/** = anon
                 /goToLogin = anon

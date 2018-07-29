@@ -37,6 +37,11 @@ public class IndexController {
 	public String index(Model model){
 	     return "forward:/index";
 	}
+
+    @RequestMapping("/index.html")
+    public String indexHtml(Model model){
+        return "forward:/index";
+    }
 	
 	@RequestMapping("/index")
 	public String indexSec(Model model){
