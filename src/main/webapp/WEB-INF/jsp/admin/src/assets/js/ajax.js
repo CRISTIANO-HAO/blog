@@ -26,8 +26,14 @@ export default ({type = "GET",method = "", url = "", data = {}, async = true} = 
       XMLObj.send();
     } else if (type === "POST") {
       XMLObj.open(type, url, async);
-      XMLObj.setRequestHeader("Content-type", "application/json");
-      XMLObj.send(JSON.stringify(data));
+      //XMLObj.setRequestHeader("Content-type", "application/json");
+      XMLObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      let dataStr = "";
+      Object.keys(data).forEach((key, index) => {
+        dataStr += key + "=" + data[key] + "&";
+      });
+      dataStr = dataStr.slice(0, dataStr.lastIndexOf("&"));
+      XMLObj.send(dataStr);
     } else {
       reject("type is error")
     }

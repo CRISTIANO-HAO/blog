@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -23,9 +24,9 @@ public class ArticleController {
     /*
     * 文章总列表
     * */
-    @RequestMapping(value = "article/list",method = RequestMethod.POST)
+    @RequestMapping(value = "article/list",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResultSet getArticleByPage(@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
+    public ResultSet getArticleByPage(@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "8") Integer pageSize){
         ResultSet resultSet = null;
         try {
             List<Article> articleList = articleService.getArticleByPage(pageIndex,pageSize);
@@ -41,7 +42,7 @@ public class ArticleController {
     * */
     @ResponseBody
     @RequestMapping(value = "article/column/{column}",method = RequestMethod.POST)
-    public ResultSet getColumnArticleByPage(@PathVariable(value = "column") String column,@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex,@RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
+    public ResultSet getColumnArticleByPage(@PathVariable(value = "column") String column,@RequestParam(value = "pageIndex",required = false,defaultValue = "0") Integer pageIndex,@RequestParam(value = "pageSize",required = false,defaultValue = "8") Integer pageSize){
         ResultSet resultSet = null;
 
         try {

@@ -23,20 +23,20 @@
             </thead>
             <tbody>
             <tr v-for="(article , index) in articles">
-              <td>{{index}}</td>
-              <!--<td>
-                <div v-if="${article.status == 0}">
+              <td>{{index + 1}}</td>
+              <td>
+                <div v-if="article.status == 0">
                   <i class="fa fa-save"></i><span>草稿</span>
                 </div>
-                <div v-if="${article.status == 1}">
+                <div v-if="article.status == 1">
                   <i class="fa fa-expeditedssl"></i><span>发布</span>
                 </div>
               </td>
               <td>
-                <a href="<%=basePath %>admin/article/get/${article.articleId}">${article.title}</a>
+                <a href="<%=basePath %>admin/article/get/${article.articleId}">{{article.title}}</a>
               </td>
               <td>
-                &lt;!&ndash;<span v-for="category article.categories">${category.categoryName} ;</span>&ndash;&gt;
+                <span v-for="category in article.categories">{{category.categoryName}} ;</span>
               </td>
               <td>
                 <div>
@@ -45,20 +45,14 @@
                     <i class="fa fa-eraser"></i>
                   </a>
                 </div>
-              </td>-->
+              </td>
             </tr>
             </tbody>
           </table>
           <div v-if="articles.length == 0" class="noContent">It is over !!</div>
         </div>
         <div class="box-footer clear">
-          <ul id="pagination" class="pagination clear right">
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">»</a></li>
-          </ul>
+          <my-pagination v-bind:url="url" v-bind:page-msg="pageMsg"></my-pagination>
         </div>
       </div>
     </section>
@@ -67,28 +61,45 @@
 
 <script>
   import ajax from "../assets/js/ajax";
+  import MyPagination from "./MyPagination";
   export default {
+    components: {MyPagination},
     name: "article-list",
     data() {
       return {
-        articles: []
+        articles: [],
+        pageMsg:{},
+        url:"/admin/article/page/",
+        pageIndex: this.$route.params.id ,
+        pageSize:2
       }
     },
     mounted() {
-      ajax({
-        url: "http://localhost:8080/blog/article/list",
-        type:"post",
-        data:{
-          pageIndex:1
-        }
-      }).then(function (res) {
-        console.log(res);
-        console.log($this);
-        this.articles = res.result;
-      }).catch(function (err) {
-        console.log(err)
-      })
+      this.getArticles();
     },
+    watch:{
+      $route(){
+        this.pageIndex = this.$route.params.id;
+        this.getArticles();
+      }
+    },
+    methods:{
+      async getArticles (){
+        ajax({
+          url: "http://localhost:8080/blog/admin/article/page",
+          type:"post",
+          data:{
+            pageIndex: this.pageIndex ,
+            pageSize: this.pageSize
+          }
+        }).then((res) => {
+          this.articles = res.result.articleList;
+          this.pageMsg = res.result.pageMsg;
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+    }
   }
 </script>
 
@@ -217,38 +228,6 @@
     background-color: #fff;
   }
 
-  .pagination > ul {
-    border: 1px solid #dddddd;
-  }
 
-  .pagination > li {
-    float: left;
-    display: inline-block;
-  }
-
-  .pagination > li:first-child > a {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-
-  .pagination > li:last-child > a {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-
-  .pagination > li.pageActive > a {
-    background: #dddde4 !important;
-  }
-
-  .pagination > li > a {
-    display: block;
-    background: #fafafa;
-    color: #666;
-    padding: 5px 10px;
-    font-size: 12px;
-    line-height: 1.5;
-    border: 1px solid #dddddd;
-    margin-left: -1px;
-  }
 
 </style>

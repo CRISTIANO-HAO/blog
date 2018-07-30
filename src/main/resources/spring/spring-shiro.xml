@@ -30,7 +30,7 @@
                 /comment/** = anon
                 /goToLogin = anon
                 /login = anon
-                /admin/** = authc
+                /admin/** = anon
                 /** = authc
             </value>
         </property>

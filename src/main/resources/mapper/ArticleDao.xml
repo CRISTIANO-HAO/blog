@@ -165,16 +165,17 @@
         *
         FROM
         (
-        SELECT * FROM
-        article a
-        <where>
-            <if test="searchParam != null and searchParam != ''">a.title like '%' #{searchParam} '%'</if>
-        </where>
-        ORDER BY a.publishTime DESC , a.saveTime DESC
-        LIMIT #{offsetCount}, #{pageSize}
+            SELECT * FROM
+                article a
+            <where>
+                <if test="searchParam != null and searchParam != ''">a.title like '%' #{searchParam} '%'</if>
+            </where>
+            ORDER BY a.publishTime DESC , a.saveTime DESC
+            LIMIT #{offsetCount}, #{pageSize}
         ) a
         LEFT JOIN article_category a_t ON a.articleId = a_t.article_id
         LEFT JOIN category t ON t.categoryId = a_t.category_id
+        ORDER BY a.publishTime DESC, a.saveTime DESC
     </select>
 
     <select id="ifExistTitle" parameterType="java.lang.String" resultType="java.lang.Integer">

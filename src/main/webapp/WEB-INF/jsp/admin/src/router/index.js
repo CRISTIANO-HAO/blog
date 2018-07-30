@@ -10,13 +10,18 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/admin',
       name: 'Home',
       component: Home,
-      redirect:"/article/list",
+      redirect:"/admin/article/page/1",
       children:[
         {
-          path:"article/list",
+          path:"article/page/",
+          component: ArticleList,
+          redirect:"/admin/article/page/1",
+        },
+        {
+          path:"article/page/:id",
           component: ArticleList
         },
         {

@@ -1,7 +1,7 @@
 <template>
     <div id="sidebar">
       <ul>
-        <router-link tag="li" to="/article/list">
+        <router-link tag="li" to="">
           <span>文章管理</span>
         </router-link>
         <router-link tag="li" to="/user/list">
@@ -22,6 +22,7 @@
     background-color: #222d32;
     color: #ffffff;
     width: 20rem;
+    min-height: 100%;
     height: 100%;
     ul{
       text-align: center;
