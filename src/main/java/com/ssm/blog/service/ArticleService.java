@@ -32,4 +32,6 @@ public interface ArticleService {
     List<Archive> getArticleArchives();
 
 	List<Article> getArchivesArticleByPage(String timerange, Integer pageIndex, Integer pageSize);
+
+	List<Article> getAdminArticleByPage(Integer offsetCount, Integer pageSize, String searchParam, Integer status);
 }

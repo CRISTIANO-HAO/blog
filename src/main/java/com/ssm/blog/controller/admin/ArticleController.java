@@ -159,8 +159,10 @@ public class ArticleController {
 
     @RequestMapping(value = "/page",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public ResultSet getArticleByPage(@RequestParam(value = "pageIndex",required = false,defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
-
+    public ResultSet getArticleByPage(@RequestParam(value = "status",required = false,defaultValue = "") Integer status,@RequestParam(value = "pageIndex",required = false,defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
+        if (status == null || "".equals(status)){
+            status = null;
+        }
         //获取查询的总数目
         int totalCount = articleService.getTotalCount(searchParam);
         //添加分页查询的信息
@@ -170,7 +172,7 @@ public class ArticleController {
         List<Article> articleList = null;
         HashMap hashMap = new HashMap();
         try {
-            articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
+            articleList = articleService.getAdminArticleByPage(page.getOffsetCount(),page.getPageSize(),searchParam,status);
             hashMap.put("articleList",articleList);
             hashMap.put("pageMsg",page);
             resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), hashMap);

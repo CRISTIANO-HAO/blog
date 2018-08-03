@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.blog.dao.ArticleCategoryDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+    <delete id="deleteByArticleId" parameterType="java.lang.Long">
+        DELETE FROM
+            article_category
+        WHERE
+            article_id = #{articleId}
+    </delete>
+
+    <insert id="addArticleAndCategoryId">
+        INSERT INTO
+            article_category(article_id , category_id)
+        VALUES
+            <foreach collection="categories" item="category" separator=",">
+                (#{articleId} , #{category.categoryId})
+            </foreach>
+    </insert>
+
+</mapper>

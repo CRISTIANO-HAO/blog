@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.blog.dao.CommentDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+    <resultMap id="commentMap" type="com.ssm.blog.entity.Comment">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="articleId" property="articleId"/>
+        <result column="userId" property="userId"/>
+        <result column="website" property="website"/>
+        <result column="email" property="email"/>
+        <result column="username" property="username"/>
+        <result column="content" property="content"/>
+        <result column="publishTime" property="publishTime"/>
+        <result column="agreeNum" property="agreeNum"/>
+        <result column="disagreeNum" property="disagreeNum"/>
+    </resultMap>
+
+    <select id="getCommentsByArticleId" parameterType="java.lang.Long" resultMap="commentMap">
+        SELECT
+            *
+        FROM
+            comment c
+        WHERE
+            c.articleId = #{articleId}
+        ORDER BY c.publishTime ASC
+    </select>
+
+    <insert id="addComment">
+        INSERT INTO
+            comment(pid,articleId,userId,username,email,website,content,publishTime)
+        VALUE (#{comment.pid},#{comment.articleId},#{comment.userId},#{comment.username},#{comment.email},#{comment.website},#{comment.content},#{comment.publishTime})
+    </insert>
+</mapper>

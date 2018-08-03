@@ -89,4 +89,10 @@ public interface ArticleDao {
     *
     * */
     List<Article> getAllArticleIdList();
+
+    /*
+    * 获取后台文章管理列表
+    *
+    * */
+    List<Article> getAdminArticleByPage(@Param("offsetCount") Integer offsetCount,@Param("pageSize") Integer pageSize,@Param("searchParam") String searchParam,@Param("status") Integer status);
 }

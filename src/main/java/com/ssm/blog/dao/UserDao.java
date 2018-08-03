@@ -17,4 +17,6 @@ public interface UserDao {
     List<String> getRolesByName(String username);
 
     List<User> getUserByName(@Param("username") String username);
+
+    String getRolesByUsername(@Param("username") String username);
 }

@@ -1,0 +1,135 @@
+body{
+    min-width: 700px;
+}
+
+main{
+    margin: 1% 5%;
+}
+
+#layout{
+    margin: 10px 0;
+}
+
+.article-title .left>div{
+    margin: 10px 5px 10px 0px;
+}
+
+.article-title .left h3{
+    white-space: nowrap;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.article-title .left input{
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 0.5rem;
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    background-color: #eee;
+    outline: none;
+}
+
+.article-title .left input:focus{
+    background-color: #fff;
+}
+
+.article-title .btnDiv{
+    margin: 10px 0px 10px;
+    text-align: right;
+}
+
+.article-title .left .categoryDiv .categoryList,.article-title .right .columnDiv .columnList{
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 0.5rem;
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    background-color: #eee;
+    text-align: left;
+    cursor: pointer;
+}
+
+.article-title .left .categoryUl,.article-title .right .columnUl{
+    position: relative;
+}
+
+.article-title .left .categoryUl ul,.article-title .right .columnUl ul{
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.article-title .left .categoryUl li,.article-title .right .columnUl li{
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    text-indent: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.article-title .left .categoryUl li.choseCategory,.article-title .right .columnUl li.choseColumn{
+    background-color: #eee;
+}
+
+.article-title button{
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #3c8dbc;
+    color: #ffffff;
+    border:1px solid #d7d4f0;
+    font-size: 12px;
+}
+
+.article-title button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+.article-title .right .tagDiv h3,.article-title .right .columnDiv h3{
+    margin: 10px 0px 10px;
+    text-align: left;
+}
+
+.article-title .right .tagDiv input{
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: 0.5rem;
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    background-color: #eee;
+    outline: none;
+}
+
+.article-title .right .tagDiv input:focus{
+    background-color: #fff;
+}
+
+#layout h3{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+
+.article-summary h3{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.article-summary textarea{
+    width: 100%;
+    padding: 5px;
+    text-indent: 2em;
+    line-height: 1.5;
+    border-radius: 5px;
+    outline: none;
+}

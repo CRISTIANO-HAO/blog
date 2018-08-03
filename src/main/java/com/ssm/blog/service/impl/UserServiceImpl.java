@@ -24,4 +24,16 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         userDao.addUser(user);
     }
+
+    @Override
+    public String getRolesByUsername(String username) {
+        String roles = userDao.getRolesByUsername(username);
+        return roles;
+    }
+
+    @Override
+    public List<User> getUserByName(String username) {
+        List<User> userList = userDao.getUserByName(username);
+        return userList;
+    }
 }

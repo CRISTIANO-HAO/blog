@@ -116,4 +116,10 @@ public class ArticleServiceImpl implements ArticleService{
         return articleList;
     }
 
+	@Override
+	public List<Article> getAdminArticleByPage(Integer offsetCount, Integer pageSize, String searchParam, Integer status) {
+		List<Article> articleList = articleDao.getAdminArticleByPage(offsetCount, pageSize, searchParam, status);
+		return articleList;
+	}
+
 }
