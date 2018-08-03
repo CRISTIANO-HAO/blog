@@ -15,10 +15,6 @@ service.interceptors.request.use(config => {
   if (store.getters.token) {
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     config.headers['X-Token'] = getToken();
-    /*config.data = JSON.stringify(config.data);
-    config.headers = {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }*/
   }
   return config;
 }, error => {
