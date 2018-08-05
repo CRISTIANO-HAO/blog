@@ -51,7 +51,6 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, password).then(response => {
           const data = response.data.result;
-          console.log(data)
           //保存token到store
           commit('SET_TOKEN', data.username);
           commit('SET_NAME', data.username);

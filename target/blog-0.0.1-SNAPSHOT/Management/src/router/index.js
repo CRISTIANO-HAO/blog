@@ -31,14 +31,31 @@ export const constantRouterMap = [
   {path: '/404', component: () => import('@/views/errorPage/404'), hidden: true},
   {path: '/401', component: () => import('@/views/errorPage/401'), hidden: true},
   {
-    path: '',
+    path: '/',
     component: Layout,
-    redirect: 'articles',
+    name: 'homepage',
+    redirect: 'articles/all'
+  },
+  {
+    path: '/articles',
+    component: Layout,
+    name: 'articles',
+    meta: {title: 'articles', icon: 'dashboard', noCache: true},
     children: [{
-      path: 'articles',
-      component: () => import('@/views/articles/index'),
-      name: 'dashboard',
-      meta: {title: 'articles', icon: 'dashboard', noCache: true}
+      path: 'all',
+      component: () => import('@/views/articles/all/index'),
+      name: 'allArticles',
+      meta: { title: 'allArticles' }
+    },{
+      path: 'publish',
+      component: () => import('@/views/articles/publish/index'),
+      name: 'publishArticles',
+      meta: { title: 'publishArticles' }
+    },{
+      path: 'draft',
+      component: () => import('@/views/articles/draft/index'),
+      name: 'draftArticles',
+      meta: { title: 'draftArticles' }
     }]
   }];
 

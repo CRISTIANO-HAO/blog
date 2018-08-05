@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p>this is a article</p>
-  </div>
+    <div>
+      <h1>this is draft article</h1>
+    </div>
 </template>
 
 <script>

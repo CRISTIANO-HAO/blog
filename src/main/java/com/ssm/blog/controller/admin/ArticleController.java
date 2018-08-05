@@ -157,9 +157,9 @@ public class ArticleController {
         return resultSet;
     }
 
-    @RequestMapping(value = "/page",method = {RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping(value = "/page",method = RequestMethod.POST)
     @ResponseBody
-    public ResultSet getArticleByPage(@RequestParam(value = "status",required = false,defaultValue = "") Integer status,@RequestParam(value = "pageIndex",required = false,defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
+    public ResultSet getArticleByPage(@RequestParam(value = "status",required = false,defaultValue = "") Integer status,@RequestParam(value = "pageIndex",required = false,defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "8") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
         if (status == null || "".equals(status)){
             status = null;
         }
