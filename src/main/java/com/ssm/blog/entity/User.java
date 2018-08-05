@@ -1,6 +1,7 @@
 package com.ssm.blog.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
     //用户id

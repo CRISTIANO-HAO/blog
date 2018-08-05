@@ -10,10 +10,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +37,21 @@ public class LoginController {
             resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(),userList.get(0));
         }catch (AuthenticationException e){
             resultSet = new ResultSet(true, ResultEnum.ERROR.getStatusCode(),"账号或者密码错误！");
+        }
+        return resultSet;
+    }
+
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet logout(){
+        Subject subject = SecurityUtils.getSubject();
+
+        ResultSet resultSet = null;
+        try {
+            subject.logout();
+            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(),"成功退出登陆！");
+        }catch (Exception e){
+            resultSet = new ResultSet(true, ResultEnum.ERROR.getStatusCode(),"退出登陆失败！");
         }
         return resultSet;
     }

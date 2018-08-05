@@ -30,6 +30,8 @@
                 /comment/** = anon
                 /goToLogin = anon
                 /login/** = anon
+                /login/logout = logout
+                /user/** = anon
                 /admin/** = anon
                 /** = authc
             </value>
