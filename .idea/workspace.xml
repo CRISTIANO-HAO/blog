@@ -6,29 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d5f4a49-2706-42ef-9557-668864e71592" name="Default" comment="get json array">
+    <list default="true" id="5d5f4a49-2706-42ef-9557-668864e71592" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/api/login.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/api/login.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/components/Breadcrumb/index.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/components/Breadcrumb/index.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/main.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/main.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/permission.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/permission.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/router/index.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/router/index.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/app.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/app.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/permission.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/permission.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/user.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/store/modules/user.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/utils/request.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/utils/request.js" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/articles/index.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/articles/index.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/Layout.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/Layout.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/AppMain.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/AppMain.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/Navbar.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/Navbar.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/Sidebar/SidebarItem.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/layout/components/Sidebar/SidebarItem.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/login/index.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/views/login/index.vue" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/com/ssm/blog/controller/LoginController.class" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/com/ssm/blog/controller/LoginController.class" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/com/ssm/blog/entity/User.class" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/com/ssm/blog/entity/User.class" />
-      <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/spring/spring-shiro.xml" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/spring/spring-shiro.xml" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssm/blog/controller/LoginController.class" afterPath="$PROJECT_DIR$/target/classes/com/ssm/blog/controller/LoginController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssm/blog/entity/User.class" afterPath="$PROJECT_DIR$/target/classes/com/ssm/blog/entity/User.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/spring-shiro.xml" afterPath="$PROJECT_DIR$/target/classes/spring/spring-shiro.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -888,7 +867,7 @@
       <workItem from="1533258741043" duration="23345000" />
       <workItem from="1533293277361" duration="825000" />
       <workItem from="1533389210140" duration="5929000" />
-      <workItem from="1533430265800" duration="22851000" />
+      <workItem from="1533430265800" duration="22985000" />
     </task>
     <task id="LOCAL-00001" summary="add pagination">
       <created>1523804600617</created>
@@ -1226,11 +1205,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533462289308</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="get json array">
+      <created>1533462462269</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1533462462269</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="944117000" />
+    <option name="totallyTimeSpent" value="944251000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
