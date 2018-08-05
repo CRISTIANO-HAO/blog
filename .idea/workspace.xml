@@ -7,41 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d5f4a49-2706-42ef-9557-668864e71592" name="Default" comment="get json array">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/assets/avatar/01.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/assets/avatar/02.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/btn.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/element-ui.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/index.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/sidebar.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/transition.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/styles/variables.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/menu1-1/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/menu1-2/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/menu1-2/menu1-2-1/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/menu1-2/menu1-2-2/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu1/menu1-3/index.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/nested/menu2/index.vue" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/blog/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/blog/controller/LoginController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/blog/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/blog/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/blog/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/blog/entity/User.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/api/login.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/api/login.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/components/Breadcrumb/index.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/components/Breadcrumb/index.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/main.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/permission.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/permission.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/router/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/router/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/app.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/app.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/permission.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/permission.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/user.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/store/modules/user.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/utils/request.js" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/utils/request.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/articles/index.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/articles/index.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/Layout.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/Layout.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/AppMain.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/AppMain.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/Navbar.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/Navbar.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/Sidebar/SidebarItem.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/layout/components/Sidebar/SidebarItem.vue" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Management/src/views/login/index.vue" afterPath="$PROJECT_DIR$/src/main/webapp/Management/src/views/login/index.vue" />
       <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/api/login.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/api/login.js" />
       <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/components/Breadcrumb/index.vue" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/components/Breadcrumb/index.vue" />
       <change beforePath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/main.js" afterPath="$PROJECT_DIR$/target/blog-0.0.1-SNAPSHOT/Management/src/main.js" />
@@ -922,7 +888,7 @@
       <workItem from="1533258741043" duration="23345000" />
       <workItem from="1533293277361" duration="825000" />
       <workItem from="1533389210140" duration="5929000" />
-      <workItem from="1533430265800" duration="22624000" />
+      <workItem from="1533430265800" duration="22851000" />
     </task>
     <task id="LOCAL-00001" summary="add pagination">
       <created>1523804600617</created>
@@ -1253,11 +1219,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533293898892</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="get json array">
+      <created>1533462289308</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1533462289308</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="943890000" />
+    <option name="totallyTimeSpent" value="944117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1290,7 +1263,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873562" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25747126" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09425288" sideWeight="0.49801025" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2724138" sideWeight="0.49801025" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873562" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14482759" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2804323" sideWeight="0.49476832" order="6" side_tool="false" content_ui="combo" />
@@ -1715,7 +1688,7 @@
         <state relative-caret-position="-1080">
           <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding>
-            <element signature="e#1482#1513#0" expanded="true" />
+            <element signature="e#1482#1513#0" expanded="false" />
           </folding>
         </state>
       </provider>
