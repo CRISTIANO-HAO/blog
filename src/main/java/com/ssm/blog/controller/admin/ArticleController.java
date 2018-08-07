@@ -43,6 +43,26 @@ public class ArticleController {
     }
 
     /*
+    * 获取文章相关信息
+    * */
+    @RequestMapping(value = "/asset",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet getArticleAsset(){
+        ResultSet resultSet = null;
+        HashMap hashMap = new HashMap();
+        try {
+            List<Category> categories = categoryService.list();
+            List<Column> columns = columnService.list();
+            hashMap.put("categories",categories);
+            hashMap.put("columns",columns);
+            resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),hashMap);
+        }catch (Exception e){
+            resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+        return resultSet;
+    }
+
+    /*
     * 新增博客到数据库
     *
     * */
@@ -53,9 +73,14 @@ public class ArticleController {
         long timeAsId = new Date().getTime();
         //以时间戳为文章唯一Id
         article.setArticleId(timeAsId);
-        article.setSaveTime(new Timestamp(timeAsId));
-        //默认为草稿状态；
-        article.setStatus(0);
+        if (article.getStatus() == 0 || article.getStatus() == null){
+            article.setSaveTime(new Timestamp(timeAsId));
+            //默认为草稿状态；
+            article.setStatus(0);
+        }else {
+            article.setSaveTime(new Timestamp(timeAsId));
+            article.setPublishTime(new Timestamp(timeAsId));
+        }
 
         ResultSet resultSet;
         try {

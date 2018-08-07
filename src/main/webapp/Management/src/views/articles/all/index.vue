@@ -27,15 +27,15 @@
               <td>{{pageMsg.offsetCount + index + 1}}</td>
               <td>
                 <div v-if="article.status == 0">
-                  <i class="fa fa-save"></i><span>草稿</span>
+                  <svg-icon :icon-class="'draft'"></svg-icon><span>草稿</span>
                 </div>
                 <div v-if="article.status == 1">
-                  <i class="fa fa-expeditedssl"></i><span>发布</span>
+                  <svg-icon :icon-class="'publish'"></svg-icon><span>发布</span>
                 </div>
               </td>
               <td>{{article.publishTime || article.saveTime}}</td>
               <td>
-                <a href="<%=basePath %>admin/article/get/${article.articleId}">{{article.title}}</a>
+                <a href="javascript:;">{{article.title}}</a>
               </td>
               <td>
                 <span v-for="category in article.categories">{{category.categoryName}} ;</span>
@@ -43,8 +43,7 @@
               <td>
                 <div>
                   <a href="<%=basePath %>admin/article/edit/${article.articleId}">
-                    <span>编辑</span>
-                    <i class="fa fa-eraser"></i>
+                    <svg-icon :icon-class="'edit'"></svg-icon><span>编辑</span>
                   </a>
                 </div>
               </td>
@@ -56,6 +55,7 @@
         <div class="box-footer clear">
           <el-pagination
             background
+            @current-change="handleCurrentChange"
             layout="prev, pager, next"
             :page-count="pageMsg.totalPages"
             :pager-count="5"
@@ -84,14 +84,7 @@
       }
     },
     mounted() {
-      getArticleList({
-        pageIndex: this.pageIndex ,
-        pageSize: this.pageSize,
-        status: this.status
-      }).then(res => {
-        this.articleList = res.data.result.articleList;
-        this.pageMsg = res.data.result.pageMsg;
-      });
+      this.getArticleList();
     },
     watch:{
       $route(){
@@ -107,6 +100,22 @@
       }
     },
     methods:{
+      getArticleList(){
+        getArticleList({
+          pageIndex: this.pageIndex ,
+          pageSize: this.pageSize,
+          status: this.status
+        }).then(res => {
+          this.articleList = res.data.result.articleList;
+          this.pageMsg = res.data.result.pageMsg;
+        }).catch(err => {
+          console.log(err)
+        });
+      },
+      handleCurrentChange(val){
+        this.pageIndex = val;
+        this.getArticleList()
+      }
     }
   }
 </script>
@@ -163,6 +172,10 @@
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     padding: 10px;
+  }
+
+  .box-footer{
+    text-align: right;
   }
 
   .box-body > .table {

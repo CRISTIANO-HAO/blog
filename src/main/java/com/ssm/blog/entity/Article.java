@@ -21,7 +21,7 @@ public class Article {
     // 文章html内容
     private String htmlContent;
     //文章状态; 0: 草稿； 1：发布；默认为0
-    private int status;
+    private Integer status;
     //上一篇文章id
     private long prevArticleId;
     //上一篇文章标题
@@ -103,11 +103,11 @@ public class Article {
         this.htmlContent = htmlContent;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

@@ -56,6 +56,11 @@ export const constantRouterMap = [
       component: () => import('@/views/articles/draft/index'),
       name: 'draftArticles',
       meta: { title: 'draftArticles' }
+    },{
+      path: 'create',
+      component: () => import('@/views/articles/create/index'),
+      name:'create',
+      meta: { title: 'create'}
     }]
   }];
 
