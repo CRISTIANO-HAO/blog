@@ -127,60 +127,6 @@ public class ArticleController {
     *contentType = "application/json"时, @RequestBody 可以接收实体模型数据，或者接收到整个非实体的JSON字符串；
     *
     * */
-    /*
-    * 文章列表分页
-    *
-    * */
-    @RequestMapping(value = "/list/page/{pageIndex}",method = {RequestMethod.POST,RequestMethod.GET})
-    public String list(Model model, @PathVariable(value = "pageIndex") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
-	    //默认页数为第一页
-        if (pageIndex == null){
-	        pageIndex = 1;
-        }
-
-        //获取查询的总数目
-        int totalCount = articleService.getTotalCount(searchParam);
-        //添加分页查询的信息
-        Page page = new Page(pageIndex,pageSize,totalCount);
-        //结果集对象
-        ResultSet resultSet = null;
-        List<Article> articleList = null;
-        try {
-            articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
-            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), articleList);
-        } catch (Exception e) {
-            resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
-        }
-
-        model.addAttribute("articleList", articleList);
-        model.addAttribute("page",page);
-        model.addAttribute("searchParam",searchParam);
-        return "back/index";
-    }
-
-    @RequestMapping(value = "/page/{pageIndex}",method = {RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
-    public ResultSet getArticlelist(@PathVariable(value = "pageIndex") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){
-        //默认页数为第一页
-        if (pageIndex == null){
-            pageIndex = 1;
-        }
-
-        //获取查询的总数目
-        int totalCount = articleService.getTotalCount(searchParam);
-        //添加分页查询的信息
-        Page page = new Page(pageIndex,pageSize,totalCount);
-        //结果集对象
-        ResultSet resultSet = null;
-        List<Article> articleList = null;
-        try {
-            articleList = articleService.list(page.getOffsetCount(),page.getPageSize(),searchParam);
-            resultSet = new ResultSet(true, ResultEnum.SUCCESS.getStatusCode(), articleList);
-        } catch (Exception e) {
-            resultSet = new ResultSet(false, ResultEnum.ERROR.getStatusCode(), ResultEnum.ERROR.getComment());
-        }
-        return resultSet;
-    }
 
     @RequestMapping(value = "/page",method = RequestMethod.POST)
     @ResponseBody
@@ -189,7 +135,7 @@ public class ArticleController {
             status = null;
         }
         //获取查询的总数目
-        int totalCount = articleService.getTotalCount(searchParam);
+        int totalCount = articleService.getTotalCount(searchParam,status);
         //添加分页查询的信息
         Page page = new Page(pageIndex,pageSize,totalCount);
         //结果集对象
@@ -243,11 +189,18 @@ public class ArticleController {
         return resultSet;
     }
 
-    @RequestMapping(value = "/update/{articleId}",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
-    public ResultSet update(@RequestBody Article article,@PathVariable Long articleId){
+    public ResultSet update(@RequestBody Article article){
         Long timeStamp = new Date().getTime();
-        article.setSaveTime(new Timestamp(timeStamp));
+        if (article.getStatus() == 0){
+            article.setSaveTime(new Timestamp(timeStamp));
+            article.setPublishTime(null);
+        }else {
+            article.setSaveTime(new Timestamp(timeStamp));
+            article.setPublishTime(new Timestamp(timeStamp));
+        }
+
         ResultSet resultSet;
 
         try {
@@ -259,11 +212,30 @@ public class ArticleController {
         return resultSet;
     }
 
-    @RequestMapping(value = "get/{articleId}",method = RequestMethod.GET)
-    public String getArticleById(Model model,@PathVariable("articleId") Long articleId){
-        Article article = articleService.getArticleById(articleId);
+    @RequestMapping(value = "/get",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet getArticleById(@RequestParam("articleId") Long articleId){
+        ResultSet resultSet = null;
 
-        model.addAttribute("article",article);
-        return "back/articleDetail";
+        try {
+            Article article = articleService.getArticleById(articleId);
+            resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),article);
+        }catch (Exception e){
+            resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+        return resultSet;
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet deleteArticleById(@RequestParam("articleId") Long articleId){
+        ResultSet resultSet = null;
+        try {
+            articleService.deleteArticleById(articleId);
+            resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());
+        }catch (Exception e){
+            resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());
+        }
+        return resultSet;
     }
 }

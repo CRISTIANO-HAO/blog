@@ -30,3 +30,27 @@ export function addArticle(data) {
     data:data
   })
 }
+
+export function updateArticle(data) {
+  return request({
+    url:"/admin/article/update",
+    method: "post",
+    data:data
+  })
+}
+
+export function getArticleById(data) {
+  return request({
+    url:"/admin/article/get",
+    method: "get",
+    params:data
+  })
+}
+
+export function deleteArticleById(data) {
+  return request({
+    url:"/admin/article/delete",
+    method: "get",
+    params:data
+  })
+}

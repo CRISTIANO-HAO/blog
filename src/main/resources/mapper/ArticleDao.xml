@@ -156,6 +156,7 @@
         article a
         <where>
             <if test="searchParam != null and searchParam != ''">a.title like '%' #{searchParam} '%'</if>
+            <if test="status != null"> and a.`status` = #{status}</if>
         </where>
 
     </select>
@@ -211,7 +212,7 @@
         article a
         <trim prefix="set" suffixOverrides=",">
             <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
-            <if test="article.saveTime == article.publishTime">a.publishTime = #{article.publishTime},</if>
+            <if test="true">a.publishTime = #{article.publishTime},</if>
             <if test="article.title != null">a.title = #{article.title},</if>
             <if test="article.status != null">a.status = #{article.status},</if>
         </trim>
@@ -392,4 +393,11 @@
         ORDER BY
             a.publishTime DESC
     </select>
+
+    <delete id="deleteArticleById" parameterType="java.lang.Long">
+        DELETE FROM
+        article
+        WHERE
+        articleId = #{articleId}
+    </delete>
 </mapper>

@@ -34,33 +34,29 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     name: 'homepage',
-    redirect: 'articles/all'
+    redirect: 'articles/list'
   },
   {
     path: '/articles',
     component: Layout,
     name: 'articles',
-    meta: {title: 'articles', icon: 'dashboard', noCache: true},
+    meta: {title: 'articles', icon: 'article', noCache: true},
     children: [{
-      path: 'all',
-      component: () => import('@/views/articles/all/index'),
-      name: 'allArticles',
-      meta: { title: 'allArticles' }
-    },{
-      path: 'publish',
-      component: () => import('@/views/articles/publish/index'),
-      name: 'publishArticles',
-      meta: { title: 'publishArticles' }
-    },{
-      path: 'draft',
-      component: () => import('@/views/articles/draft/index'),
-      name: 'draftArticles',
-      meta: { title: 'draftArticles' }
+      path: 'list',
+      component: () => import('@/views/articles/list/index'),
+      name: 'articleList',
+      meta: { title: 'list',keepAlive: true  /*需要缓存*/ }
     },{
       path: 'create',
       component: () => import('@/views/articles/create/index'),
-      name:'create',
-      meta: { title: 'create'}
+      name:'articleCreate',
+      meta: { title: 'create',keepAlive: false  /*不需要缓存*/}
+    },{
+      path: 'edit/:articleId',
+      component: () => import('@/views/articles/edit/index'),
+      name:'articleEdit',
+      meta: { title: 'edit',keepAlive: false  /*不需要缓存*/},
+      hidden:true
     }]
   }];
 
@@ -130,6 +126,7 @@ export const asyncRouterMap = [
         meta: { title: 'menu2' }
       }
     ]
-  }
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ];
 

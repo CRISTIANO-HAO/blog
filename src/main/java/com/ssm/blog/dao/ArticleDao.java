@@ -34,7 +34,7 @@ public interface ArticleDao {
 	* 获取总数量
 	*
 	* */
-	int getTotalCount(@Param("searchParam") String searchParam);
+	int getTotalCount(@Param("searchParam") String searchParam, @Param("status") Integer status);
 
 	/*
 	* 判断是否已经存在相同的文章title
@@ -95,4 +95,9 @@ public interface ArticleDao {
     *
     * */
     List<Article> getAdminArticleByPage(@Param("offsetCount") Integer offsetCount,@Param("pageSize") Integer pageSize,@Param("searchParam") String searchParam,@Param("status") Integer status);
+
+    /*
+    * 删除文章
+    * */
+    void deleteArticleById(@Param("articleId") Long articleId);
 }

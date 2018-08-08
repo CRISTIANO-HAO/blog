@@ -47,8 +47,8 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public int getTotalCount(String searchParam) {
-		int totalCount = articleDao.getTotalCount(searchParam);
+	public int getTotalCount(String searchParam,Integer status) {
+		int totalCount = articleDao.getTotalCount(searchParam,status);
 		return totalCount;
 	}
 
@@ -120,6 +120,15 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<Article> getAdminArticleByPage(Integer offsetCount, Integer pageSize, String searchParam, Integer status) {
 		List<Article> articleList = articleDao.getAdminArticleByPage(offsetCount, pageSize, searchParam, status);
 		return articleList;
+	}
+
+	@Override
+    @Transactional
+	public void deleteArticleById(Long articleId) {
+		articleDao.deleteArticleById(articleId);
+		articleCategoryDao.deleteByArticleId(articleId);
+		articleColumnDao.deleteByArticleId(articleId);
+		tagDao.deleteByArticleId(articleId);
 	}
 
 }

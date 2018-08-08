@@ -15,7 +15,7 @@ public interface ArticleService {
 
 	List<Article> list(int offsetCount,int pageSize,String searchParam);
 
-	int getTotalCount(String searchParam);
+	int getTotalCount(String searchParam,Integer status);
 
 	boolean ifExistTitle(String title);
 
@@ -34,4 +34,6 @@ public interface ArticleService {
 	List<Article> getArchivesArticleByPage(String timerange, Integer pageIndex, Integer pageSize);
 
 	List<Article> getAdminArticleByPage(Integer offsetCount, Integer pageSize, String searchParam, Integer status);
+
+    void deleteArticleById(Long articleId);
 }

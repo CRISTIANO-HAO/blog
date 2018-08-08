@@ -3,11 +3,15 @@
     <section class="content">
       <div class="box">
         <div class="box-header with-border clear">
-          <h3 class="box-title">全部文章</h3>
+          <el-select v-model="status" placeholder="请选择">
+            <el-option label="全部文章" value=""></el-option>
+            <el-option label="草稿文章" value="0"></el-option>
+            <el-option label="发布文章" value="1"></el-option>
+          </el-select>
           <div class="addArticle">
-            <a href="<%=basePath %>admin/article/articleAdd">
-              <i class="fa fa-plus-square" title="添加新博客"></i>
-            </a>
+            <router-link to="create" tag="a" title="新增文章">
+              <svg-icon :icon-class="'add'"></svg-icon>
+            </router-link>
           </div>
         </div>
         <div class="box-body">
@@ -19,7 +23,7 @@
               <th>时间</th>
               <th>文章标题</th>
               <th>文章标签</th>
-              <th>文章编辑</th>
+              <th>编辑</th>
             </tr>
             </thead>
             <tbody>
@@ -35,16 +39,21 @@
               </td>
               <td>{{article.publishTime || article.saveTime}}</td>
               <td>
-                <a href="javascript:;">{{article.title}}</a>
+                <span>{{article.title}}</span>
               </td>
               <td>
                 <span v-for="category in article.categories">{{category.categoryName}} ;</span>
               </td>
               <td>
                 <div>
-                  <a href="<%=basePath %>admin/article/edit/${article.articleId}">
-                    <svg-icon :icon-class="'edit'"></svg-icon><span>编辑</span>
-                  </a>
+                  <router-link :to="'edit/' + article.articleId" tag="a">
+                    <el-button type="text">
+                      <svg-icon :icon-class="'edit'"></svg-icon><span>编辑</span>
+                    </el-button>
+                  </router-link>
+                  <el-button type="text" @click="deleteArticle(article.articleId)">
+                    <svg-icon :icon-class="'delete'"></svg-icon><span>删除</span>
+                  </el-button>
                 </div>
               </td>
             </tr>
@@ -58,7 +67,8 @@
             @current-change="handleCurrentChange"
             layout="prev, pager, next"
             :page-count="pageMsg.totalPages"
-            :pager-count="5"
+            pager-count="5"
+            :current-page="pageIndex"
           >
           </el-pagination>
         </div>
@@ -68,7 +78,7 @@
 </template>
 
 <script>
-  import { getArticleList } from "@/api/article";
+  import { getArticleList , deleteArticleById } from "@/api/article";
   import {getTimeUtil} from "@/utils/timeTranslator";
   export default {
     components: {},
@@ -86,10 +96,6 @@
     mounted() {
       this.getArticleList();
     },
-    watch:{
-      $route(){
-      }
-    },
     computed:{
       articles(){
         return this.articleList.map(article =>{
@@ -97,6 +103,20 @@
           article.saveTime = getTimeUtil(article.saveTime);
           return article;
         })
+      }
+    },
+    watch:{
+      status(){
+        //重置开始页
+        this.pageIndex = 1;
+        //重新请求文章列表
+        this.getArticleList();
+      },
+      $route(){
+        //监控路由是否刷新的信息
+        if (this.$route.params.refresh){
+          location.reload();
+        }
       }
     },
     methods:{
@@ -114,7 +134,41 @@
       },
       handleCurrentChange(val){
         this.pageIndex = val;
-        this.getArticleList()
+        this.getArticleList();
+      },
+      deleteArticle(articleId){
+        this.$confirm('即将删除该文章, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          deleteArticleById({articleId: articleId}).then(res => {
+            let data = res.data;
+            if (data.status === 200){
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+              //重置开始页
+              this.pageIndex = 1;
+              //重新获取文章列表
+              this.getArticleList();
+            }else {
+              this.$message({
+                type: 'error',
+                message: '删除失败!'
+              });
+            }
+          }).catch(err => {
+            console.log(err)
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       }
     }
   }
@@ -143,16 +197,17 @@
   .box .box-header {
     color: #444;
     display: block;
-    padding: 10px;
+    padding: 20px;
     position: relative;
     border-bottom: 1px solid #f4f4f4;
   }
 
-  .box .box-header .addArticle {
+  .box .box-header .addArticle svg{
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 30px;
     cursor: pointer;
   }
 
