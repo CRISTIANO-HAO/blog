@@ -12,6 +12,7 @@ import com.ssm.blog.entity.Article;
 import com.ssm.blog.service.ArticleService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -129,6 +130,12 @@ public class ArticleServiceImpl implements ArticleService{
 		articleCategoryDao.deleteByArticleId(articleId);
 		articleColumnDao.deleteByArticleId(articleId);
 		tagDao.deleteByArticleId(articleId);
+	}
+
+	@Override
+	public boolean hasPublishTime(long articleId) {
+        Date publishTime = articleDao.hasPublishTime(articleId);
+		return (publishTime != null);
 	}
 
 }

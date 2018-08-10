@@ -31,9 +31,9 @@
 
     <insert id="addArticle" parameterType="Article">
         INSERT INTO
-        article (articleId, status, saveTime, publishTime, title)
+        article (articleId, status, saveTime, publishTime, title, htmlContent, summaryHtmlContent)
         VALUES
-        (#{article.articleId}, #{article.status}, #{article.saveTime}, #{article.publishTime}, #{article.title})
+        (#{article.articleId}, #{article.status}, #{article.saveTime}, #{article.publishTime}, #{article.title}, #{article.htmlContent}, #{article.summaryHtmlContent})
     </insert>
 
     <!--<insert id="addArticle" parameterType="Article">
@@ -212,9 +212,11 @@
         article a
         <trim prefix="set" suffixOverrides=",">
             <if test="article.saveTime != null">a.saveTime = #{article.saveTime},</if>
-            <if test="true">a.publishTime = #{article.publishTime},</if>
+            <if test="article.publishTime != null">a.publishTime = #{article.publishTime},</if>
             <if test="article.title != null">a.title = #{article.title},</if>
             <if test="article.status != null">a.status = #{article.status},</if>
+            <if test="article.summaryHtmlContent != null and article.summaryHtmlContent != '' ">a.summaryHtmlContent = #{article.summaryHtmlContent},</if>
+            <if test="article.htmlContent != null and article.htmlContent != '' ">a.htmlContent = #{article.htmlContent},</if>
         </trim>
         WHERE
         a.articleId = #{article.articleId}
@@ -400,4 +402,10 @@
         WHERE
         articleId = #{articleId}
     </delete>
+
+    <select id="hasPublishTime" parameterType="java.lang.Long" resultType="java.util.Date">
+        SELECT publishTime
+        FROM article
+        WHERE articleId = #{articleId}
+    </select>
 </mapper>

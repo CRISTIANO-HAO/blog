@@ -195,10 +195,11 @@ public class ArticleController {
         Long timeStamp = new Date().getTime();
         if (article.getStatus() == 0){
             article.setSaveTime(new Timestamp(timeStamp));
-            article.setPublishTime(null);
         }else {
             article.setSaveTime(new Timestamp(timeStamp));
-            article.setPublishTime(new Timestamp(timeStamp));
+            if (!articleService.hasPublishTime(article.getArticleId())){
+                article.setPublishTime(new Timestamp(timeStamp));
+            }
         }
 
         ResultSet resultSet;

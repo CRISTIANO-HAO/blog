@@ -36,4 +36,6 @@ public interface ArticleService {
 	List<Article> getAdminArticleByPage(Integer offsetCount, Integer pageSize, String searchParam, Integer status);
 
     void deleteArticleById(Long articleId);
+
+	boolean hasPublishTime(long articleId);
 }

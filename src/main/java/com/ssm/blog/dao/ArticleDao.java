@@ -1,5 +1,6 @@
 package com.ssm.blog.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -100,4 +101,9 @@ public interface ArticleDao {
     * 删除文章
     * */
     void deleteArticleById(@Param("articleId") Long articleId);
+
+    /*
+    * 判断文章是否有发布时间
+    * */
+	Date hasPublishTime(@Param("articleId") long articleId);
 }
