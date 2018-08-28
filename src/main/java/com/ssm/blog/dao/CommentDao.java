@@ -12,4 +12,10 @@ public interface CommentDao {
     List<Comment> getCommentsByArticleId(@Param("articleId") Long articleId);
 
     void addComment(@Param("comment") Comment comment);
+
+    void updateUsername(@Param("userId") long userId,@Param("username") String username);
+
+    List<com.ssm.blog.dto.Comment> getLatestComments();
+
+    Comment getCommentById(@Param("id") int id);
 }

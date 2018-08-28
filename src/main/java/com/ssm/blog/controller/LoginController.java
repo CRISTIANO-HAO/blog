@@ -7,6 +7,7 @@ import com.ssm.blog.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,11 @@ public class LoginController {
 
     @Autowired
     UserService userService;
+
+    public static void main(String[] args) {
+        Md5Hash md5Hash = new Md5Hash("123456","新朋友",5);
+        System.out.println(md5Hash.toString());
+    }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody

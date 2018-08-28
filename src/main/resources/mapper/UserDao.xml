@@ -33,7 +33,19 @@
         WHERE u.username = #{username}
     </select>
 
-    <select id="getRolesByUsername" >
+    <update id="updateUsername">
+        UPDATE
+            user u
+        <if test="username != null">SET u.username = #{username}</if>
+        WHERE u.userId = #{userId}
+    </update>
 
+    <select id="getUserById" resultMap="userMap" parameterType="java.lang.Long">
+        SELECT
+            u.refuseEmail,
+            u.email
+        FROM
+            user u
+        WHERE u.userId = #{userId}
     </select>
 </mapper>

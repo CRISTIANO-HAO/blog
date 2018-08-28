@@ -1,12 +1,14 @@
 package com.ssm.blog.controller;
 
 import com.ssm.blog.dto.Archive;
+import com.ssm.blog.dto.Comment;
 import com.ssm.blog.dto.ResultEnum;
 import com.ssm.blog.dto.ResultSet;
 import com.ssm.blog.entity.Category;
 import com.ssm.blog.entity.User;
 import com.ssm.blog.service.ArticleService;
 import com.ssm.blog.service.CategoryService;
+import com.ssm.blog.service.CommentService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -32,6 +34,8 @@ public class IndexController {
     private CategoryService categoryService;
 	@Autowired
     private ArticleService articleService;
+	@Autowired
+    private CommentService commentService;
 	
 	@RequestMapping("/")
 	public String index(Model model){
@@ -47,14 +51,16 @@ public class IndexController {
 	public String indexSec(Model model){
         List<Category> categories = categoryService.list();
         List<Archive> archives = articleService.getArticleArchives();
+        List<Comment> comments = commentService.getLatestComments();
         model.addAttribute("categories",categories);
         model.addAttribute("archives",archives);
+        model.addAttribute("comments",comments);
 		return "front/index";
 	}
 
-	@RequestMapping("/goToLogin")
+	@RequestMapping("/administrator")
 	public String goToLogin(){
-		return "front/login";
+		return "admin/index";
 	}
 
     @RequestMapping(value = "/login",method = RequestMethod.POST, produces = "application/json;charset=utf-8")

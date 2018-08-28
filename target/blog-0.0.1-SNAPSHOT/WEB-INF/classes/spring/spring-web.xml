@@ -36,7 +36,7 @@
     <bean id="htmlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="com.ssm.blog.utils.HtmlResourceView"/>
         <property name="order" value="1"/>
-        <property name="prefix" value="/WEB-INF/jsp/admin/dist/"/>
+        <property name="prefix" value="/resource/"/>
         <property name="suffix" value=".html"/>
         <property name="contentType" value="text/html;charset=UTF-8"></property>
     </bean>

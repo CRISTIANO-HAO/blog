@@ -83,4 +83,114 @@ utils.cookie = {
         this.refreshCookies();
         return this.cookiesObj[key] || '';
     }
+};
+
+utils.backToTop = function (distance) {
+    distance = distance || ((document.body.clientHeight || document.documentElement.clientHeight) + $("#backToTop").position().top );
+    //自定义开关，避免频繁操作按钮位移
+    var flag = true;
+    //监听页面滚动事件
+    $(window).scroll(function () {
+        //当右侧分类栏的高出置顶按钮时
+        if((distance + $("#header").height() - $(window).scrollTop() - $("#backToTop").position().top) < 0){
+            if (flag){
+                flag = false;
+                $("#backToTop").animate({right:"1rem"});
+            }
+        }else {
+            if (!flag){
+                flag = true;
+                $("#backToTop").animate({right:"-5rem"});
+            }
+        }
+    })
+};
+
+/*
+   * 回到顶部绑定事件
+   * */
+$("#backToTop").on("click",function () {
+    var timer = null;
+    var num = 0;
+    clearInterval(timer);
+    timer = setInterval(function () {
+        var top = document.body.scrollTop || document.documentElement.scrollTop;
+        if (top > 0){
+            num ++;
+            scrollTo(0,top - 50 * num)
+        }else {
+            clearInterval(timer);
+        }
+    },10)
+});
+
+
+/*
+* 生成文章目录
+* */
+utils.renderCatalog = {
+    init:function (root,container) {
+        root = root || "body";
+        root = document.getElementsByClassName(root)[0];
+        var eleArr = Array.prototype.slice.call(root.querySelectorAll(["h1","h2","h3","h4","h5","h6"]));
+        var catalogArr = [];
+        var pointer = {index: 0, max: 6};
+        var treeArr = this.renderTreeArr(eleArr, catalogArr, pointer);console.log(treeArr)
+        document.getElementById(container).innerHTML = this.renderTreeHtml(treeArr);
+    },
+    renderTreeArr:function (eleArr, catalogArr, pointer) {
+        for (var i = pointer.index; i < eleArr.length; i++) {
+            var level = eleArr[i].nodeName.match(/[1-6]/)[0];
+            if (level < pointer.max) {
+                pointer.max = level;
+            }
+            if (level === pointer.max) {
+                var node = {
+                    id: eleArr[i].id,
+                    text: eleArr[i].innerText,
+                    level: level,
+                    child: []
+                }
+                catalogArr.push(node);
+            } else {
+                if (catalogArr.length > 0) {
+                    this.findCorrectLevel(catalogArr[catalogArr.length - 1]['child'], level, eleArr[i])
+                }
+            }
+        }
+        return catalogArr;
+    },
+    findCorrectLevel:function (childArr, level, ele) {
+        if (childArr.length > 0) {
+            if (childArr[0].level === level) {
+                childArr.push({
+                    id: ele.id,
+                    text: ele.innerText,
+                    level: level,
+                    child: []
+                });
+            } else {
+                this.findCorrectLevel(childArr[childArr.length - 1]['child'], level, ele)
+            }
+        } else {
+            childArr.push({
+                id: ele.id,
+                text: ele.innerText,
+                level: level,
+                child: []
+            });
+        }
+    },
+    renderTreeHtml:function (arr) {
+        var str = "";
+        var self = this;
+        arr.forEach(function (item,index) {
+            str += "<li><span>"+ item.text +"</span>";
+            if (item.child.length > 0){
+                str += self.renderTreeHtml(item.child);
+            }
+            str += "</li>";
+        });
+        return "<ul>"+ str +"</ul>";
+    }
 }

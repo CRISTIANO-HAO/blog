@@ -13,4 +13,10 @@ public interface UserService {
     String getRolesByUsername(String username);
 
     List<User> getUserByName(String username);
+
+    void updateUsername(long userId, String username);
+
+    List<String> getRolesByName(String username);
+
+    List<String> getPermissionByName(String username);
 }

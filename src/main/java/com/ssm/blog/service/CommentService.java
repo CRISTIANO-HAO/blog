@@ -9,4 +9,6 @@ public interface CommentService {
     List<Comment> getCommentsByArticleId(Long articleId);
 
     void addComment(Comment comment);
+
+    List<com.ssm.blog.dto.Comment> getLatestComments();
 }

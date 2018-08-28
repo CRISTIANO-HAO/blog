@@ -9,6 +9,7 @@ import com.ssm.blog.entity.Column;
 import com.ssm.blog.service.CategoryService;
 import com.ssm.blog.service.ColumnService;
 import com.ssm.blog.utils.Page;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,7 +128,7 @@ public class ArticleController {
     *contentType = "application/json"时, @RequestBody 可以接收实体模型数据，或者接收到整个非实体的JSON字符串；
     *
     * */
-
+    @RequiresRoles("admin")
     @RequestMapping(value = "/page",method = RequestMethod.POST)
     @ResponseBody
     public ResultSet getArticleByPage(@RequestParam(value = "status",required = false,defaultValue = "") Integer status,@RequestParam(value = "pageIndex",required = false,defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize",required = false,defaultValue = "8") Integer pageSize, @RequestParam(value = "searchParam", required = false,defaultValue = "") String searchParam){

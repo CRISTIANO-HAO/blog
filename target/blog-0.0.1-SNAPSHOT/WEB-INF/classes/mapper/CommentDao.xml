@@ -16,6 +16,7 @@
         <result column="publishTime" property="publishTime"/>
         <result column="agreeNum" property="agreeNum"/>
         <result column="disagreeNum" property="disagreeNum"/>
+        <result column="refuseEmail" property="refuseEmail"/>
     </resultMap>
 
     <select id="getCommentsByArticleId" parameterType="java.lang.Long" resultMap="commentMap">
@@ -33,4 +34,37 @@
             comment(pid,articleId,userId,username,email,website,content,publishTime)
         VALUE (#{comment.pid},#{comment.articleId},#{comment.userId},#{comment.username},#{comment.email},#{comment.website},#{comment.content},#{comment.publishTime})
     </insert>
+
+    <update id="updateUsername">
+        UPDATE
+            comment c
+        <if test="username != null"> SET  c.username = #{username}</if>
+        WHERE c.userId = #{userId}
+    </update>
+
+    <select id="getLatestComments" resultType="com.ssm.blog.dto.Comment">
+        SELECT
+            c.id,
+            c.articleId,
+            c.username,
+            c.content,
+            a.title AS 'title'
+        FROM
+            COMMENT c
+            LEFT JOIN article a ON a.articleId = c.articleId
+        ORDER BY
+            c.publishTime DESC
+        LIMIT 0,5
+    </select>
+
+    <select id="getCommentById" resultMap="commentMap" parameterType="java.lang.Integer">
+        SELECT
+            c.id,
+            c.articleId,
+            c.username,
+            c.userId,
+            c.email
+        FROM comment c
+        WHERE c.id = #{id}
+    </select>
 </mapper>

@@ -12,11 +12,13 @@ public interface UserDao {
 
     void addUser(@Param("user") User user);
 
-    List<String> getPermissionByName(String username);
-
-    List<String> getRolesByName(String username);
+    List<String> getPermissionByName(@Param("username") String username);
 
     List<User> getUserByName(@Param("username") String username);
 
     String getRolesByUsername(@Param("username") String username);
+
+    void updateUsername(@Param("userId") long userId, @Param("username") String username);
+
+    User getUserById(@Param("userId") Long userId);
 }

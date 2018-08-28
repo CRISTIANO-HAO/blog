@@ -20,6 +20,8 @@ public class User {
     private String roles;
     //是否记住登陆信息
     private Boolean rememberMe;
+    //拒接回复邮件
+    private Boolean refuseEmail;
 
     public long getUserId() {
         return userId;
@@ -83,5 +85,13 @@ public class User {
 
     public void setRememberMe(Boolean rememberMe) {
         this.rememberMe = rememberMe;
+    }
+
+    public Boolean getRefuseEmail() {
+        return refuseEmail;
+    }
+
+    public void setRefuseEmail(Boolean refuseEmail) {
+        this.refuseEmail = refuseEmail;
     }
 }

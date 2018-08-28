@@ -19,11 +19,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" href="<%=basePath %>resource/front/image/favicon.ico" type="image/x-icon" />
 
-
-    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-sublime.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
+    <link rel="stylesheet" href="<%=basePath %>resource/front/css/highlight.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
-
+    <!--[if gt IE 10]> IE10以上版本可识别<![endif]-->
 </head>
 <body>
 <div id="container">
@@ -140,110 +139,6 @@
                                 <span class="article-clickNum">211</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="article-item" >
-                        <h3 class="article-title">Javascript深入浅出</h3>
-                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                            要知道去年销分的时候中午饭我都没吃去排的队……
-                        </div>
-                        <div class="article-msg clear">
-                            <div class="left">
-                                <div class="article-publishTime">2018-05-01 12:20:21</div>
-                                <div class="article-tags">
-                                    <span class="tag-msg">标签：</span>
-                                    <span class="tag-item">js</span>；
-                                    <span class="tag-item">入门</span>
-                                </div>
-                            </div>
-                            <div class="right comment-msg" title="评论">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-commentNum">13</span>
-                            </div>
-                            <div class="right click-msg" title="阅读量">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-clickNum">211</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="article-item">
-                        <h3 class="article-title">Javascript深入浅出</h3>
-                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                            要知道去年销分的时候中午饭我都没吃去排的队……
-                        </div>
-                        <div class="article-msg clear">
-                            <div class="left">
-                                <div class="article-publishTime">2018-05-01 12:20:21</div>
-                                <div class="article-tags">
-                                    <span class="tag-msg">标签：</span>
-                                    <span class="tag-item">js</span>；
-                                    <span class="tag-item">入门</span>
-                                </div>
-                            </div>
-                            <div class="right comment-msg" title="评论">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-commentNum">13</span>
-                            </div>
-                            <div class="right click-msg" title="阅读量">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-clickNum">211</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="article-item">
-                        <h3 class="article-title">Javascript深入浅出</h3>
-                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                            要知道去年销分的时候中午饭我都没吃去排的队……
-                        </div>
-                        <div class="article-msg clear">
-                            <div class="left">
-                                <div class="article-publishTime">2018-05-01 12:20:21</div>
-                                <div class="article-tags">
-                                    <span class="tag-msg">标签：</span>
-                                    <span class="tag-item">js</span>；
-                                    <span class="tag-item">入门</span>
-                                </div>
-                            </div>
-                            <div class="right comment-msg" title="评论">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-commentNum">13</span>
-                            </div>
-                            <div class="right click-msg" title="阅读量">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-clickNum">211</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="article-item">
-                        <h3 class="article-title">Javascript深入浅出</h3>
-                        <div class="article-summary">今天去交警中队接受法律制裁，因为昨天用手机进行了网上预约，在前面排了52号人的情况下直接在窗口把事办了。
-                            从公司出发，到最后拿了单子回到公司支付宝交款，居然不到半个小时……
-                            穿过旁边塑料椅子上的重重视线享受这莫名其妙的“特权”，真是有点儿魔幻。
-                            要知道去年销分的时候中午饭我都没吃去排的队……
-                        </div>
-                        <div class="article-msg clear">
-                            <div class="left">
-                                <div class="article-publishTime">2018-05-01 12:20:21</div>
-                                <div class="article-tags">
-                                    <span class="tag-msg">标签：</span>
-                                    <span class="tag-item">js</span>；
-                                    <span class="tag-item">入门</span>
-                                </div>
-                            </div>
-                            <div class="right comment-msg" title="评论">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-commentNum">13</span>
-                            </div>
-                            <div class="right click-msg" title="阅读量">
-                                <i class="scale_yaodong"></i>
-                                <span class="article-clickNum">211</span>
-                            </div>
-                        </div>
                     </div>--%>
                 </div>
                 <div id="loading">
@@ -294,10 +189,53 @@
                         </ul>
                     </section>
                 </div>
+                <div class="separation-line"></div>
+                <div id="comment">
+                    <div class="comment-msg">
+                        <i class="scale_yaodong"></i>
+                        <span>最新评论</span>
+                    </div>
+                    <section class="comment-box">
+                        <ul>
+                            <c:choose>
+                                <c:when test="${comments.size() > 0}">
+                                    <c:forEach items="${comments}" var="comment">
+                                        <li>
+                                            <p class="comment-content">
+                                                <i class="scale_yaodong"></i>
+                                                ${comment.content}
+                                            </p>
+                                            <div class="flex">
+                                                <span class="comment-username">发表 -- ${comment.username}</span>
+                                                <span class="comment-article"><a target="_blank" href="<%=basePath %>article/${comment.articleId}">${comment.title}</a></span>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <p>
+                                            <i class="scale_yaodong"></i>
+                                            暂无最新评论...
+                                        </p>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </ul>
+                    </section>
+                </div>
             </div>
         </div>
-        <div id="footer"></div>
+        <div id="footer">
+            <p>Designed & Powerd by cristiano-HAO</p>
+            <p>Copyright© 2018 早起不吃虫的博客 </p>
+            <p>粤ICP备18104892号</p>
+        </div>
     </div>
+</div>
+<div id="backToTop">
+    <div class="top">回到</div>
+    <div class="bottom">顶部</div>
 </div>
 <script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
 <script src="<%=basePath %>resource/front/js/utils.js"></script>

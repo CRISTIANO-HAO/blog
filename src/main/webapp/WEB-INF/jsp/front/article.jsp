@@ -21,10 +21,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" href="<%=basePath %>resource/front/image/favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet" href="<%=basePath %>resource/common/css/markdown-sublime.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
-    <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
-
+    <link rel="stylesheet" href="<%=basePath %>resource/front/css/highlight.css"/>
+    <link rel="stylesheet" href="<%=basePath %>resource/front/css/article.css"/>
+    <!--[if gt IE 10]> IE10以上版本可识别<![endif]-->
 </head>
 <body>
 <div id="container">
@@ -68,10 +68,10 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="article-title">
+                <h1 class="article-title">
                     ${article.title}
                     <input type="hidden" id="articleId" value="${article.articleId}">
-                </h3>
+                </h1>
                 <div class="article-tag">
                     <div class="article-writer clear">
                         <div class="left">作者：早起不吃虫</div>
@@ -90,7 +90,7 @@
                         </c:forEach>
                     </div>
                 </div>
-                <div class="markdown haroopad">
+                <div class="markdown highlight">
                     ${article.htmlContent}
                 </div>
             </div>
@@ -227,7 +227,11 @@
                 <div id="comment-footer"></div>
             </div>
         </div>
-        <div id="footer"></div>
+        <div id="footer">
+            <p>Designed & Powerd by cristiano-HAO</p>
+            <p>Copyright© 2018 早起不吃虫的博客 </p>
+            <p>粤ICP备18104892号</p>
+        </div>
     </div>
 </div>
 <div id="mask">
@@ -253,10 +257,15 @@
     </div>
     <div class="tip-text"></div>
 </div>
-<script src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
-<script src="<%=basePath %>resource/common/js/wangEditor.min.js"></script>
-<script src="<%=basePath %>resource/front/js/utils.js"></script>
-<script src="<%=basePath %>resource/front/js/editor.js"></script>
-<script src="<%=basePath %>resource/front/js/article.js"></script>
+<div id="backToTop">
+    <div class="top">回到</div>
+    <div class="bottom">顶部</div>
+</div>
+<div id="catalog"></div>
+<script type="text/javascript" src="<%=basePath %>resource/common/js/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="<%=basePath %>resource/common/js/wangEditor.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>resource/front/js/utils.js"></script>
+<script type="text/javascript" src="<%=basePath %>resource/front/js/editor.js"></script>
+<script type="text/javascript" src="<%=basePath %>resource/front/js/article.js"></script>
 </body>
 </html>

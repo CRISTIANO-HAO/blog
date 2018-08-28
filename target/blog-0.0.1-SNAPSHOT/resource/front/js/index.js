@@ -65,7 +65,7 @@ $(document).ready(function () {
         //文章加载起始位置
         pageIndex:0,
         //每次加载文章个数
-        pageSize: 3,
+        pageSize: 8,
         //是否已经全部加载完成
         hasLoadAll: false,
         /*页面到达底部时，加载下一页*/
@@ -127,7 +127,7 @@ $(document).ready(function () {
             var htmlStr = "";
             arr.forEach(function (el) {
                 htmlStr += '<div class="article-item">\n' +
-                    '                        <h3 class="article-title"><a target="view_window" href="article/' + el["articleId"] + '">'+ el["title"] +'</a></h3>\n' +
+                    '                        <h3 class="article-title"><a target="_blank" href="article/' + el["articleId"] + '">'+ el["title"] +'</a></h3>\n' +
                     '                        <div class="article-summary">'+ el["summaryHtmlContent"]+'</div>\n' +
                     '                        <div class="article-msg clear">\n' +
                     '                            <div class="left">\n' +
@@ -138,8 +138,10 @@ $(document).ready(function () {
                 htmlStr +=  '                                </div>\n' +
                     '                            </div>\n' +
                     '                            <div class="right comment-msg" title="评论">\n' +
-                    '                                <i class="scale_yaodong"></i>\n' +
-                    '                                <span class="article-commentNum">' + (el["commentNum"] || 0) +'</span>\n' +
+                    '                                <a target="_blank" href="article/' + el["articleId"] + '#comment"> ' +
+                    '                                    <i class="scale_yaodong"></i>\n' +
+                    '                                    <span class="article-commentNum">' + (el["commentNum"] || 0) +'</span>\n' +
+                    '                                </a>   ' +
                     '                            </div>\n' +
                     '                            <div class="right click-msg" title="阅读量">\n' +
                     '                                <i class="scale_yaodong"></i>\n' +
@@ -355,8 +357,13 @@ $(document).ready(function () {
         loadArticle.url = "article/archives/" + timerange;
         loadArticle.reset();
         loadArticle.getNextPage();
-    })
+    });
 
+
+    /*
+    * 回到顶部事件监听
+    * */
+    utils.backToTop && utils.backToTop($("#article-correlation").outerHeight(true));
 
     /*
     * 初始加载文章列表
