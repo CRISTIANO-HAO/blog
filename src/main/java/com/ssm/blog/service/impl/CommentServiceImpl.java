@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
 
@@ -81,7 +83,7 @@ public class CommentServiceImpl implements CommentService {
                 emailContent += "<h2>来自文章 -- 》》》"+ article.getTitle() +"</h>"
                         + "<p>" + comment.getContent() +"</p>"
                         + "<p>  -- 评论来自 -- " + comment.getUsername() +"</p>"
-                        + "<div><button><a target='_blank' href='http://localhost:8080/article/" + article.getArticleId() +"'>回复</a></button></div>";
+                        + "<div><button><a target='_blank' href='http://codedoges/article/" + article.getArticleId() +"#comment'>回复</a></button></div>";
 
                 //发送回复提醒邮件
                 try {
@@ -107,7 +109,5 @@ public class CommentServiceImpl implements CommentService {
         }
         return commentList;
     }
-
-
 
 }

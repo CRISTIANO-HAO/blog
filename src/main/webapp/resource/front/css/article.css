@@ -227,6 +227,14 @@ input.isEmpty,textarea.isEmpty{
     min-height: 1.4rem;
 }
 
+#comment-list .comment-wrap a.hasWebsite{
+    text-decoration: underline;
+}
+
+#comment-list .comment-wrap a.hasWebsite:hover{
+    color: #d88282;
+}
+
 #comment-list .comment-wrap .comment-text{
     font-size: 0.8rem;
     line-height: 1.5;

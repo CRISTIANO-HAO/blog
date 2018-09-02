@@ -199,7 +199,7 @@ $(document).ready(function () {
             '                                                <input type="text" class="user-email" value="' + utils.cookie.getCookie("email") + '" placeholder="您的邮箱">\n' +
             '                                            </div>\n' +
             '                                            <div class="input-wrap">\n' +
-            '                                                <input type="text" class="user-website" value="' + utils.cookie.getCookie("website") + '" placeholder="你的网站">\n' +
+            '                                                <input type="text" class="user-website" value="' + utils.cookie.getCookie("website") + '" placeholder="您的博客网址">\n' +
             '                                            </div>\n' +
             '                                        </div>\n' +
             '                                        <div class="comment-form-text">\n' +
@@ -254,7 +254,8 @@ $(document).ready(function () {
                     '                       <div class="avatar"></div>\n' +
                     '                   </div>\n' +
                     '                   <div class="comment-wrap">\n' +
-                    '                       <a class="username">' + arr[i]["username"] + '</a>\n' +
+                    ( arr[i]["website"] ? ('<a class="username hasWebsite" target="_blank" href="'+ arr[i]["website"] +'">' + arr[i]["username"] + '</a>\n') :
+                    ('                       <a class="username" >' + arr[i]["username"] + '</a>\n') ) +
                     '                       <div class="comment-text">' + arr[i]["content"] + '</div>\n' +
                     '                       <div class="answer-box">\n' +
                     '                           <span class="publishTime">' + $.utils().timeFormat(arr[i]["publishTime"]) + '</span>\n' +
@@ -275,71 +276,5 @@ $(document).ready(function () {
     /*
     * 生成文章目录
     * */
-    utils.renderCatalog.init("markdown-body","catalog");
-    /*renderArticleCatalog();
-    function renderArticleCatalog() {
-        var root = document.getElementsByClassName("markdown-body")[0];
-        var eles = root.getElementsByTagName("*");
-        var eleArr = Array.prototype.slice.call(root.querySelectorAll(["h1","h2","h3","h4","h5","h6"]));
-        var catalogArr = [];
-        var pointer = {index: 0, max: 6};
-        var treeArr = renderTreeArr(eleArr, catalogArr, pointer);
-    }
-
-    function renderTreeArr(eleArr, catalogArr, pointer) {
-        for (var i = pointer.index; i < eleArr.length; i++) {
-            var level = eleArr[i].nodeName.match(/[1-6]/)[0];
-            if (level < pointer.max) {
-                pointer.max = level;
-            }
-            if (level === pointer.max) {
-                var node = {
-                    id: eleArr[i].id,
-                    text: eleArr[i].innerText,
-                    level: level,
-                    child: []
-                }
-                catalogArr.push(node);
-            } else {
-                if (catalogArr.length > 0) {
-                    findCorrectLevel(catalogArr[catalogArr.length - 1]['child'], level, eleArr[i])
-                }
-            }
-        }
-        return catalogArr;
-    }
-
-    function findCorrectLevel(childArr, level, ele) {
-        if (childArr.length > 0) {
-            if (childArr[0].level === level) {
-                childArr.push({
-                    id: ele.id,
-                    text: ele.innerText,
-                    level: level,
-                    child: []
-                });
-            } else {
-                findCorrectLevel(childArr[childArr.length - 1]['child'], level, ele)
-            }
-        } else {
-            childArr.push({
-                id: ele.id,
-                text: ele.innerText,
-                level: level,
-                child: []
-            });
-        }
-    }
-    
-    function renderTreeHtml(arr) {
-        var str = "";
-        arr.forEach(function (item,index) {
-            str += "<li><span>"+ item.text +"</span>";
-            if (item.child.length > 0){
-                str += renderTreeHtml(item.child);
-            }
-            str += "</li>";
-        });
-        return "<ul>"+ str +"</ul>";
-    }*/
+    utils.renderCatalog.init("markdown-body","catalog-content");
 })

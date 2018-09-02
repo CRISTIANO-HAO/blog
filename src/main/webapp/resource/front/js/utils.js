@@ -117,7 +117,7 @@ $("#backToTop").on("click",function () {
         var top = document.body.scrollTop || document.documentElement.scrollTop;
         if (top > 0){
             num ++;
-            scrollTo(0,top - 50 * num)
+            scrollTo(0,top - 5 * num)
         }else {
             clearInterval(timer);
         }
@@ -135,15 +135,21 @@ utils.renderCatalog = {
         var eleArr = Array.prototype.slice.call(root.querySelectorAll(["h1","h2","h3","h4","h5","h6"]));
         var catalogArr = [];
         var pointer = {index: 0, max: 6};
-        var treeArr = this.renderTreeArr(eleArr, catalogArr, pointer);console.log(treeArr)
+        var treeArr = this.renderTreeArr(eleArr, catalogArr, pointer);
+        //渲染目录
         document.getElementById(container).innerHTML = this.renderTreeHtml(treeArr);
+        //绑定目录跳转事件
+        this.bindMoveEvent();
     },
     renderTreeArr:function (eleArr, catalogArr, pointer) {
         for (var i = pointer.index; i < eleArr.length; i++) {
+            //获取h标签值
             var level = eleArr[i].nodeName.match(/[1-6]/)[0];
             if (level < pointer.max) {
+                //重置最大值
                 pointer.max = level;
             }
+            //当标签层级最高时，放在数组第一层
             if (level === pointer.max) {
                 var node = {
                     id: eleArr[i].id,
@@ -154,6 +160,7 @@ utils.renderCatalog = {
                 catalogArr.push(node);
             } else {
                 if (catalogArr.length > 0) {
+                    //当标签层级不是最高时，从数组第一层的最后一个数据中找到该标签对应的位置
                     this.findCorrectLevel(catalogArr[catalogArr.length - 1]['child'], level, eleArr[i])
                 }
             }
@@ -162,6 +169,7 @@ utils.renderCatalog = {
     },
     findCorrectLevel:function (childArr, level, ele) {
         if (childArr.length > 0) {
+            //当该标签与子数组的层级一致时，添加进该层级
             if (childArr[0].level === level) {
                 childArr.push({
                     id: ele.id,
@@ -170,9 +178,11 @@ utils.renderCatalog = {
                     child: []
                 });
             } else {
+                //层级低与该层级时，迭代往下找到对应的层级为止；
                 this.findCorrectLevel(childArr[childArr.length - 1]['child'], level, ele)
             }
         } else {
+            //子数组为空时，直接添加进子数组
             childArr.push({
                 id: ele.id,
                 text: ele.innerText,
@@ -181,16 +191,45 @@ utils.renderCatalog = {
             });
         }
     },
-    renderTreeHtml:function (arr) {
+    renderTreeHtml:function (arr,layer) {
         var str = "";
         var self = this;
+        //目录层级，用.进行拼凑
+        layer = layer ? layer + "." : "";
         arr.forEach(function (item,index) {
-            str += "<li><span>"+ item.text +"</span>";
+            var title = layer + (index + 1) ;
+            str += "<li toId='"+ item.id +"'><span><strong>" + title +"</strong>"+ item.text +"</span>";
             if (item.child.length > 0){
-                str += self.renderTreeHtml(item.child);
+                //当该目录下有子目录，迭代生成子目录
+                str += self.renderTreeHtml(item.child,title);
             }
             str += "</li>";
         });
         return "<ul>"+ str +"</ul>";
+    },
+    bindMoveEvent:function () {
+        $("#catalog").on("click","li",function (ev) {
+            ev.stopPropagation();
+            var id = $(this).attr("toId");
+            var endPosition = $("#" + id).position().top - 40;
+            var timer = null;
+            var step = 30;
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var top = document.body.scrollTop || document.documentElement.scrollTop;
+                if (Math.abs(top - endPosition) > step){
+                    if (endPosition > top){
+                        scrollTo(0,top + step)
+                    }else {
+                        scrollTo(0,top - step)
+                    }
+                    step = step + 10;
+                }else {
+                    scrollTo(0,endPosition);
+                    clearInterval(timer);
+                }
+            },10)
+        })
     }
 }

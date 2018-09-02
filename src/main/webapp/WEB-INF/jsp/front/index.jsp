@@ -14,14 +14,25 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="This is my page">
+    <meta http-equiv="keywords" content="早起不吃虫，个人博客, 个人网站,首页, web前端,JavaScript,css,html,Java,MySQL,NodeJs">
+    <meta http-equiv="description" content="早起不吃虫的技术博客">
+    <meta name="keywords" content="早起不吃虫，个人博客, 个人网站,首页, web前端,JavaScript,css,html,Java,MySQL,NodeJs">
+    <meta name="author" content="早起不吃虫，豪腾飞，haotengfei">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" href="<%=basePath %>resource/front/image/favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/common.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/highlight.css"/>
     <link rel="stylesheet" href="<%=basePath %>resource/front/css/index.css"/>
+    <script type="text/javascript" defer>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0d4eba17fe032a7fa1c873a28dbc4f36";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <!--[if gt IE 10]> IE10以上版本可识别<![endif]-->
 </head>
 <body>

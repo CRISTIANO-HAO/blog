@@ -156,6 +156,65 @@ body {
     top: 50%;
 }
 
+#catalog p{
+    position: absolute;
+    left: -2.0rem;
+    top: 0;
+    width: 2.0rem;
+    writing-mode: vertical-lr;
+    background: #b4a790;
+    padding: 0.5rem 0.2rem;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    font-weight: bold;
+    font-size: 1.0rem;
+    cursor: pointer;
+}
+
+#catalog{
+    position: fixed;
+    transition: all 0.4s;
+    top: 7rem;
+    right: 1rem;
+    width: 0;
+    background-color: #f0ad4e;
+    padding: 0;
+    border-bottom-left-radius: 0.5rem;
+}
+
+#catalog:hover{
+    width: 10rem;
+    padding: 0.5rem 0.2rem 0.5rem 0.5rem;
+}
+
+#catalog-content{
+    overflow: auto;
+    max-height: 15rem;
+    min-height: 10rem;
+}
+
+#catalog-content li > ul{
+    margin-left: 1rem;
+}
+
+#catalog-content ul li span{
+    display: block;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#catalog-content ul li span:hover{
+    color: #e6db74;
+}
+
+#catalog-content ul li span strong{
+    padding-right: 0.5rem;
+}
+
 @media only screen and (min-width: 768px){
     #backToTop:hover div.top{
         bottom: 0%;

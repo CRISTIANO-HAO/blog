@@ -1,0 +1,52 @@
+body {
+    background: #fff;
+    color: #8E8F96;
+    font-family: "Microsoft YaHei", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif
+}
+
+a {
+    transition-property: background, color;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    text-decoration: none
+}
+
+.newfinno-con {
+    margin-top: 3rem;
+    background: url(../image/404.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 60%;
+}
+
+.tips {
+    text-align: center
+}
+
+.tips h2 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem
+}
+
+.tips .m-box {
+    text-align: center;
+    line-height: 1.5
+}
+
+.tips .m-text {
+    font-size: 1.2rem;
+    line-height: 1.5
+}
+
+.tips .back-index {
+    display: inline-block;
+    width: 5rem;
+    padding: 0.5rem;
+    background-color: #e3453d;
+    border-radius: 0.5rem;
+    color: #fff;
+}
