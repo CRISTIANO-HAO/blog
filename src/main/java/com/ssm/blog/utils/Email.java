@@ -3,13 +3,20 @@ package com.ssm.blog.utils;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.security.Security;
 import java.util.Properties;
 
 public class Email {
     public static void sendSimpleEmail (String emailContent,String emailAddress) throws Exception {
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
         Properties prop = new Properties();
         prop.setProperty("mail.host", "smtp.qq.com");
         prop.setProperty("mail.transport.protocol", "smtp");
+        prop.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        prop.setProperty("mail.smtp.socketFactory.fallback", "false");
+        prop.setProperty("mail.smtp.port", "465");
+        prop.setProperty("mail.smtp.socketFactory.port", "465");
         prop.setProperty("mail.smtp.auth", "true");
         //使用JavaMail发送邮件的5个步骤
         //1、创建session
@@ -21,7 +28,7 @@ public class Email {
         //3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要
         // 3.1开通POP3/SMTP/IMAP服务获取到授权码
         // 3.2 提交邮箱的用户名和授权码给smtp服务器，用户名和授权码都通过验证之后才能够正常发送邮件给收件人。
-        ts.connect("smtp.qq.com", "2415156870@qq.com", "gglmjjvrwhdrdiaa");
+        ts.connect("smtp.qq.com","2415156870@qq.com", "gglmjjvrwhdrdiaa");
         //4、创建邮件
         Message message = createSimpleMail(session,emailContent,emailAddress);
         //5、发送邮件
