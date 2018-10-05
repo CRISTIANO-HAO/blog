@@ -83,7 +83,7 @@ public class CommentServiceImpl implements CommentService {
                 emailContent += "<h2>来自文章 -- 》》》"+ article.getTitle() +"</h>"
                         + "<p>" + comment.getContent() +"</p>"
                         + "<p>  -- 评论来自 -- " + comment.getUsername() +"</p>"
-                        + "<div><button><a target='_blank' href='http://codedoges/article/" + article.getArticleId() +"#comment'>回复</a></button></div>";
+                        + "<div><button><a target='_blank' href='http://codedoges.com/article/" + article.getArticleId() +"#comment'>回复</a></button></div>";
 
                 //发送回复提醒邮件
                 try {
@@ -92,7 +92,21 @@ public class CommentServiceImpl implements CommentService {
                     e.printStackTrace();
                 }
             }
+        }else {
+            Article article = articleDao.getArticleById(comment.getArticleId());
+            //邮件内容拼凑
+            String emailContent = "";
+            emailContent += "<h2>来自文章 -- 》》》"+ article.getTitle() +"</h>"
+                    + "<p>" + comment.getContent() +"</p>"
+                    + "<p>  -- 评论来自 -- " + comment.getUsername() +"</p>"
+                    + "<div><button><a target='_blank' href='http://codedoges.com/article/" + article.getArticleId() +"#comment'>回复</a></button></div>";
 
+            //发送回复提醒邮件
+            try {
+                Email.sendSimpleEmail(emailContent,"2415156870@qq.com");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

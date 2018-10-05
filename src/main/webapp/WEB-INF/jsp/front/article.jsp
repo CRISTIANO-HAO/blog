@@ -13,11 +13,9 @@
 
     <title>${article.title}</title>
 
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="早起不吃虫,个人博客,个人网站,首页,web前端,JavaScript,css,html,Java,MySQL,NodeJs,<c:forEach items="${article.tags}" var="tag" varStatus="tagIndex">${tag.tagName},</c:forEach>">
     <meta http-equiv="description" content="早起不吃虫的技术博客">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
     <meta name="keywords" content="早起不吃虫，个人博客, 个人网站,首页, web前端,JavaScript,css,html,Java,MySQL,NodeJs,">
     <meta name="author" content="早起不吃虫，豪腾飞，haotengfei">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">

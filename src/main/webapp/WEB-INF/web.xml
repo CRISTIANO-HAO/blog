@@ -97,4 +97,58 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
 
+	<!-- 缓存处理 -->
+	<filter>
+		<filter-name>CacheFilter</filter-name>
+		<filter-class>com.ssm.blog.filter.CacheFilter</filter-class>
+        <init-param>
+            <param-name>js</param-name>
+            <param-value>2592000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>css</param-name>
+            <param-value>2592000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>png</param-name>
+            <param-value>31536000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jpg</param-name>
+            <param-value>31536000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>gif</param-name>
+            <param-value>31536000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jpeg</param-name>
+            <param-value>31536000</param-value>
+        </init-param>
+    </filter>
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>*.png</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>*.jpg</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>*.gif</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>*.jpeg</url-pattern>
+    </filter-mapping>
+
 </web-app>

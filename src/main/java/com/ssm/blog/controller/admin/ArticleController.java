@@ -84,6 +84,7 @@ public class ArticleController {
         }
 
         ResultSet resultSet;
+
         try {
             articleService.addArticle(article);
             resultSet = new ResultSet(true, 200, "新增成功！");
@@ -232,6 +233,7 @@ public class ArticleController {
     @ResponseBody
     public ResultSet deleteArticleById(@RequestParam("articleId") Long articleId){
         ResultSet resultSet = null;
+
         try {
             articleService.deleteArticleById(articleId);
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());

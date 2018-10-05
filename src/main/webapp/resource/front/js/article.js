@@ -135,7 +135,7 @@ $(document).ready(function () {
             self.find(".user-email").removeClass("isEmpty");
         }
         //匹配标签之间有一段文字的字符串；或者是纯文字无标签;或者纯表情包
-        if (/(?=>[^\s<>/]+<)/g.test(data.content) || /(?!^\s+$)^[^<>/]+$/g.test(data.content) || /<\s*img\s+[^<>]+>/.test(data.content)) {
+        if (/(?=>[^<>/]+<)/g.test(data.content) || /(?!^\s+$)^[^<>/]+$/g.test(data.content) || /<\s*img\s+[^<>]+>/.test(data.content)) {
             self.find(".comment-form-text").removeClass("isEmpty");
         } else {
             self.find(".comment-form-text").addClass("isEmpty");
@@ -277,4 +277,6 @@ $(document).ready(function () {
     * 生成文章目录
     * */
     utils.renderCatalog.init("markdown-body","catalog-content");
+    //解决IOS移动端无法触发 :hover 的问题
+    document.body.addEventListener('touchstart', function(){ });
 })

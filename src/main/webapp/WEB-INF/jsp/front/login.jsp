@@ -11,10 +11,7 @@
 
     <title>早起不吃虫的博客</title>
 
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
     <meta http-equiv="description" content="This is my page">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" href="<%=basePath %>resource/front/image/favicon.ico" type="image/x-icon" />

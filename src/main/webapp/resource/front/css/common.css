@@ -180,6 +180,7 @@ body {
     background-color: #f0ad4e;
     padding: 0;
     border-bottom-left-radius: 0.5rem;
+    z-index: 1000;
 }
 
 #catalog:hover{

@@ -31,8 +31,8 @@ public class CommentController {
 
         ResultSet resultSet = null;
 
+        commentService.addComment(comment);
         try {
-            commentService.addComment(comment);
             resultSet = new ResultSet(true,ResultEnum.SUCCESS.getStatusCode(),ResultEnum.SUCCESS.getComment());
         }catch (Exception e){
             resultSet = new ResultSet(false,ResultEnum.ERROR.getStatusCode(),ResultEnum.ERROR.getComment());

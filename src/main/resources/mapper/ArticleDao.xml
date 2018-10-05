@@ -46,7 +46,7 @@
     </insert>-->
 
     <select id="getArticleByPage" resultMap="completeArticle" parameterType="java.lang.Integer">
-        SELECT a.*, t.*, c.*, com.commentNum
+        SELECT a.articleId,a.saveTime,a.publishTime,a.title,a.summaryHtmlContent, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -242,7 +242,7 @@
     </update>-->
 
     <select id="getColumnArticleByPage" resultMap="completeArticle">
-        SELECT a.*, t.*, c.*, com.commentNum
+        SELECT a.articleId,a.saveTime,a.publishTime,a.title,a.summaryHtmlContent, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -274,7 +274,7 @@
     </select>
 
     <select id="searchArticleByPage" resultMap="completeArticle">
-        SELECT a.*, t.*, com.commentNum
+        SELECT a.articleId,a.saveTime,a.publishTime,a.title,a.summaryHtmlContent, t.*, com.commentNum
         FROM
             (
                 SELECT *
@@ -321,7 +321,7 @@
     </select>
 
     <select id="getCategoryArticleByPage" resultMap="completeArticle">
-        SELECT a.*, t.*, c.*, com.commentNum
+        SELECT a.articleId,a.saveTime,a.publishTime,a.title,a.summaryHtmlContent, t.*, c.*, com.commentNum
         FROM
             (
                 SELECT a.*
@@ -360,7 +360,7 @@
     </select>
 
     <select id="getArchivesArticleByPage" resultMap="completeArticle">
-        SELECT a.*, t.*, com.commentNum
+        SELECT a.articleId,a.saveTime,a.publishTime,a.title,a.summaryHtmlContent, t.*, com.commentNum
         FROM
             (
                 SELECT *
